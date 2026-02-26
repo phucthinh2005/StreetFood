@@ -321,3 +321,4 @@ D:\food\StreetFood\MauiApp1\bin\Debug\net10.0-ios\iossimulator-x64\Microsoft.Vis
 D:\food\StreetFood\MauiApp1\bin\Debug\net10.0-ios\iossimulator-x64\Microsoft.VisualStudio.DesignTools.TapContract.dll
 D:\food\StreetFood\MauiApp1\bin\Debug\net10.0-ios\iossimulator-x64\Microsoft.VisualStudio.DesignTools.XamlTapContract.dll
 D:\food\StreetFood\MauiApp1\obj\Debug\net10.0-ios\iossimulator-x64\build-signature\signature
+D:\food\StreetFood\MauiApp1\obj\Debug\net10.0-ios\iossimulator-x64\MauiApp1.sourcelink.json

@@ -309,3 +309,4 @@ D:\food\StreetFood\MauiApp1\bin\Debug\net10.0-maccatalyst\maccatalyst-x64\Micros
 D:\food\StreetFood\MauiApp1\bin\Debug\net10.0-maccatalyst\maccatalyst-x64\Microsoft.VisualStudio.DesignTools.MobileTapContracts.dll
 D:\food\StreetFood\MauiApp1\bin\Debug\net10.0-maccatalyst\maccatalyst-x64\Microsoft.VisualStudio.DesignTools.TapContract.dll
 D:\food\StreetFood\MauiApp1\bin\Debug\net10.0-maccatalyst\maccatalyst-x64\Microsoft.VisualStudio.DesignTools.XamlTapContract.dll
+D:\food\StreetFood\MauiApp1\obj\Debug\net10.0-maccatalyst\maccatalyst-x64\MauiApp1.sourcelink.json
