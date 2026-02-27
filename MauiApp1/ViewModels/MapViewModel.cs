@@ -12,6 +12,7 @@ namespace MauiApp1.ViewModels
         public ObservableCollection<POI> POIs { get; set; }
 
         public event Action<Location>? LocationUpdated;
+        public event Action<string, bool>? POIStateChanged;
 
         public MapViewModel()
         {
@@ -47,7 +48,7 @@ namespace MauiApp1.ViewModels
             };
 
             _gpsService.LocationChanged += OnLocationChanged;
-            _ = StartGPS();
+            //_ = StartGPS(); tắt gps thật khi test
         }
 
         private async Task StartGPS()
@@ -73,14 +74,33 @@ namespace MauiApp1.ViewModels
                 if (distanceMeters <= poi.Radius && !poi.IsInside)
                 {
                     poi.IsInside = true;
-                    Console.WriteLine($"ĐÃ VÀO {poi.Name}");
+                    POIStateChanged?.Invoke(poi.Name, true);
                 }
                 else if (distanceMeters > poi.Radius && poi.IsInside)
                 {
                     poi.IsInside = false;
-                    Console.WriteLine($"ĐÃ RỜI {poi.Name}");
+                    POIStateChanged?.Invoke(poi.Name, false);
                 }
             }
         }
+    //    public async Task SimulateMovement()
+    //    {
+    //        var testPath = new List<Location>
+    //{
+    //    new Location(21.028000,105.853000), // Ngoài tất cả
+
+    //    new Location(21.029000,105.853800), // Trung tâm Gian hàng A
+
+    //    new Location(21.028500,105.854200), // Trung tâm Gian hàng B
+
+    //    new Location(21.027500,105.854500)  // Trung tâm Gian hàng C
+    //};
+
+    //        foreach (var location in testPath)
+    //        {
+    //            OnLocationChanged(location);
+    //            await Task.Delay(3000); // 3 giây đổi vị trí
+    //        }
+    //    }
     }
 }

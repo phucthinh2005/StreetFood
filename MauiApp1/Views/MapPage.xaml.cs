@@ -20,6 +20,7 @@ namespace MauiApp1.Views
             BindingContext = vm;
 
             vm.LocationUpdated += OnLocationUpdated;
+            vm.POIStateChanged += OnPOIStateChanged;
 
             LoadMapHtml();
         }
@@ -32,10 +33,21 @@ namespace MauiApp1.Views
                     $"updateUserLocation({location.Latitude}, {location.Longitude})");
             });
         }
+        private void OnPOIStateChanged(string poiName, bool isInside)
+        {
+            MainThread.BeginInvokeOnMainThread(async () =>
+            {
+                string color = isInside ? "green" : "red";
+
+                await mapWebView.EvaluateJavaScriptAsync(
+                    $"setPoiColor('{poiName}', '{color}')");
+            });
+        }
 
         void LoadMapHtml()
         {
             var poiJson = JsonSerializer.Serialize(vm.POIs);
+            //_ = vm.SimulateMovement(); constructo test gps
 
             var html = $@"<!DOCTYPE html>
 <html>
@@ -76,19 +88,33 @@ function setZoom(z){{
 // ===== NHẬN POI TỪ C# =====
 var poiData = {poiJson};
 
+// Lưu circle theo tên
+var poiCircles = {{}};
+
 poiData.forEach(function(poi){{
 
     L.marker([poi.Latitude, poi.Longitude])
         .addTo(map)
         .bindPopup(poi.Name);
 
-    L.circle([poi.Latitude, poi.Longitude], {{
+    var circle = L.circle([poi.Latitude, poi.Longitude], {{
         radius: poi.Radius,
         color: 'red',
         fillOpacity: 0.2
     }}).addTo(map);
 
+    // Lưu lại circle theo tên
+    poiCircles[poi.Name] = circle;
 }});
+
+// Hàm đổi màu circle
+function setPoiColor(name, color){{
+    if(poiCircles[name]){{
+        poiCircles[name].setStyle({{ color: color }});
+    }}
+}}
+
+
 
 </script>
 </body>

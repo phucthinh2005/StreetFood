@@ -54,7 +54,7 @@
         <!-- Map area (WebView + Leaflet) -->
         <Grid Row="2">
             <WebView x:Name="mapWebView" BackgroundColor="Transparent" />
-
+            <!-- gọi map -->
             <!-- Zoom controls overlay -->
             <StackLayout Orientation="Vertical" VerticalOptions="Start" HorizontalOptions="Start" Margin="8" Spacing="6">
                 <Button x:Name="ZoomInButton" Text="+" WidthRequest="40" HeightRequest="40" Clicked="ZoomIn_Clicked" />
