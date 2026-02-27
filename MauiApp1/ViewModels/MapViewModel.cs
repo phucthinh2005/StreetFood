@@ -43,6 +43,7 @@ namespace MauiApp1.ViewModels
                     Radius = 20,
                     IsInside = false
                 }
+
             };
 
             _gpsService.LocationChanged += OnLocationChanged;
