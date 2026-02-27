@@ -8,25 +8,38 @@ namespace MauiApp1.ViewModels
     public class MapViewModel
     {
         private readonly GPSService _gpsService;
+        private readonly GeofenceService _geofenceService;
 
         public ObservableCollection<POI> POIs { get; set; }
 
         public event Action<Location>? LocationUpdated;
         public event Action<string, bool>? POIStateChanged;
 
+        //test
+        public void SimulateLocation(double lat, double lng)
+        {
+            var fakeLocation = new Location(lat, lng);
+
+            LocationUpdated?.Invoke(fakeLocation);
+            _geofenceService.ProcessLocation(fakeLocation);
+        }
+        //
         public MapViewModel()
         {
             _gpsService = new GPSService();
 
+            
             POIs = new ObservableCollection<POI>
             {
-                new POI
+               new POI
                 {
                     Name = "Gian hàng A",
                     Latitude = 21.029000,
                     Longitude = 105.853800,
                     Radius = 20,
-                    IsInside = false
+                    NearRadius = 40,
+                    Priority = 2,
+                    Content = "Sản phẩm khuyến mãi mới tại gian hàng A"
                 },
                 new POI
                 {
@@ -34,7 +47,9 @@ namespace MauiApp1.ViewModels
                     Latitude = 21.028500,
                     Longitude = 105.854200,
                     Radius = 20,
-                    IsInside = false
+                    NearRadius = 40,
+                    Priority = 3,
+                    Content = "Sản phẩm giảm giá tại gian hàng B"
                 },
                 new POI
                 {
@@ -42,13 +57,18 @@ namespace MauiApp1.ViewModels
                     Latitude = 21.027500,
                     Longitude = 105.854500,
                     Radius = 20,
-                    IsInside = false
+                    NearRadius = 60,
+                    Priority = 1,
+                    Content = "Sản phẩm mới tại gian hàng C"
                 }
-
             };
 
+            _geofenceService = new GeofenceService(POIs.ToList());
+            _geofenceService.GeofenceTriggered += OnGeofenceTriggered;
+
             _gpsService.LocationChanged += OnLocationChanged;
-            //_ = StartGPS(); tắt gps thật khi test
+
+            //_ = StartGPS();
         }
 
         private async Task StartGPS()
@@ -60,47 +80,88 @@ namespace MauiApp1.ViewModels
         {
             LocationUpdated?.Invoke(location);
 
-            foreach (var poi in POIs)
+            _geofenceService.ProcessLocation(location);
+        }
+
+        //private async void OnGeofenceTriggered(GeofenceEvent e)
+        //{
+        //    switch (e.EventType)
+        //    {
+        //        case GeofenceEventType.Enter:
+        //            await TextToSpeech.Default.SpeakAsync(
+        //                $"Bạn đã vào {e.POI.Name}. {e.POI.Content}");
+        //            POIStateChanged?.Invoke(e.POI.Name, true);
+        //            break;
+
+        //        case GeofenceEventType.Near:
+        //            await TextToSpeech.Default.SpeakAsync(
+        //                $"Bạn đang đến gần {e.POI.Name}");
+        //            break;
+
+        //        case GeofenceEventType.Exit:
+        //            POIStateChanged?.Invoke(e.POI.Name, false);
+        //            break;
+        //    }
+        //}
+        private async void OnGeofenceTriggered(GeofenceEvent e)
+        {
+            switch (e.EventType)
             {
-                double distanceKm = Location.CalculateDistance(
-                    location.Latitude,
-                    location.Longitude,
-                    poi.Latitude,
-                    poi.Longitude,
-                    DistanceUnits.Kilometers);
+                case GeofenceEventType.Enter:
+                    POIStateChanged?.Invoke(e.POI.Name, true);
+                    break;
 
-                double distanceMeters = distanceKm * 1000;
+                case GeofenceEventType.Exit:
+                    POIStateChanged?.Invoke(e.POI.Name, false);
+                    break;
 
-                if (distanceMeters <= poi.Radius && !poi.IsInside)
-                {
-                    poi.IsInside = true;
-                    POIStateChanged?.Invoke(poi.Name, true);
-                }
-                else if (distanceMeters > poi.Radius && poi.IsInside)
-                {
-                    poi.IsInside = false;
-                    POIStateChanged?.Invoke(poi.Name, false);
-                }
+                case GeofenceEventType.Near:
+                    await TextToSpeech.Default.SpeakAsync(
+                        $"Bạn đang đến gần {e.POI.Name}");
+                    break;
+
+                case GeofenceEventType.Audio:
+                    await TextToSpeech.Default.SpeakAsync(
+                        $"Bạn đã vào {e.POI.Name}. {e.POI.Content}");
+                    break;
             }
         }
-    //    public async Task SimulateMovement()
-    //    {
-    //        var testPath = new List<Location>
-    //{
-    //    new Location(21.028000,105.853000), // Ngoài tất cả
+        //test
+        public async Task SimulateMovement()
+        {
+            var path = new List<Location>
+    {
+        // Bắt đầu ngoài vùng tất cả
+        new Location(21.029500,105.853000),
 
-    //    new Location(21.029000,105.853800), // Trung tâm Gian hàng A
+        // Tiến gần A
+        new Location(21.029100,105.853700),
 
-    //    new Location(21.028500,105.854200), // Trung tâm Gian hàng B
+        // Vào A
+        new Location(21.029000,105.853800),
 
-    //    new Location(21.027500,105.854500)  // Trung tâm Gian hàng C
-    //};
+        // Rời A -> qua B
+        new Location(21.028700,105.854000),
 
-    //        foreach (var location in testPath)
-    //        {
-    //            OnLocationChanged(location);
-    //            await Task.Delay(3000); // 3 giây đổi vị trí
-    //        }
-    //    }
+        // Vào B
+        new Location(21.028500,105.854200),
+
+        // Rời B -> qua C
+        new Location(21.027900,105.854400),
+
+        // Vào C
+        new Location(21.027500,105.854500),
+
+        // Ra khỏi C
+        new Location(21.027000,105.854800)
+    };
+
+            foreach (var loc in path)
+            {
+                SimulateLocation(loc.Latitude, loc.Longitude);
+                await Task.Delay(6000); // 4 giây mỗi bước
+            }
+        }
+
     }
 }

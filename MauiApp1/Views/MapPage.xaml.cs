@@ -47,7 +47,7 @@ namespace MauiApp1.Views
         void LoadMapHtml()
         {
             var poiJson = JsonSerializer.Serialize(vm.POIs);
-            //_ = vm.SimulateMovement(); constructo test gps
+            _ = vm.SimulateMovement(); //constructo test gps chạy test
 
             var html = $@"<!DOCTYPE html>
 <html>
@@ -95,7 +95,12 @@ poiData.forEach(function(poi){{
 
     L.marker([poi.Latitude, poi.Longitude])
         .addTo(map)
-        .bindPopup(poi.Name);
+        .bindPopup(
+            ""<div style='min-width:160px'>"" +
+            ""<b>"" + poi.Name + ""</b><br/>"" +
+            ""<span style='font-size:13px'>"" + poi.Content + ""</span>"" +
+            ""</div>""
+        );
 
     var circle = L.circle([poi.Latitude, poi.Longitude], {{
         radius: poi.Radius,
@@ -134,5 +139,7 @@ function setPoiColor(name, color){{
             currentZoom = Math.Max(1, currentZoom - 1);
             await mapWebView.EvaluateJavaScriptAsync($"setZoom({currentZoom})");
         }
+        
+        
     }
 }
