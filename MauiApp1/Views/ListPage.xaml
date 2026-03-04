@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiApp1.Views.ListPage"
+             Title="Danh sách"
+             BackgroundColor="#F2F2F2">
+
+    <Grid Padding="12">
+
+        <CollectionView ItemsSource="{Binding POIs}"
+                        SelectionMode="None">
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+
+                    <Border StrokeThickness="0"
+                            BackgroundColor="White"
+                            Margin="0,6"
+                            Padding="10">
+
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="16"/>
+                        </Border.StrokeShape>
+
+                        <Border.Shadow>
+                            <Shadow Brush="#33000000"
+                                    Offset="0,2"
+                                    Radius="8"/>
+                        </Border.Shadow>
+
+                        <!-- Dùng Grid thay cho HorizontalStackLayout (ổn định hơn) -->
+                        <Grid ColumnDefinitions="80,*"
+                              ColumnSpacing="10">
+
+                            <!-- Ảnh -->
+                            <Image Source="{Binding ImageUrl}"
+                                   WidthRequest="80"
+                                   HeightRequest="80"
+                                   Aspect="AspectFill"
+                                   Grid.Column="0"/>
+
+                            <!-- Nội dung -->
+                            <VerticalStackLayout Spacing="4"
+                                                 Grid.Column="1">
+
+                                <Label Text="{Binding Name}"
+                                       FontAttributes="Bold"
+                                       FontSize="15"/>
+
+                                <Label Text="{Binding Description}"
+                                       FontSize="12"
+                                       TextColor="Gray"/>
+
+                                <Label Text="{Binding Content}"
+                                       FontSize="12"
+                                       LineBreakMode="TailTruncation"/>
+
+                                <Label Text="{Binding Radius,
+                                              StringFormat='Bán kính: {0} m'}"
+                                       FontSize="11"
+                                       TextColor="Gray"/>
+
+                            </VerticalStackLayout>
+
+                        </Grid>
+
+                    </Border>
+
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+
+        </CollectionView>
+
+    </Grid>
+
+</ContentPage>

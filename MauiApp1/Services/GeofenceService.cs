@@ -1,26 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using MauiApp1.Models;
+﻿using MauiApp1.Models;
 using Microsoft.Maui.Devices.Sensors;
 
 namespace MauiApp1.Services
 {
     public class GeofenceService
     {
-        private readonly List<POI> _pois;
-        private const int CooldownSeconds = 6; // chống spam
+        private List<POI> _pois;
+
+        private const int AudioCooldownSeconds = 15;
 
         public event Action<GeofenceEvent>? GeofenceTriggered;
 
         public GeofenceService(List<POI> pois)
         {
-            _pois = pois;
+            _pois = pois ?? new List<POI>();
+        }
+
+        public void UpdatePOIs(List<POI> pois)
+        {
+            _pois = pois ?? new List<POI>();
         }
 
         public void ProcessLocation(Location location)
         {
-            List<POI> currentlyInside = new();
+            List<POI> justEntered = new();
 
             foreach (var poi in _pois)
             {
@@ -37,23 +40,31 @@ namespace MauiApp1.Services
                 bool isNear = distanceMeters <= poi.NearRadius;
 
                 // ===== ENTER =====
+                // ===== ENTER =====
                 if (!wasInside && isInside)
                 {
                     poi.IsInside = true;
-                    poi.IsNear = true; // inside cũng tính là near
+                    poi.IsNear = true;
 
+                    // 🟢 Đổi màu sang xanh
                     GeofenceTriggered?.Invoke(new GeofenceEvent
                     {
                         POI = poi,
                         EventType = GeofenceEventType.Enter
                     });
+
+                    justEntered.Add(poi);
                 }
 
+                // ===== EXIT (KHÔNG báo gì) =====
+
                 // ===== EXIT =====
-                else if (wasInside && !isInside)
+                if (wasInside && !isInside)
                 {
                     poi.IsInside = false;
+                    poi.IsNear = false;
 
+                    // 🔘 Đổi lại màu mặc định
                     GeofenceTriggered?.Invoke(new GeofenceEvent
                     {
                         POI = poi,
@@ -61,53 +72,48 @@ namespace MauiApp1.Services
                     });
                 }
 
-                // ===== NEAR (chỉ khi vừa mới vào vùng near từ ngoài) =====
-                if (!wasNear && isNear && !isInside && CanTrigger(poi))
+                // ===== NEAR =====
+                if (!wasNear && isNear && !isInside)
                 {
                     poi.IsNear = true;
 
-                    Trigger(poi, GeofenceEventType.Near);
+                    GeofenceTriggered?.Invoke(new GeofenceEvent
+                    {
+                        POI = poi,
+                        EventType = GeofenceEventType.Near
+                    });
                 }
 
-                // ===== RA KHỎI NEAR =====
                 if (wasNear && !isNear)
                 {
                     poi.IsNear = false;
                 }
-
-                if (isInside)
-                    currentlyInside.Add(poi);
             }
 
-            // ===== AUDIO CHỈ PHÁT 1 POI ƯU TIÊN CAO (chỉ khi vừa Enter) =====
-            if (currentlyInside.Any())
+            // ===== AUDIO CHỈ CHẠY KHI VỪA ENTER =====
+            if (justEntered.Any())
             {
-                var highestPriority = currentlyInside
+                var highestPriority = justEntered
                     .OrderByDescending(p => p.Priority)
                     .First();
 
-                if (CanTrigger(highestPriority))
+                if (CanPlayAudio(highestPriority))
                 {
-                    Trigger(highestPriority, GeofenceEventType.Audio);
+                    highestPriority.LastTriggered = DateTime.Now;
+
+                    GeofenceTriggered?.Invoke(new GeofenceEvent
+                    {
+                        POI = highestPriority,
+                        EventType = GeofenceEventType.Audio
+                    });
                 }
             }
         }
 
-        private bool CanTrigger(POI poi)
+        private bool CanPlayAudio(POI poi)
         {
             return (DateTime.Now - poi.LastTriggered)
-                   > TimeSpan.FromSeconds(CooldownSeconds);
-        }
-
-        private void Trigger(POI poi, GeofenceEventType type)
-        {
-            poi.LastTriggered = DateTime.Now;
-
-            GeofenceTriggered?.Invoke(new GeofenceEvent
-            {
-                POI = poi,
-                EventType = type
-            });
+                   > TimeSpan.FromSeconds(AudioCooldownSeconds);
         }
     }
 }

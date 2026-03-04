@@ -33,34 +33,33 @@ namespace MauiApp1.ViewModels
             {
                new POI
                 {
-                    Name = "Gian hàng A",
-                    Latitude = 21.029000,
-                    Longitude = 105.853800,
-                    Radius = 20,
-                    NearRadius = 40,
-                    Priority = 2,
-                    Content = "Sản phẩm khuyến mãi mới tại gian hàng A"
+                     Name = "Bò Né 3 Ngon",
+                     Latitude = 10.768900,
+                     Longitude = 106.690500,
+                     Radius = 20,
+                     NearRadius = 40,
+                     Priority = 2,
+                     Content = "Bò né Sài Gòn ",
+                     Description = "Gian hàng chuyên bán đồ ăn ",
+                     Detail = "Bò Né 3 Ngon phục vụ món bò né truyền thống Sài Gòn với thịt bò mềm, trứng ốp la, pate gan và bánh mì nóng giòn. Sốt đặc biệt là bí quyết làm nên thương hiệu 20 năm.",
+                     ImageUrl = "bun_cha.jpg",
+                     Language = "Tiếng Việt"
                 },
-                new POI
+               new POI
                 {
-                    Name = "Gian hàng B",
-                    Latitude = 21.028500,
-                    Longitude = 105.854200,
-                    Radius = 20,
-                    NearRadius = 40,
-                    Priority = 3,
-                    Content = "Sản phẩm giảm giá tại gian hàng B"
+                     Name = "Chè Miền Tây",
+                     Latitude = 10.768500,
+                     Longitude = 106.690800,
+                     Radius = 20,
+                     NearRadius = 40,
+                     Priority = 3,
+                     Content = "Chè truyền thống miền Nam",
+                     Description = "Gian hàng chuyên bán đồ ăn vặt",
+                     Detail = "Chè Miền Tây với đa dạng các loại chè: chè thập cẩm, chè dừa dầm, chè bưởi, chè đậu đỏ. Tất cả đều được nấu thủ công mỗi ngày với nguyên liệu tươi ngon nhất.",
+                     ImageUrl = "che.jpg",
+                     Language = "Tiếng Việt"
                 },
-                new POI
-                {
-                    Name = "Gian hàng C",
-                    Latitude = 21.027500,
-                    Longitude = 105.854500,
-                    Radius = 20,
-                    NearRadius = 60,
-                    Priority = 1,
-                    Content = "Sản phẩm mới tại gian hàng C"
-                }
+
             };
 
             _geofenceService = new GeofenceService(POIs.ToList());
@@ -83,26 +82,7 @@ namespace MauiApp1.ViewModels
             _geofenceService.ProcessLocation(location);
         }
 
-        //private async void OnGeofenceTriggered(GeofenceEvent e)
-        //{
-        //    switch (e.EventType)
-        //    {
-        //        case GeofenceEventType.Enter:
-        //            await TextToSpeech.Default.SpeakAsync(
-        //                $"Bạn đã vào {e.POI.Name}. {e.POI.Content}");
-        //            POIStateChanged?.Invoke(e.POI.Name, true);
-        //            break;
-
-        //        case GeofenceEventType.Near:
-        //            await TextToSpeech.Default.SpeakAsync(
-        //                $"Bạn đang đến gần {e.POI.Name}");
-        //            break;
-
-        //        case GeofenceEventType.Exit:
-        //            POIStateChanged?.Invoke(e.POI.Name, false);
-        //            break;
-        //    }
-        //}
+        
         private async void OnGeofenceTriggered(GeofenceEvent e)
         {
             switch (e.EventType)
@@ -129,37 +109,41 @@ namespace MauiApp1.ViewModels
         //test
         public async Task SimulateMovement()
         {
-            var path = new List<Location>
+            var route = new List<Location>
     {
-        // Bắt đầu ngoài vùng tất cả
-        new Location(21.029500,105.853000),
+        // Bắt đầu xa khu vực
+        new Location(10.769500, 106.689800),
 
-        // Tiến gần A
-        new Location(21.029100,105.853700),
+        // Đi dọc đường tiến gần POI A
+        new Location(10.769200, 106.690000),
+        new Location(10.769000, 106.690200),
 
-        // Vào A
-        new Location(21.029000,105.853800),
+        // Gần POI A
+        new Location(10.768950, 106.690350),
 
-        // Rời A -> qua B
-        new Location(21.028700,105.854000),
+        // Vào POI A
+        new Location(10.768900, 106.690500),
 
-        // Vào B
-        new Location(21.028500,105.854200),
+        // Rời POI A
+        new Location(10.768850, 106.690650),
 
-        // Rời B -> qua C
-        new Location(21.027900,105.854400),
+        // Tiến về POI B
+        new Location(10.768700, 106.690750),
 
-        // Vào C
-        new Location(21.027500,105.854500),
+        // Vào POI B
+        new Location(10.768500, 106.690800),
 
-        // Ra khỏi C
-        new Location(21.027000,105.854800)
+        // Rời POI B
+        new Location(10.768300, 106.691000),
+
+        // Đi xa khỏi toàn bộ khu vực
+        new Location(10.767900, 106.691500)
     };
 
-            foreach (var loc in path)
+            foreach (var loc in route)
             {
                 SimulateLocation(loc.Latitude, loc.Longitude);
-                await Task.Delay(6000); // 4 giây mỗi bước
+                await Task.Delay(5000); // 5 giây mỗi bước (giống đi bộ)
             }
         }
 

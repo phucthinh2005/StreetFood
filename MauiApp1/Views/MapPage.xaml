@@ -20,35 +20,48 @@
         </Grid>
 
         <!-- Tabs -->
-        <Grid Row="1" BackgroundColor="White" Padding="8">
+        <!-- Tabs -->
+        <Grid Row="1" BackgroundColor="White">
+
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            <StackLayout Orientation="Horizontal" Spacing="8">
+            <!-- Tab: Bản đồ -->
+            <Border Grid.Column="0"
+            BackgroundColor="#FFF7F2"
+            Padding="12"
+            StrokeThickness="0">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="6"/>
+                </Border.StrokeShape>
 
-                <!-- Tab: Bản đồ -->
-                <Border BackgroundColor="#FFF7F2"
-                Padding="8"
-                StrokeThickness="0">
-                    <Border.StrokeShape>
-                        <RoundRectangle CornerRadius="6"/>
-                    </Border.StrokeShape>
-                    <Label Text="Bản đồ" />
-                </Border>
+                <Label Text="Bản đồ"
+               HorizontalOptions="Center"
+               VerticalOptions="Center"/>
+            </Border>
 
-                <!-- Tab: Danh sách -->
-                <Border BackgroundColor="Transparent"
-                Padding="8"
-                StrokeThickness="0">
-                    <Border.StrokeShape>
-                        <RoundRectangle CornerRadius="6"/>
-                    </Border.StrokeShape>
-                    <Label Text="Danh sách (4)" />
-                </Border>
+            <!-- Tab: Danh sách -->
+            <!-- Tab: Danh sách -->
+            <Border Grid.Column="1"
+        BackgroundColor="Transparent"
+        Padding="12"
+        StrokeThickness="0">
 
-            </StackLayout>
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="6"/>
+                </Border.StrokeShape>
+
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnListTabTapped"/>
+                </Border.GestureRecognizers>
+
+                <Label Text="Danh sách "
+           HorizontalOptions="Center"
+           VerticalOptions="Center"/>
+            </Border>
+
         </Grid>
 
         <!-- Map area (WebView + Leaflet) -->
