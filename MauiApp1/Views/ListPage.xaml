@@ -8,7 +8,8 @@
     <Grid Padding="12">
 
         <CollectionView ItemsSource="{Binding POIs}"
-                        SelectionMode="None">
+                        SelectionMode="Single"
+                        SelectionChanged="CollectionView_SelectionChanged">
 
             <CollectionView.ItemTemplate>
                 <DataTemplate>

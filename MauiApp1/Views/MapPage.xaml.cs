@@ -64,7 +64,7 @@ namespace MauiApp1.Views
         // ================================
         // Bắt click từ Leaflet marker
         // ================================
-        private async void MapWebView_Navigating(object sender, WebNavigatingEventArgs e)
+        private async void MapWebView_Navigating(object? sender, WebNavigatingEventArgs e)
         {
             if (e.Url.StartsWith("poi://"))
             {

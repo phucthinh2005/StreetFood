@@ -9,6 +9,7 @@ namespace MauiApp1
             InitializeComponent();
             Routing.RegisterRoute(nameof(POIDetailPage), typeof(POIDetailPage));
             Routing.RegisterRoute(nameof(ListPage), typeof(ListPage));
+            Routing.RegisterRoute(nameof(POIDetailPage), typeof(POIDetailPage));
         }
     }
 }

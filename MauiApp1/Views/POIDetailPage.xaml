@@ -13,7 +13,7 @@
                                  Spacing="20">
 
                 <!-- TÊN -->
-                <Label Text="{Binding Name}"
+                <Label Text="{Binding SelectedPOI.Name}"
                        FontSize="26"
                        FontAttributes="Bold"
                        HorizontalOptions="Center"/>
@@ -28,7 +28,7 @@
                         <RoundRectangle CornerRadius="18"/>
                     </Border.StrokeShape>
 
-                    <Image Source="{Binding ImageUrl}"
+                    <Image Source="{Binding SelectedPOI.ImageUrl}"
                            HeightRequest="220"
                            Aspect="AspectFill"/>
                 </Border>
@@ -38,7 +38,7 @@
                        FontAttributes="Bold"
                        FontSize="16"/>
 
-                <Label Text="{Binding Description}"
+                <Label Text="{Binding SelectedPOI.Description}"
                        FontSize="14"
                        LineHeight="1.3"/>
 
@@ -70,21 +70,21 @@
                                        TextColor="Gray"/>
                             </VerticalStackLayout>
 
-                            <Button x:Name="SpeakButton"
-                                    Grid.Column="1"
-                                    Text="▶ Nghe"
+                            <!-- NÚT SPEAK -->
+                            <Button Grid.Column="1"
+                                    Text="{Binding SpeakButtonText}"
+                                    Command="{Binding SpeakCommand}"
                                     BackgroundColor="#FF6B35"
                                     TextColor="White"
                                     CornerRadius="20"
                                     HeightRequest="40"
-                                    Padding="18,6"
-                                    Clicked="OnSpeakClicked"/>
+                                    Padding="18,6"/>
                         </Grid>
 
                         <BoxView HeightRequest="1"
                                  Color="#EEEEEE"/>
 
-                        <Label Text="{Binding Detail}"
+                        <Label Text="{Binding SelectedPOI.Detail}"
                                FontSize="14"
                                LineHeight="1.4"/>
                     </VerticalStackLayout>
@@ -102,8 +102,8 @@
                         <Label Text="📍 Vị trí"
                                FontAttributes="Bold"/>
 
-                        <Label Text="{Binding Latitude, StringFormat='Vĩ độ: {0}'}"/>
-                        <Label Text="{Binding Longitude, StringFormat='Kinh độ: {0}'}"/>
+                        <Label Text="{Binding SelectedPOI.Latitude, StringFormat='Vĩ độ: {0}'}"/>
+                        <Label Text="{Binding SelectedPOI.Longitude, StringFormat='Kinh độ: {0}'}"/>
                     </VerticalStackLayout>
                 </Border>
 
@@ -119,7 +119,7 @@
                         <Label Text="🌍 Ngôn ngữ hỗ trợ"
                                FontAttributes="Bold"/>
 
-                        <Label Text="{Binding Language}"/>
+                        <Label Text="{Binding SelectedPOI.Language}"/>
                     </VerticalStackLayout>
                 </Border>
 
@@ -145,10 +145,10 @@
             </Border.Shadow>
 
             <Label Text="✕"
-       FontSize="18"
-       FontAttributes="Bold">
+                   FontSize="18"
+                   FontAttributes="Bold">
                 <Label.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="OnCloseClicked"/>
+                    <TapGestureRecognizer Command="{Binding CloseCommand}"/>
                 </Label.GestureRecognizers>
             </Label>
         </Border>
