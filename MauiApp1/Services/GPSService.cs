@@ -31,7 +31,7 @@ namespace MauiApp1.Services
                 {
                     var request = new GeolocationRequest(
                         GeolocationAccuracy.High,
-                        TimeSpan.FromSeconds(5)
+                        TimeSpan.FromSeconds(3)   // ⬅ GPS timeout 3s
                     );
 
                     var location = await Geolocation.Default
@@ -52,8 +52,8 @@ namespace MauiApp1.Services
                                     location,
                                     DistanceUnits.Kilometers) * 1000;
 
-                            // Chỉ cập nhật nếu di chuyển > 3m (tối ưu pin)
-                            if (distanceInMeters > 3)
+                            // Chỉ cập nhật ke ca dung yen
+                            if (location != null)
                             {
                                 lastLocation = location;
                                 LocationChanged?.Invoke(location);
@@ -63,10 +63,9 @@ namespace MauiApp1.Services
                 }
                 catch (Exception)
                 {
-                    // Có thể log nếu cần
                 }
 
-                await Task.Delay(4000, token); // interval hợp lý
+                await Task.Delay(3000, token); // ⬅ cập nhật mỗi 3s
             }
         }
 

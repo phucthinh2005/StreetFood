@@ -16,14 +16,7 @@ namespace MauiApp1.ViewModels
         public event Action<string, bool>? POIStateChanged;
 
         //test
-        public void SimulateLocation(double lat, double lng)
-        {
-            var fakeLocation = new Location(lat, lng);
-
-            LocationUpdated?.Invoke(fakeLocation);
-            _geofenceService.ProcessLocation(fakeLocation);
-        }
-        //
+        
         public MapViewModel()
         {
             _gpsService = new GPSService();
@@ -34,10 +27,10 @@ namespace MauiApp1.ViewModels
                new POI
                 {
                      Name = "Bò Né 3 Ngon",
-                     Latitude = 10.768900,
-                     Longitude = 106.690500,
-                     Radius = 20,
-                     NearRadius = 40,
+                     Latitude = 10.761819,
+                     Longitude = 106.702132,
+                     Radius = 10,
+                     NearRadius = 30,
                      Priority = 2,
                      Content = "Bò né Sài Gòn ",
                      Description = "Gian hàng chuyên bán đồ ăn ",
@@ -48,10 +41,10 @@ namespace MauiApp1.ViewModels
                new POI
                 {
                      Name = "Chè Miền Tây",
-                     Latitude = 10.768500,
-                     Longitude = 106.690800,
-                     Radius = 20,
-                     NearRadius = 40,
+                     Latitude = 10.761536,
+                     Longitude = 106.702303,
+                     Radius = 10,
+                     NearRadius = 30,
                      Priority = 3,
                      Content = "Chè truyền thống miền Nam",
                      Description = "Gian hàng chuyên bán đồ ăn vặt",
@@ -68,7 +61,7 @@ namespace MauiApp1.ViewModels
 
             _gpsService.LocationChanged += OnLocationChanged;
 
-            //_ = StartGPS();
+            _ = StartGPS();
         }
 
         private async Task StartGPS()
@@ -107,46 +100,8 @@ namespace MauiApp1.ViewModels
                     break;
             }
         }
-        //test
-        public async Task SimulateMovement()
-        {
-            var route = new List<Location>
-    {
-        // Bắt đầu xa khu vực
-        new Location(10.769500, 106.689800),
-
-        // Đi dọc đường tiến gần POI A
-        new Location(10.769200, 106.690000),
-        new Location(10.769000, 106.690200),
-
-        // Gần POI A
-        new Location(10.768950, 106.690350),
-
-        // Vào POI A
-        new Location(10.768900, 106.690500),
-
-        // Rời POI A
-        new Location(10.768850, 106.690650),
-
-        // Tiến về POI B
-        new Location(10.768700, 106.690750),
-
-        // Vào POI B
-        new Location(10.768500, 106.690800),
-
-        // Rời POI B
-        new Location(10.768300, 106.691000),
-
-        // Đi xa khỏi toàn bộ khu vực
-        new Location(10.767900, 106.691500)
-    };
-
-            foreach (var loc in route)
-            {
-                SimulateLocation(loc.Latitude, loc.Longitude);
-                await Task.Delay(5000); // 5 giây mỗi bước (giống đi bộ)
-            }
-        }
+       
+        
 
     }
 }
