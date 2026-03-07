@@ -1,107 +1,135 @@
-﻿using MauiApp1.Models;
-using MauiApp1.Services;
-using Microsoft.Maui.Devices.Sensors;
-using System.Collections.ObjectModel;
+﻿using MauiApp1.Models;          // chứa class POI
+using MauiApp1.Services;        // chứa GPSService và GeofenceService
+using MauiApp1.Database;        // chứa DatabaseService (SQLite)
+using Microsoft.Maui.Devices.Sensors; // dùng Location (GPS)
+using System.Collections.ObjectModel; // dùng ObservableCollection
 
 namespace MauiApp1.ViewModels
 {
     public class MapViewModel
     {
-        private readonly GPSService _gpsService;
-        private readonly GeofenceService _geofenceService;
+        // ===== Service =====
 
+        // service lấy vị trí GPS
+        private readonly GPSService _gpsService;
+
+        // service xử lý Geofence (vùng địa lý)
+        private GeofenceService? _geofenceService;
+
+        // service làm việc với SQLite database
+        private readonly DatabaseService _database;
+
+        // ===== Event =====
+
+        // event báo cho UI biết POI đã load xong
+        public event Action? POIsLoaded;
+
+        // danh sách POI hiển thị trên Map
         public ObservableCollection<POI> POIs { get; set; }
 
+        // event gửi vị trí GPS mới cho UI
         public event Action<Location>? LocationUpdated;
+
+        // event báo trạng thái vào / ra POI
         public event Action<string, bool>? POIStateChanged;
 
-        //test
-        
+        // ===== Constructor =====
         public MapViewModel()
         {
+            // tạo GPS service
             _gpsService = new GPSService();
 
-            
-            POIs = new ObservableCollection<POI>
-            {
-               new POI
-                {
-                     Name = "Bò Né 3 Ngon",
-                     Latitude = 10.761819,
-                     Longitude = 106.702132,
-                     Radius = 10,
-                     NearRadius = 30,
-                     Priority = 2,
-                     Content = "Bò né Sài Gòn ",
-                     Description = "Gian hàng chuyên bán đồ ăn ",
-                     Detail = "Bò Né 3 Ngon phục vụ món bò né truyền thống Sài Gòn với thịt bò mềm, trứng ốp la, pate gan và bánh mì nóng giòn. Sốt đặc biệt là bí quyết làm nên thương hiệu 20 năm.",
-                     ImageUrl = "bun_cha.jpg",
-                     Language = "Tiếng Việt"
-                },
-               new POI
-                {
-                     Name = "Chè Miền Tây",
-                     Latitude = 10.761536,
-                     Longitude = 106.702303,
-                     Radius = 10,
-                     NearRadius = 30,
-                     Priority = 3,
-                     Content = "Chè truyền thống miền Nam",
-                     Description = "Gian hàng chuyên bán đồ ăn vặt",
-                     Detail = "Chè Miền Tây với đa dạng các loại chè: chè thập cẩm, chè dừa dầm, chè bưởi, chè đậu đỏ. Tất cả đều được nấu thủ công mỗi ngày với nguyên liệu tươi ngon nhất.",
-                     ImageUrl = "che.jpg",
-                     Language = "Tiếng Việt"
-                },
-               
+            // tạo database service
+            _database = new DatabaseService();
 
-            };
+            // khởi tạo danh sách POI
+            POIs = new ObservableCollection<POI>();
 
-            _geofenceService = new GeofenceService(POIs.ToList());
-            _geofenceService.GeofenceTriggered += OnGeofenceTriggered;
-
+            // khi GPS thay đổi vị trí -> gọi hàm OnLocationChanged
             _gpsService.LocationChanged += OnLocationChanged;
 
+            // LoadPOIs();  (đã chuyển sang InitializeAsync)
+
+            // chạy GPS
             _ = StartGPS();
         }
 
+        // ===== Hàm khởi tạo dữ liệu =====
+        public async Task InitializeAsync()
+        {
+            await LoadPOIs();
+        }
+
+        // ===== Load POI từ database =====
+        private async Task LoadPOIs()
+        {
+            // import dữ liệu từ file JSON vào SQLite (chỉ khi DB chưa có)
+            await _database.ImportFromJson();
+
+            // lấy danh sách POI từ SQLite
+            var list = await _database.GetPOIsAsync();
+
+            // xóa danh sách POI cũ
+            POIs.Clear();
+
+            // thêm từng POI vào ObservableCollection
+            foreach (var poi in list)
+                POIs.Add(poi);
+
+            // báo cho UI biết đã load xong POI
+            POIsLoaded?.Invoke();
+
+            // tạo GeofenceService với danh sách POI
+            _geofenceService = new GeofenceService(POIs.ToList());
+
+            // khi Geofence kích hoạt -> gọi hàm OnGeofenceTriggered
+            _geofenceService.GeofenceTriggered += OnGeofenceTriggered;
+        }
+
+        // ===== Bắt đầu GPS =====
         private async Task StartGPS()
         {
             await _gpsService.StartListeningAsync();
         }
 
+        // ===== Khi vị trí GPS thay đổi =====
         private void OnLocationChanged(Location location)
         {
+            // gửi vị trí mới cho UI (MapPage)
             LocationUpdated?.Invoke(location);
 
-            _geofenceService.ProcessLocation(location);
+            // xử lý Geofence nếu service đã được tạo
+            // dấu ? để tránh lỗi null
+            _geofenceService?.ProcessLocation(location);
         }
 
-        
+        // ===== Khi Geofence được kích hoạt =====
         private async void OnGeofenceTriggered(GeofenceEvent e)
         {
             switch (e.EventType)
             {
+                // ===== vào khu vực POI =====
                 case GeofenceEventType.Enter:
                     POIStateChanged?.Invoke(e.POI.Name, true);
                     break;
 
+                // ===== ra khỏi khu vực POI =====
                 case GeofenceEventType.Exit:
                     POIStateChanged?.Invoke(e.POI.Name, false);
                     break;
 
+                // ===== đến gần POI =====
                 case GeofenceEventType.Near:
                     await TextToSpeech.Default.SpeakAsync(
                         $"Bạn đang đến gần {e.POI.Name}");
                     break;
 
+                // ===== vào vùng audio của POI =====
                 case GeofenceEventType.Audio:
                     await TextToSpeech.Default.SpeakAsync(
                         $"Bạn đã vào {e.POI.Name}. {e.POI.Content}");
                     break;
             }
         }
-       
-        
-
     }
 }

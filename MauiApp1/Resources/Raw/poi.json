@@ -1,0 +1,54 @@
+[
+    {
+        "Name": "Bò Né 3 Ngon",
+        "Latitude": 10.761819,
+        "Longitude": 106.702132,
+        "Radius": 10,
+        "NearRadius": 30,
+        "Priority": 2,
+        "Content": "Bò né Sài Gòn",
+        "Description": "Gian hàng chuyên bán đồ ăn",
+        "Detail": "Bò Né 2 Ngon phục vụ món bò né truyền thống Sài Gòn.",
+        "ImageUrl": "bun_cha.jpg",
+        "Language": "Tiếng Việt"
+    },
+    {
+        "Name": "Chè Miền Tây",
+        "Latitude": 10.761536,
+        "Longitude": 106.702303,
+        "Radius": 10,
+        "NearRadius": 30,
+        "Priority": 3,
+        "Content": "Chè truyền thống miền Nam",
+        "Description": "Gian hàng chuyên bán đồ ăn vặt",
+        "Detail": "Chè Miền Tây với nhiều loại chè ngon.",
+        "ImageUrl": "che.jpg",
+        "Language": "Tiếng Việt"
+    },
+    {
+        "Name": "Ốc Đào",
+        "Latitude": 10.761394,
+        "Longitude": 106.702695,
+        "Radius": 10,
+        "NearRadius": 30,
+        "Priority": 4,
+        "Content": "Quán ốc nổi tiếng Sài Gòn",
+        "Description": "Chuyên các món ốc xào, nướng",
+        "Detail": "Ốc Đào là quán ốc nổi tiếng với nhiều món như ốc hương rang muối...",
+        "ImageUrl": "ocdao.jpg",
+        "Language": "Tiếng Việt"
+    },
+    {
+        "Name": "Ốc  2",
+        "Latitude": 10.761394,
+        "Longitude": 106.702695,
+        "Radius": 10,
+        "NearRadius": 30,
+        "Priority": 5,
+        "Content": "Quán ốc nổi tiếng Sài Gòn vui nhộn",
+        "Description": "Chuyên các món ốc xào, nướng",
+        "Detail": "Ốc Đào là quán ốc nổi tiếng với nhiều món như ốc hương rang muối...",
+        "ImageUrl": "ocdao.jpg",
+        "Language": "Tiếng Việt"
+    }
+]

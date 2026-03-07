@@ -1,3 +1,4 @@
+D:\food\StreetFood\MauiApp1\obj\Debug\net10.0-ios\iossimulator-x64\build-signature\signature
 D:\food\StreetFood\MauiApp1\obj\Debug\net10.0-ios\iossimulator-x64\MauiApp1.csproj.AssemblyReference.cache
 D:\food\StreetFood\MauiApp1\obj\Debug\net10.0-ios\iossimulator-x64\partialappmanifest\_PartialAppManifests.items
 D:\food\StreetFood\MauiApp1\obj\Debug\net10.0-ios\iossimulator-x64\unpack\Microsoft.Maui.Essentials\BundleResource\xml\microsoft_maui_essentials_fileprovider_file_paths.xml
@@ -10,6 +11,9 @@ D:\food\StreetFood\MauiApp1\obj\Debug\net10.0-ios\iossimulator-x64\resizetizer\s
 D:\food\StreetFood\MauiApp1\obj\Debug\net10.0-ios\iossimulator-x64\resizetizer\sp\splash_58C11A0A2CDF3C43117FC29EECA319E6FBFEFE150B9123BB20E86A467F499449@2x.png
 D:\food\StreetFood\MauiApp1\obj\Debug\net10.0-ios\iossimulator-x64\resizetizer\sp\splash_58C11A0A2CDF3C43117FC29EECA319E6FBFEFE150B9123BB20E86A467F499449@3x.png
 D:\food\StreetFood\MauiApp1\obj\Debug\net10.0-ios\iossimulator-x64\mauisplash.stamp
+D:\food\StreetFood\MauiApp1\obj\Debug\net10.0-ios\iossimulator-x64\resizetizer\r\Resources\che.jpg
+D:\food\StreetFood\MauiApp1\obj\Debug\net10.0-ios\iossimulator-x64\resizetizer\r\Resources\bun_cha.jpg
+D:\food\StreetFood\MauiApp1\obj\Debug\net10.0-ios\iossimulator-x64\resizetizer\r\Resources\ocdao.jpg
 D:\food\StreetFood\MauiApp1\obj\Debug\net10.0-ios\iossimulator-x64\resizetizer\r\Assets.xcassets\appicon.appiconset\appiconItunesArtwork.png
 D:\food\StreetFood\MauiApp1\obj\Debug\net10.0-ios\iossimulator-x64\resizetizer\r\Assets.xcassets\appicon.appiconset\appicon83.5x83.5@2x.png
 D:\food\StreetFood\MauiApp1\obj\Debug\net10.0-ios\iossimulator-x64\resizetizer\r\Assets.xcassets\appicon.appiconset\appicon76x76@2x.png
@@ -47,6 +51,7 @@ D:\food\StreetFood\MauiApp1\obj\Debug\net10.0-ios\iossimulator-x64\MauiApp1.Gene
 D:\food\StreetFood\MauiApp1\obj\Debug\net10.0-ios\iossimulator-x64\MauiApp1.AssemblyInfoInputs.cache
 D:\food\StreetFood\MauiApp1\obj\Debug\net10.0-ios\iossimulator-x64\MauiApp1.AssemblyInfo.cs
 D:\food\StreetFood\MauiApp1\obj\Debug\net10.0-ios\iossimulator-x64\MauiApp1.csproj.CoreCompileInputs.cache
+D:\food\StreetFood\MauiApp1\obj\Debug\net10.0-ios\iossimulator-x64\MauiApp1.sourcelink.json
 D:\food\StreetFood\MauiApp1\bin\Debug\net10.0-ios\iossimulator-x64\MauiApp1.runtimeconfig.json
 D:\food\StreetFood\MauiApp1\bin\Debug\net10.0-ios\iossimulator-x64\MauiApp1.dll
 D:\food\StreetFood\MauiApp1\bin\Debug\net10.0-ios\iossimulator-x64\MauiApp1.pdb
@@ -63,10 +68,16 @@ D:\food\StreetFood\MauiApp1\bin\Debug\net10.0-ios\iossimulator-x64\Microsoft.Ext
 D:\food\StreetFood\MauiApp1\bin\Debug\net10.0-ios\iossimulator-x64\Microsoft.Extensions.Options.dll
 D:\food\StreetFood\MauiApp1\bin\Debug\net10.0-ios\iossimulator-x64\Microsoft.Extensions.Primitives.dll
 D:\food\StreetFood\MauiApp1\bin\Debug\net10.0-ios\iossimulator-x64\Microsoft.Maui.Controls.dll
+D:\food\StreetFood\MauiApp1\bin\Debug\net10.0-ios\iossimulator-x64\Microsoft.Maui.Controls.Maps.dll
 D:\food\StreetFood\MauiApp1\bin\Debug\net10.0-ios\iossimulator-x64\Microsoft.Maui.Controls.Xaml.dll
 D:\food\StreetFood\MauiApp1\bin\Debug\net10.0-ios\iossimulator-x64\Microsoft.Maui.dll
 D:\food\StreetFood\MauiApp1\bin\Debug\net10.0-ios\iossimulator-x64\Microsoft.Maui.Essentials.dll
 D:\food\StreetFood\MauiApp1\bin\Debug\net10.0-ios\iossimulator-x64\Microsoft.Maui.Graphics.dll
+D:\food\StreetFood\MauiApp1\bin\Debug\net10.0-ios\iossimulator-x64\Microsoft.Maui.Maps.dll
+D:\food\StreetFood\MauiApp1\bin\Debug\net10.0-ios\iossimulator-x64\SQLite-net.dll
+D:\food\StreetFood\MauiApp1\bin\Debug\net10.0-ios\iossimulator-x64\SQLitePCLRaw.batteries_v2.dll
+D:\food\StreetFood\MauiApp1\bin\Debug\net10.0-ios\iossimulator-x64\SQLitePCLRaw.core.dll
+D:\food\StreetFood\MauiApp1\bin\Debug\net10.0-ios\iossimulator-x64\SQLitePCLRaw.provider.sqlite3.dll
 D:\food\StreetFood\MauiApp1\bin\Debug\net10.0-ios\iossimulator-x64\ar\Microsoft.Maui.Controls.resources.dll
 D:\food\StreetFood\MauiApp1\bin\Debug\net10.0-ios\iossimulator-x64\ca\Microsoft.Maui.Controls.resources.dll
 D:\food\StreetFood\MauiApp1\bin\Debug\net10.0-ios\iossimulator-x64\cs\Microsoft.Maui.Controls.resources.dll
@@ -309,6 +320,11 @@ D:\food\StreetFood\MauiApp1\bin\Debug\net10.0-ios\iossimulator-x64\libxamarin-do
 D:\food\StreetFood\MauiApp1\bin\Debug\net10.0-ios\iossimulator-x64\libxamarin-dotnet-nativeaot.a
 D:\food\StreetFood\MauiApp1\bin\Debug\net10.0-ios\iossimulator-x64\libxamarin-dotnet.a
 D:\food\StreetFood\MauiApp1\bin\Debug\net10.0-ios\iossimulator-x64\libxamarin-dotnet.dylib
+D:\food\StreetFood\MauiApp1\bin\Debug\net10.0-ios\iossimulator-x64\Microsoft.Maui.Controls.HotReload.Forms.dll
+D:\food\StreetFood\MauiApp1\bin\Debug\net10.0-ios\iossimulator-x64\Microsoft.VisualStudio.DesignTools.MobileTapContracts.dll
+D:\food\StreetFood\MauiApp1\bin\Debug\net10.0-ios\iossimulator-x64\Microsoft.VisualStudio.DesignTools.TapContract.dll
+D:\food\StreetFood\MauiApp1\bin\Debug\net10.0-ios\iossimulator-x64\Microsoft.VisualStudio.DesignTools.XamlTapContract.dll
+D:\food\StreetFood\MauiApp1\bin\Debug\net10.0-ios\iossimulator-x64\Microsoft.Maui.resources.zip
 D:\food\StreetFood\MauiApp1\obj\Debug\net10.0-ios\iossimulator-x64\XamlC.stamp
 D:\food\StreetFood\MauiApp1\obj\Debug\net10.0-ios\iossimulator-x64\MauiApp1.csproj.Up2Date
 D:\food\StreetFood\MauiApp1\obj\Debug\net10.0-ios\iossimulator-x64\MauiApp1.dll
@@ -316,10 +332,3 @@ D:\food\StreetFood\MauiApp1\obj\Debug\net10.0-ios\iossimulator-x64\refint\MauiAp
 D:\food\StreetFood\MauiApp1\obj\Debug\net10.0-ios\iossimulator-x64\MauiApp1.pdb
 D:\food\StreetFood\MauiApp1\obj\Debug\net10.0-ios\iossimulator-x64\MauiApp1.genruntimeconfig.cache
 D:\food\StreetFood\MauiApp1\obj\Debug\net10.0-ios\iossimulator-x64\ref\MauiApp1.dll
-D:\food\StreetFood\MauiApp1\bin\Debug\net10.0-ios\iossimulator-x64\Microsoft.Maui.Controls.HotReload.Forms.dll
-D:\food\StreetFood\MauiApp1\bin\Debug\net10.0-ios\iossimulator-x64\Microsoft.VisualStudio.DesignTools.MobileTapContracts.dll
-D:\food\StreetFood\MauiApp1\bin\Debug\net10.0-ios\iossimulator-x64\Microsoft.VisualStudio.DesignTools.TapContract.dll
-D:\food\StreetFood\MauiApp1\bin\Debug\net10.0-ios\iossimulator-x64\Microsoft.VisualStudio.DesignTools.XamlTapContract.dll
-D:\food\StreetFood\MauiApp1\obj\Debug\net10.0-ios\iossimulator-x64\build-signature\signature
-D:\food\StreetFood\MauiApp1\obj\Debug\net10.0-ios\iossimulator-x64\MauiApp1.sourcelink.json
-D:\food\StreetFood\MauiApp1\obj\Debug\net10.0-ios\iossimulator-x64\resizetizer\r\Resources\bun_cha.jpg

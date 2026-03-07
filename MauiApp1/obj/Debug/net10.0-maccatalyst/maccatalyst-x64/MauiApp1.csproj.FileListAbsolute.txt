@@ -5,6 +5,9 @@ D:\food\StreetFood\MauiApp1\obj\Debug\net10.0-maccatalyst\maccatalyst-x64\mauiim
 D:\food\StreetFood\MauiApp1\obj\Debug\net10.0-maccatalyst\maccatalyst-x64\mauifont.inputs
 D:\food\StreetFood\MauiApp1\obj\Debug\net10.0-maccatalyst\maccatalyst-x64\mauisplash.inputs
 D:\food\StreetFood\MauiApp1\obj\Debug\net10.0-maccatalyst\maccatalyst-x64\mauisplash.stamp
+D:\food\StreetFood\MauiApp1\obj\Debug\net10.0-maccatalyst\maccatalyst-x64\resizetizer\r\Resources\che.jpg
+D:\food\StreetFood\MauiApp1\obj\Debug\net10.0-maccatalyst\maccatalyst-x64\resizetizer\r\Resources\bun_cha.jpg
+D:\food\StreetFood\MauiApp1\obj\Debug\net10.0-maccatalyst\maccatalyst-x64\resizetizer\r\Resources\ocdao.jpg
 D:\food\StreetFood\MauiApp1\obj\Debug\net10.0-maccatalyst\maccatalyst-x64\resizetizer\r\Assets.xcassets\appicon.appiconset\appiconItunesArtwork.png
 D:\food\StreetFood\MauiApp1\obj\Debug\net10.0-maccatalyst\maccatalyst-x64\resizetizer\r\Assets.xcassets\appicon.appiconset\appicon83.5x83.5@2x.png
 D:\food\StreetFood\MauiApp1\obj\Debug\net10.0-maccatalyst\maccatalyst-x64\resizetizer\r\Assets.xcassets\appicon.appiconset\appicon76x76@2x.png
@@ -41,6 +44,7 @@ D:\food\StreetFood\MauiApp1\obj\Debug\net10.0-maccatalyst\maccatalyst-x64\MauiAp
 D:\food\StreetFood\MauiApp1\obj\Debug\net10.0-maccatalyst\maccatalyst-x64\MauiApp1.AssemblyInfoInputs.cache
 D:\food\StreetFood\MauiApp1\obj\Debug\net10.0-maccatalyst\maccatalyst-x64\MauiApp1.AssemblyInfo.cs
 D:\food\StreetFood\MauiApp1\obj\Debug\net10.0-maccatalyst\maccatalyst-x64\MauiApp1.csproj.CoreCompileInputs.cache
+D:\food\StreetFood\MauiApp1\obj\Debug\net10.0-maccatalyst\maccatalyst-x64\MauiApp1.sourcelink.json
 D:\food\StreetFood\MauiApp1\bin\Debug\net10.0-maccatalyst\maccatalyst-x64\MauiApp1.runtimeconfig.json
 D:\food\StreetFood\MauiApp1\bin\Debug\net10.0-maccatalyst\maccatalyst-x64\MauiApp1.dll
 D:\food\StreetFood\MauiApp1\bin\Debug\net10.0-maccatalyst\maccatalyst-x64\MauiApp1.pdb
@@ -57,10 +61,16 @@ D:\food\StreetFood\MauiApp1\bin\Debug\net10.0-maccatalyst\maccatalyst-x64\Micros
 D:\food\StreetFood\MauiApp1\bin\Debug\net10.0-maccatalyst\maccatalyst-x64\Microsoft.Extensions.Options.dll
 D:\food\StreetFood\MauiApp1\bin\Debug\net10.0-maccatalyst\maccatalyst-x64\Microsoft.Extensions.Primitives.dll
 D:\food\StreetFood\MauiApp1\bin\Debug\net10.0-maccatalyst\maccatalyst-x64\Microsoft.Maui.Controls.dll
+D:\food\StreetFood\MauiApp1\bin\Debug\net10.0-maccatalyst\maccatalyst-x64\Microsoft.Maui.Controls.Maps.dll
 D:\food\StreetFood\MauiApp1\bin\Debug\net10.0-maccatalyst\maccatalyst-x64\Microsoft.Maui.Controls.Xaml.dll
 D:\food\StreetFood\MauiApp1\bin\Debug\net10.0-maccatalyst\maccatalyst-x64\Microsoft.Maui.dll
 D:\food\StreetFood\MauiApp1\bin\Debug\net10.0-maccatalyst\maccatalyst-x64\Microsoft.Maui.Essentials.dll
 D:\food\StreetFood\MauiApp1\bin\Debug\net10.0-maccatalyst\maccatalyst-x64\Microsoft.Maui.Graphics.dll
+D:\food\StreetFood\MauiApp1\bin\Debug\net10.0-maccatalyst\maccatalyst-x64\Microsoft.Maui.Maps.dll
+D:\food\StreetFood\MauiApp1\bin\Debug\net10.0-maccatalyst\maccatalyst-x64\SQLite-net.dll
+D:\food\StreetFood\MauiApp1\bin\Debug\net10.0-maccatalyst\maccatalyst-x64\SQLitePCLRaw.batteries_v2.dll
+D:\food\StreetFood\MauiApp1\bin\Debug\net10.0-maccatalyst\maccatalyst-x64\SQLitePCLRaw.core.dll
+D:\food\StreetFood\MauiApp1\bin\Debug\net10.0-maccatalyst\maccatalyst-x64\SQLitePCLRaw.provider.e_sqlite3.dll
 D:\food\StreetFood\MauiApp1\bin\Debug\net10.0-maccatalyst\maccatalyst-x64\ar\Microsoft.Maui.Controls.resources.dll
 D:\food\StreetFood\MauiApp1\bin\Debug\net10.0-maccatalyst\maccatalyst-x64\ca\Microsoft.Maui.Controls.resources.dll
 D:\food\StreetFood\MauiApp1\bin\Debug\net10.0-maccatalyst\maccatalyst-x64\cs\Microsoft.Maui.Controls.resources.dll
@@ -95,6 +105,7 @@ D:\food\StreetFood\MauiApp1\bin\Debug\net10.0-maccatalyst\maccatalyst-x64\vi\Mic
 D:\food\StreetFood\MauiApp1\bin\Debug\net10.0-maccatalyst\maccatalyst-x64\zh-HK\Microsoft.Maui.Controls.resources.dll
 D:\food\StreetFood\MauiApp1\bin\Debug\net10.0-maccatalyst\maccatalyst-x64\zh-Hans\Microsoft.Maui.Controls.resources.dll
 D:\food\StreetFood\MauiApp1\bin\Debug\net10.0-maccatalyst\maccatalyst-x64\zh-Hant\Microsoft.Maui.Controls.resources.dll
+D:\food\StreetFood\MauiApp1\bin\Debug\net10.0-maccatalyst\maccatalyst-x64\libe_sqlite3.dylib
 D:\food\StreetFood\MauiApp1\bin\Debug\net10.0-maccatalyst\maccatalyst-x64\Microsoft.CSharp.dll
 D:\food\StreetFood\MauiApp1\bin\Debug\net10.0-maccatalyst\maccatalyst-x64\Microsoft.VisualBasic.Core.dll
 D:\food\StreetFood\MauiApp1\bin\Debug\net10.0-maccatalyst\maccatalyst-x64\Microsoft.VisualBasic.dll
@@ -298,6 +309,11 @@ D:\food\StreetFood\MauiApp1\bin\Debug\net10.0-maccatalyst\maccatalyst-x64\libxam
 D:\food\StreetFood\MauiApp1\bin\Debug\net10.0-maccatalyst\maccatalyst-x64\libxamarin-dotnet-nativeaot.a
 D:\food\StreetFood\MauiApp1\bin\Debug\net10.0-maccatalyst\maccatalyst-x64\libxamarin-dotnet.a
 D:\food\StreetFood\MauiApp1\bin\Debug\net10.0-maccatalyst\maccatalyst-x64\libxamarin-dotnet.dylib
+D:\food\StreetFood\MauiApp1\bin\Debug\net10.0-maccatalyst\maccatalyst-x64\Microsoft.Maui.Controls.HotReload.Forms.dll
+D:\food\StreetFood\MauiApp1\bin\Debug\net10.0-maccatalyst\maccatalyst-x64\Microsoft.VisualStudio.DesignTools.MobileTapContracts.dll
+D:\food\StreetFood\MauiApp1\bin\Debug\net10.0-maccatalyst\maccatalyst-x64\Microsoft.VisualStudio.DesignTools.TapContract.dll
+D:\food\StreetFood\MauiApp1\bin\Debug\net10.0-maccatalyst\maccatalyst-x64\Microsoft.VisualStudio.DesignTools.XamlTapContract.dll
+D:\food\StreetFood\MauiApp1\bin\Debug\net10.0-maccatalyst\maccatalyst-x64\Microsoft.Maui.resources.zip
 D:\food\StreetFood\MauiApp1\obj\Debug\net10.0-maccatalyst\maccatalyst-x64\XamlC.stamp
 D:\food\StreetFood\MauiApp1\obj\Debug\net10.0-maccatalyst\maccatalyst-x64\MauiApp1.csproj.Up2Date
 D:\food\StreetFood\MauiApp1\obj\Debug\net10.0-maccatalyst\maccatalyst-x64\MauiApp1.dll
@@ -305,9 +321,3 @@ D:\food\StreetFood\MauiApp1\obj\Debug\net10.0-maccatalyst\maccatalyst-x64\refint
 D:\food\StreetFood\MauiApp1\obj\Debug\net10.0-maccatalyst\maccatalyst-x64\MauiApp1.pdb
 D:\food\StreetFood\MauiApp1\obj\Debug\net10.0-maccatalyst\maccatalyst-x64\MauiApp1.genruntimeconfig.cache
 D:\food\StreetFood\MauiApp1\obj\Debug\net10.0-maccatalyst\maccatalyst-x64\ref\MauiApp1.dll
-D:\food\StreetFood\MauiApp1\bin\Debug\net10.0-maccatalyst\maccatalyst-x64\Microsoft.Maui.Controls.HotReload.Forms.dll
-D:\food\StreetFood\MauiApp1\bin\Debug\net10.0-maccatalyst\maccatalyst-x64\Microsoft.VisualStudio.DesignTools.MobileTapContracts.dll
-D:\food\StreetFood\MauiApp1\bin\Debug\net10.0-maccatalyst\maccatalyst-x64\Microsoft.VisualStudio.DesignTools.TapContract.dll
-D:\food\StreetFood\MauiApp1\bin\Debug\net10.0-maccatalyst\maccatalyst-x64\Microsoft.VisualStudio.DesignTools.XamlTapContract.dll
-D:\food\StreetFood\MauiApp1\obj\Debug\net10.0-maccatalyst\maccatalyst-x64\MauiApp1.sourcelink.json
-D:\food\StreetFood\MauiApp1\obj\Debug\net10.0-maccatalyst\maccatalyst-x64\resizetizer\r\Resources\bun_cha.jpg

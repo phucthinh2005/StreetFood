@@ -7,7 +7,7 @@ namespace MauiApp1.Services
     {
         private List<POI> _pois;
 
-        // 2 phút
+        // 50s
         private const int AudioCooldownSeconds = 50;
 
         public event Action<GeofenceEvent>? GeofenceTriggered;

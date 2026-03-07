@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "CfPSOcrs6yo=",
+  "dgSpecHash": "A3RIYppv2WM=",
   "success": true,
   "projectFilePath": "D:\\food\\StreetFood\\MauiApp1\\MauiApp1.csproj",
   "expectedPackageFiles": [
@@ -44,7 +44,15 @@
     "C:\\Users\\Lenovo\\.nuget\\packages\\microsoft.windowsappsdk.runtime\\1.8.251106002\\microsoft.windowsappsdk.runtime.1.8.251106002.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\microsoft.windowsappsdk.widgets\\1.8.250904007\\microsoft.windowsappsdk.widgets.1.8.250904007.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\microsoft.windowsappsdk.winui\\1.8.251105000\\microsoft.windowsappsdk.winui.1.8.251105000.nupkg.sha512",
+    "C:\\Users\\Lenovo\\.nuget\\packages\\sqlite-net-pcl\\1.9.172\\sqlite-net-pcl.1.9.172.nupkg.sha512",
+    "C:\\Users\\Lenovo\\.nuget\\packages\\sqlitepclraw.bundle_green\\2.1.11\\sqlitepclraw.bundle_green.2.1.11.nupkg.sha512",
+    "C:\\Users\\Lenovo\\.nuget\\packages\\sqlitepclraw.core\\2.1.11\\sqlitepclraw.core.2.1.11.nupkg.sha512",
+    "C:\\Users\\Lenovo\\.nuget\\packages\\sqlitepclraw.lib.e_sqlite3\\2.1.11\\sqlitepclraw.lib.e_sqlite3.2.1.11.nupkg.sha512",
+    "C:\\Users\\Lenovo\\.nuget\\packages\\sqlitepclraw.lib.e_sqlite3.android\\2.1.11\\sqlitepclraw.lib.e_sqlite3.android.2.1.11.nupkg.sha512",
+    "C:\\Users\\Lenovo\\.nuget\\packages\\sqlitepclraw.provider.e_sqlite3\\2.1.11\\sqlitepclraw.provider.e_sqlite3.2.1.11.nupkg.sha512",
+    "C:\\Users\\Lenovo\\.nuget\\packages\\sqlitepclraw.provider.sqlite3\\2.1.11\\sqlitepclraw.provider.sqlite3.2.1.11.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\system.numerics.tensors\\9.0.0\\system.numerics.tensors.9.0.0.nupkg.sha512",
+    "C:\\Users\\Lenovo\\.nuget\\packages\\system.runtime.interopservices.nfloat.internal\\6.0.1\\system.runtime.interopservices.nfloat.internal.6.0.1.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\xamarin.android.glide\\4.16.0.14\\xamarin.android.glide.4.16.0.14.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\xamarin.android.glide.annotations\\4.16.0.14\\xamarin.android.glide.annotations.4.16.0.14.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\xamarin.android.glide.disklrucache\\4.16.0.14\\xamarin.android.glide.disklrucache.4.16.0.14.nupkg.sha512",

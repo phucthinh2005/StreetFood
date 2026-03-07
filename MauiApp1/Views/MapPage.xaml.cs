@@ -10,6 +10,9 @@ public partial class MapPage : ContentPage
 {
     MapViewModel vm;
 
+    // biến kiểm tra chạy lần đầu
+    bool isFirstLoad = true;
+
     public MapPage()
     {
         InitializeComponent();
@@ -18,14 +21,14 @@ public partial class MapPage : ContentPage
         BindingContext = vm;
 
         vm.LocationUpdated += OnLocationUpdated;
+        vm.POIsLoaded += LoadPOIs;
 
-        LoadPOIs();
+        Init();
+    }
 
-        map.MoveToRegion(
-            MapSpan.FromCenterAndRadius(
-                new Location(10.761536, 106.702303),
-                Distance.FromMeters(300)
-            ));
+    async void Init()
+    {
+        await vm.InitializeAsync();
     }
 
     private async void OnListTabTapped(object sender, EventArgs e)
@@ -39,33 +42,43 @@ public partial class MapPage : ContentPage
 
     void LoadPOIs()
     {
-        foreach (var poi in vm.POIs)
+        MainThread.BeginInvokeOnMainThread(() =>
         {
-            var pin = new Pin
+            map.Pins.Clear();
+
+            foreach (var poi in vm.POIs)
             {
-                Label = poi.Name,
-                Address = poi.Content,
-                Type = PinType.Place,
-                Location = new Location(poi.Latitude, poi.Longitude)
-            };
+                var pin = new Pin
+                {
+                    Label = poi.Name,
+                    Address = poi.Content,
+                    Type = PinType.Place,
+                    Location = new Location(poi.Latitude, poi.Longitude)
+                };
 
-            pin.MarkerClicked += async (s, e) =>
-            {
-                e.HideInfoWindow = true;
+                pin.MarkerClicked += async (s, e) =>
+                {
+                    e.HideInfoWindow = true;
 
-                await Shell.Current.GoToAsync(nameof(POIDetailPage),
-                    new Dictionary<string, object>
-                    {
-                        { "SelectedPOI", poi }
-                    });
-            };
+                    await Shell.Current.GoToAsync(nameof(POIDetailPage),
+                        new Dictionary<string, object>
+                        {
+                            { "SelectedPOI", poi }
+                        });
+                };
 
-            map.Pins.Add(pin);
-        }
+                map.Pins.Add(pin);
+            }
+        });
     }
 
     private void OnLocationUpdated(Location location)
     {
+        // chỉ chạy lần đầu
+        if (!isFirstLoad) return;
+
+        isFirstLoad = false;
+
         MainThread.BeginInvokeOnMainThread(() =>
         {
             var mapSpan = MapSpan.FromCenterAndRadius(
