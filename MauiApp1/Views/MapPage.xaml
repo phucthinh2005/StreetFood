@@ -25,12 +25,20 @@
                        FontSize="12"
                        TextColor="#FFF0F0" />
             </StackLayout>
-
+            
+            <!-- Setting Button -->
             <ImageButton Grid.Column="1"
+                         Source="setting.png"
+                         BackgroundColor="Transparent"
+                         HeightRequest="28"
+                         WidthRequest="28"
+                         Clicked="OnSettingClicked"/>
+
+            <!-- <ImageButton Grid.Column="1"
                          Source="dotnet_bot.png"
                          BackgroundColor="Transparent"
                          HeightRequest="36"
-                         WidthRequest="36"/>
+                         WidthRequest="36"/> -->
         </Grid>
 
         <!-- Tabs -->

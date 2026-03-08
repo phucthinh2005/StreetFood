@@ -39,6 +39,10 @@ public partial class MapPage : ContentPage
                 { "ViewModel", vm }
             });
     }
+    private async void OnSettingClicked(object sender, EventArgs e)
+    {
+        await Shell.Current.GoToAsync(nameof(SettingsPage));
+    }
 
     void LoadPOIs()
     {
