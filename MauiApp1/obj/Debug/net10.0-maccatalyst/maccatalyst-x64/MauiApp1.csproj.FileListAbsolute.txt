@@ -321,3 +321,4 @@ D:\food\StreetFood\MauiApp1\obj\Debug\net10.0-maccatalyst\maccatalyst-x64\refint
 D:\food\StreetFood\MauiApp1\obj\Debug\net10.0-maccatalyst\maccatalyst-x64\MauiApp1.pdb
 D:\food\StreetFood\MauiApp1\obj\Debug\net10.0-maccatalyst\maccatalyst-x64\MauiApp1.genruntimeconfig.cache
 D:\food\StreetFood\MauiApp1\obj\Debug\net10.0-maccatalyst\maccatalyst-x64\ref\MauiApp1.dll
+D:\food\StreetFood\MauiApp1\obj\Debug\net10.0-maccatalyst\maccatalyst-x64\resizetizer\r\Resources\setting.png

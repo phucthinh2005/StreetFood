@@ -10,8 +10,11 @@ public partial class MapPage : ContentPage
 {
     MapViewModel vm;
 
-    // biến kiểm tra chạy lần đầu
+    // kiểm tra chạy lần đầu
     bool isFirstLoad = true;
+
+    // lưu circle của từng POI
+    Dictionary<POI, Circle> poiCircles = new();
 
     public MapPage()
     {
@@ -22,6 +25,7 @@ public partial class MapPage : ContentPage
 
         vm.LocationUpdated += OnLocationUpdated;
         vm.POIsLoaded += LoadPOIs;
+        vm.POIStateChanged += OnPOIStateChanged;
 
         Init();
     }
@@ -39,17 +43,43 @@ public partial class MapPage : ContentPage
                 { "ViewModel", vm }
             });
     }
+
     private async void OnSettingClicked(object sender, EventArgs e)
     {
         await Shell.Current.GoToAsync(nameof(SettingsPage));
     }
+
+    // ===== Load POI =====
 
     void LoadPOIs()
     {
         MainThread.BeginInvokeOnMainThread(() =>
         {
             map.Pins.Clear();
+            map.MapElements.Clear();
+            poiCircles.Clear();
 
+            // 1. VẼ CIRCLE TRƯỚC
+            foreach (var poi in vm.POIs)
+            {
+                var location = new Location(poi.Latitude, poi.Longitude);
+
+                var circle = new Circle
+                {
+                    Center = location,
+                    Radius = Distance.FromMeters(poi.Radius),
+
+                    StrokeColor = Colors.Blue,
+                    StrokeWidth = 2,
+                    FillColor = Colors.Blue.WithAlpha(0.2f)
+                };
+
+                poiCircles[poi] = circle;
+
+                map.MapElements.Add(circle);
+            }
+
+            // 2. SAU ĐÓ MỚI THÊM PIN
             foreach (var poi in vm.POIs)
             {
                 var pin = new Pin
@@ -62,12 +92,12 @@ public partial class MapPage : ContentPage
 
                 pin.MarkerClicked += async (s, e) =>
                 {
-                    e.HideInfoWindow = true;
+                   
 
                     await Shell.Current.GoToAsync(nameof(POIDetailPage),
                         new Dictionary<string, object>
                         {
-                            { "SelectedPOI", poi }
+                        { "SelectedPOI", poi }
                         });
                 };
 
@@ -76,9 +106,10 @@ public partial class MapPage : ContentPage
         });
     }
 
+    // ===== GPS update =====
+
     private void OnLocationUpdated(Location location)
     {
-        // chỉ chạy lần đầu
         if (!isFirstLoad) return;
 
         isFirstLoad = false;
@@ -91,6 +122,34 @@ public partial class MapPage : ContentPage
             );
 
             map.MoveToRegion(mapSpan);
+        });
+    }
+
+    // ===== đổi màu vùng =====
+
+    void OnPOIStateChanged(string name, bool isInside)
+    {
+        MainThread.BeginInvokeOnMainThread(() =>
+        {
+            var poi = vm.POIs.FirstOrDefault(p => p.Name == name);
+
+            if (poi == null) return;
+            if (!poiCircles.ContainsKey(poi)) return;
+
+            var circle = poiCircles[poi];
+
+            if (isInside)
+            {
+                // vào vùng
+                circle.FillColor = Colors.Red.WithAlpha(0.3f);
+                circle.StrokeColor = Colors.Red;
+            }
+            else
+            {
+                // ra khỏi vùng -> trở lại màu xanh
+                circle.FillColor = Colors.Blue.WithAlpha(0.2f);
+                circle.StrokeColor = Colors.Blue;
+            }
         });
     }
 }

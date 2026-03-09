@@ -23,8 +23,8 @@ namespace MauiApp1.Models
         public string Language { get; set; } = "";
 
         // ===== Geofence config =====
-        public double Radius { get; set; } = 20;
-        public double NearRadius { get; set; } = 40;
+        public double Radius { get; set; } = 10;
+        
         public int Priority { get; set; } = 1;
 
         public string Content { get; set; } = "";
@@ -34,8 +34,7 @@ namespace MauiApp1.Models
         [Ignore]
         public bool IsInside { get; set; }
 
-        [Ignore]
-        public bool IsNear { get; set; }
+        
 
         [Ignore]
         public DateTime LastTriggered { get; set; } = DateTime.MinValue;

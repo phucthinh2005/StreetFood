@@ -7,8 +7,11 @@ namespace MauiApp1.Services
     {
         private List<POI> _pois;
 
-        // 50s
         private const int AudioCooldownSeconds = 50;
+        private const int NextAudioDelaySeconds = 6;
+
+        private Queue<POI> _audioQueue = new();
+        private bool _isPlaying = false;
 
         public event Action<GeofenceEvent>? GeofenceTriggered;
 
@@ -22,9 +25,9 @@ namespace MauiApp1.Services
             _pois = pois ?? new List<POI>();
         }
 
-        public void ProcessLocation(Location location)
+        public async void ProcessLocation(Location location)
         {
-            List<POI> triggerAudio = new();
+            List<POI> insidePOIs = new();
 
             foreach (var poi in _pois)
             {
@@ -35,78 +38,86 @@ namespace MauiApp1.Services
                         DistanceUnits.Kilometers) * 1000;
 
                 bool wasInside = poi.IsInside;
-                bool wasNear = poi.IsNear;
-
                 bool isInside = distanceMeters <= poi.Radius;
-                bool isNear = distanceMeters <= poi.NearRadius;
 
-                // ===== ENTER =====
+                // ENTER
                 if (!wasInside && isInside)
                 {
                     poi.IsInside = true;
-                    poi.IsNear = true;
 
                     GeofenceTriggered?.Invoke(new GeofenceEvent
                     {
                         POI = poi,
                         EventType = GeofenceEventType.Enter
                     });
-
-                    triggerAudio.Add(poi);
                 }
 
-                // ===== EXIT =====
+                // EXIT
                 if (wasInside && !isInside)
                 {
                     poi.IsInside = false;
-                    poi.IsNear = false;
 
                     GeofenceTriggered?.Invoke(new GeofenceEvent
                     {
                         POI = poi,
                         EventType = GeofenceEventType.Exit
                     });
-                }
-
-                // ===== NEAR =====
-                if (!wasNear && isNear && !isInside)
-                {
-                    poi.IsNear = true;
 
                     GeofenceTriggered?.Invoke(new GeofenceEvent
                     {
                         POI = poi,
-                        EventType = GeofenceEventType.Near
+                        EventType = GeofenceEventType.StopAudio
                     });
                 }
 
-                if (wasNear && !isNear)
-                {
-                    poi.IsNear = false;
-                }
-
-                // ===== ĐỨNG YÊN TRONG VÙNG -> 2 PHÚT PHÁT LẠI =====
-                if (isInside && CanPlayAudio(poi))
-                {
-                    triggerAudio.Add(poi);
-                }
+                if (isInside)
+                    insidePOIs.Add(poi);
             }
 
-            // ===== CHỌN POI ƯU TIÊN CAO NHẤT =====
-            if (triggerAudio.Any())
+            if (!insidePOIs.Any())
             {
-                var highestPriority = triggerAudio
-                    .OrderByDescending(p => p.Priority)
-                    .First();
+                _audioQueue.Clear();
+                _isPlaying = false;
+                return;
+            }
 
-                highestPriority.LastTriggered = DateTime.Now;
+            var sorted = insidePOIs
+                .OrderByDescending(p => p.Priority)
+                .ToList();
+
+            _audioQueue = new Queue<POI>(sorted);
+
+            if (!_isPlaying)
+            {
+                _isPlaying = true;
+                await PlayQueue();
+            }
+        }
+
+        private async Task PlayQueue()
+        {
+            while (_audioQueue.Any())
+            {
+                var poi = _audioQueue.Dequeue();
+
+                if (!poi.IsInside)
+                    continue;
+
+                if (!CanPlayAudio(poi))
+                    continue;
+
+                poi.LastTriggered = DateTime.Now;
 
                 GeofenceTriggered?.Invoke(new GeofenceEvent
                 {
-                    POI = highestPriority,
+                    POI = poi,
                     EventType = GeofenceEventType.Audio
                 });
+
+                await Task.Delay(NextAudioDelaySeconds * 1000);
             }
+
+            _isPlaying = false;
         }
 
         private bool CanPlayAudio(POI poi)

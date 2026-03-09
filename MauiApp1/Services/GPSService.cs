@@ -25,13 +25,18 @@ namespace MauiApp1.Services
         {
             Location? lastLocation = null;
 
+            const double MIN_DISTANCE_METERS = 2;
+
+            int delay = 2000; // realtime 2s
+            int idleCounter = 0;
+
             while (!token.IsCancellationRequested)
             {
                 try
                 {
                     var request = new GeolocationRequest(
                         GeolocationAccuracy.High,
-                        TimeSpan.FromSeconds(3)   // ⬅ GPS timeout 3s
+                        TimeSpan.FromSeconds(4)
                     );
 
                     var location = await Geolocation.Default
@@ -39,6 +44,10 @@ namespace MauiApp1.Services
 
                     if (location != null)
                     {
+                        // bỏ GPS sai
+                        if (location.Accuracy > 25)
+                            continue;
+
                         if (lastLocation == null)
                         {
                             lastLocation = location;
@@ -46,26 +55,43 @@ namespace MauiApp1.Services
                         }
                         else
                         {
-                            double distanceInMeters =
+                            double distance =
                                 Location.CalculateDistance(
                                     lastLocation,
                                     location,
                                     DistanceUnits.Kilometers) * 1000;
 
-                            // Chỉ cập nhật ke ca dung yen
-                            if (location != null)
+                            if (distance >= MIN_DISTANCE_METERS)
                             {
                                 lastLocation = location;
+                                idleCounter = 0;
+
+                                // di chuyển → realtime
+                                delay = 2000;
+
                                 LocationChanged?.Invoke(location);
+                            }
+                            else
+                            {
+                                idleCounter++;
+
+                                // đứng yên
+                                if (idleCounter >= 5)
+                                {
+                                    LocationChanged?.Invoke(location);
+
+                                    // giảm tần suất để tiết kiệm pin
+                                    delay = 6000;
+                                }
                             }
                         }
                     }
                 }
-                catch (Exception)
+                catch
                 {
                 }
 
-                await Task.Delay(3000, token); // ⬅ cập nhật mỗi 3s
+                await Task.Delay(delay, token);
             }
         }
 

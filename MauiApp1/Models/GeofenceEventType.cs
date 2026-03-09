@@ -10,5 +10,6 @@ namespace MauiApp1.Models
         Exit,
         Near,
         Audio,
+        StopAudio
     }
 }
