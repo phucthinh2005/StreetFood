@@ -8,8 +8,9 @@
     <Grid Padding="12">
 
         <CollectionView ItemsSource="{Binding POIs}"
-                        SelectionMode="Single"
-                        SelectionChanged="CollectionView_SelectionChanged">
+                        SelectionMode="None">
+            <!--SelectionMode="Single"
+                        SelectionChanged="CollectionView_SelectionChanged"> -->
 
             <CollectionView.ItemTemplate>
                 <DataTemplate>
@@ -29,7 +30,6 @@
                                     Radius="8"/>
                         </Border.Shadow>
 
-                        <!-- Dùng Grid thay cho HorizontalStackLayout (ổn định hơn) -->
                         <Grid ColumnDefinitions="80,*"
                               ColumnSpacing="10">
 
@@ -41,12 +41,26 @@
                                    Grid.Column="0"/>
 
                             <!-- Nội dung -->
-                            <VerticalStackLayout Spacing="4"
-                                                 Grid.Column="1">
+                            <VerticalStackLayout Grid.Column="1"
+                                                 Spacing="4">
 
-                                <Label Text="{Binding Name}"
-                                       FontAttributes="Bold"
-                                       FontSize="15"/>
+                                <!-- Tên + icon mắt -->
+                                <Grid ColumnDefinitions="*,Auto">
+
+                                    <Label Text="{Binding Name}"
+                                           FontAttributes="Bold"
+                                           FontSize="15"
+                                           VerticalOptions="Center"/>
+
+                                    <ImageButton Source="eye.png!sw800"
+                                                 Grid.Column="1"
+                                                 Clicked="DetailButton_Clicked"
+                                                 CommandParameter="{Binding .}"
+                                                 HeightRequest="24"
+                                                 WidthRequest="24"
+                                                 BackgroundColor="Transparent"
+                                                 VerticalOptions="Center"/>
+                                </Grid>
 
                                 <Label Text="{Binding Description}"
                                        FontSize="12"

@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using MauiApp1.Models;
-using System.Linq;
-
+﻿using MauiApp1.Models;
 using MauiApp1.ViewModels;
+using System;
+using System.Collections.Generic;
 
 namespace MauiApp1.Views;
 
@@ -20,16 +17,15 @@ public partial class ListPage : ContentPage
     {
         InitializeComponent();
     }
-    private async void CollectionView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+
+    private async void DetailButton_Clicked(object sender, EventArgs e)
     {
-        if (e.CurrentSelection.FirstOrDefault() is POI selectedPOI)
+        if (sender is ImageButton btn && btn.CommandParameter is POI selectedPOI)
         {
             await Shell.Current.GoToAsync(nameof(POIDetailPage), new Dictionary<string, object>
-        {
-            { "SelectedPOI", selectedPOI }
-        });
-
-            ((CollectionView)sender).SelectedItem = null; // bỏ chọn để không bị giữ màu
+            {
+                { "SelectedPOI", selectedPOI }
+            });
         }
     }
 }
