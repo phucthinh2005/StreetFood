@@ -45,21 +45,36 @@
                                                  Spacing="4">
 
                                 <!-- Tên + icon mắt -->
-                                <Grid ColumnDefinitions="*,Auto">
+                                <Grid ColumnDefinitions="*,Auto,Auto"
+                                      ColumnSpacing="10">
 
+                                    <!-- Tên quán -->
                                     <Label Text="{Binding Name}"
                                            FontAttributes="Bold"
                                            FontSize="15"
-                                           VerticalOptions="Center"/>
+                                           VerticalOptions="Center"
+                                           LineBreakMode="TailTruncation"/>
 
-                                    <ImageButton Source="eye.png!sw800"
+                                    <!-- Icon mắt -->
+                                    <ImageButton Source="eye.png"
                                                  Grid.Column="1"
-                                                 Clicked="DetailButton_Clicked"
+                                                  Clicked="DetailButton_Clicked"
                                                  CommandParameter="{Binding .}"
-                                                 HeightRequest="24"
-                                                 WidthRequest="24"
+                                                 HeightRequest="26"
+                                                 WidthRequest="26"
                                                  BackgroundColor="Transparent"
                                                  VerticalOptions="Center"/>
+
+                                    <!-- Icon map -->
+                                    <ImageButton Source="dotnet_bot.png"
+                                                  Grid.Column="2"
+                                                  Clicked="MapButton_Clicked"
+                                                  CommandParameter="{Binding .}"
+                                                  HeightRequest="26"
+                                                   WidthRequest="26"
+                                                   BackgroundColor="Transparent"
+                                                   VerticalOptions="Center"/>
+
                                 </Grid>
 
                                 <Label Text="{Binding Description}"

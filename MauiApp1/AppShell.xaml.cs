@@ -7,6 +7,7 @@ namespace MauiApp1
         public AppShell()
         {
             InitializeComponent();
+
             Routing.RegisterRoute(nameof(POIDetailPage), typeof(POIDetailPage));
             Routing.RegisterRoute(nameof(ListPage), typeof(ListPage));
             Routing.RegisterRoute(nameof(SettingsPage), typeof(SettingsPage));

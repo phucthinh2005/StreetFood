@@ -28,4 +28,14 @@ public partial class ListPage : ContentPage
             });
         }
     }
+    private async void MapButton_Clicked(object sender, EventArgs e)
+    {
+        if (sender is ImageButton btn && btn.CommandParameter is POI poi)
+        {
+            await Shell.Current.GoToAsync("..", new Dictionary<string, object>
+        {
+            { "SelectedPOI", poi }
+        });
+        }
+    }
 }
