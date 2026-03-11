@@ -7,10 +7,9 @@ namespace MauiApp1.Services
     {
         private List<POI> _pois;
 
-        private const int AudioCooldownSeconds = 50;
-        private const int NextAudioDelaySeconds = 6;
+        private const int AudioCooldownSeconds = 120;
+        private const int NextAudioDelaySeconds = 10;
 
-        private Queue<POI> _audioQueue = new();
         private bool _isPlaying = false;
 
         public event Action<GeofenceEvent>? GeofenceTriggered;
@@ -20,12 +19,7 @@ namespace MauiApp1.Services
             _pois = pois ?? new List<POI>();
         }
 
-        public void UpdatePOIs(List<POI> pois)
-        {
-            _pois = pois ?? new List<POI>();
-        }
-
-        public async void ProcessLocation(Location location)
+        public async Task ProcessLocation(Location location)
         {
             List<POI> insidePOIs = new();
 
@@ -75,31 +69,24 @@ namespace MauiApp1.Services
             }
 
             if (!insidePOIs.Any())
-            {
-                _audioQueue.Clear();
-                _isPlaying = false;
                 return;
-            }
-
-            var sorted = insidePOIs
-                .OrderByDescending(p => p.Priority)
-                .ToList();
-
-            _audioQueue = new Queue<POI>(sorted);
 
             if (!_isPlaying)
             {
                 _isPlaying = true;
-                await PlayQueue();
+                await PlayInsidePOIs(insidePOIs);
+                _isPlaying = false;
             }
         }
 
-        private async Task PlayQueue()
+        private async Task PlayInsidePOIs(List<POI> insidePOIs)
         {
-            while (_audioQueue.Any())
-            {
-                var poi = _audioQueue.Dequeue();
+            var sorted = insidePOIs
+                .OrderByDescending(p => p.Priority)
+                .ToList();
 
+            foreach (var poi in sorted)
+            {
                 if (!poi.IsInside)
                     continue;
 
@@ -116,14 +103,12 @@ namespace MauiApp1.Services
 
                 await Task.Delay(NextAudioDelaySeconds * 1000);
             }
-
-            _isPlaying = false;
         }
 
         private bool CanPlayAudio(POI poi)
         {
             return (DateTime.Now - poi.LastTriggered)
-                   > TimeSpan.FromSeconds(AudioCooldownSeconds);
+                > TimeSpan.FromSeconds(AudioCooldownSeconds);
         }
     }
 }

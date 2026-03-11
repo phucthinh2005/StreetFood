@@ -1,5 +1,4 @@
 ﻿using Microsoft.Maui.Devices.Sensors;
-using System.Threading;
 
 namespace MauiApp1.Services
 {
@@ -27,7 +26,7 @@ namespace MauiApp1.Services
 
             const double MIN_DISTANCE_METERS = 2;
 
-            int delay = 2000; // realtime 2s
+            int delay = 2000;
             int idleCounter = 0;
 
             while (!token.IsCancellationRequested)
@@ -44,8 +43,7 @@ namespace MauiApp1.Services
 
                     if (location != null)
                     {
-                        // bỏ GPS sai
-                        if (location.Accuracy > 25)
+                        if (location.Accuracy > 40)
                             continue;
 
                         if (lastLocation == null)
@@ -65,8 +63,6 @@ namespace MauiApp1.Services
                             {
                                 lastLocation = location;
                                 idleCounter = 0;
-
-                                // di chuyển → realtime
                                 delay = 2000;
 
                                 LocationChanged?.Invoke(location);
@@ -75,12 +71,9 @@ namespace MauiApp1.Services
                             {
                                 idleCounter++;
 
-                                // đứng yên
                                 if (idleCounter >= 5)
                                 {
                                     LocationChanged?.Invoke(location);
-
-                                    // giảm tần suất để tiết kiệm pin
                                     delay = 6000;
                                 }
                             }

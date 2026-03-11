@@ -1,10 +1,10 @@
-﻿using MauiApp1.Models;
+﻿#pragma warning disable CA1416
+using MauiApp1.Models;
 using MauiApp1.ViewModels;
 using Microsoft.Maui.Controls.Maps;
 using Microsoft.Maui.Devices.Sensors;
 using Microsoft.Maui.Maps;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace MauiApp1.Views;
 
@@ -38,6 +38,15 @@ public partial class MapPage : ContentPage
         vm.POIsLoaded += LoadPOIs;
         vm.POIStateChanged += OnPOIStateChanged;
 
+        // ===== Zoom map lần đầu =====
+        MainThread.BeginInvokeOnMainThread(() =>
+        {
+            map.MoveToRegion(MapSpan.FromCenterAndRadius(
+                new Location(10.761536, 106.702303),
+                Distance.FromMeters(200)
+            ));
+        });
+
         Init();
     }
 
@@ -61,7 +70,7 @@ public partial class MapPage : ContentPage
     }
 
     // ===== Load POI =====
-
+#pragma warning disable CA1416
     void LoadPOIs()
     {
         MainThread.BeginInvokeOnMainThread(() =>
@@ -78,10 +87,13 @@ public partial class MapPage : ContentPage
                 {
                     Center = location,
                     Radius = Distance.FromMeters(poi.Radius),
-                    StrokeColor = Colors.Blue,
-                    StrokeWidth = 2,
-                    FillColor = Colors.Blue.WithAlpha(0.2f)
+                    StrokeWidth = 2
                 };
+
+#pragma warning disable CA1416
+                circle.StrokeColor = Colors.Blue;
+                circle.FillColor = Colors.Blue.WithAlpha(0.2f);
+#pragma warning restore CA1416
 
                 poiCircles[poi] = circle;
                 map.MapElements.Add(circle);
@@ -97,19 +109,17 @@ public partial class MapPage : ContentPage
                     Location = new Location(poi.Latitude, poi.Longitude)
                 };
 
-                // click vào marker -> chỉ hiện popup
                 pin.MarkerClicked += (s, e) =>
                 {
-                    e.HideInfoWindow = false; // vẫn cho hiện popup
+                    e.HideInfoWindow = false;
                 };
 
-                // click popup -> mở trang chi tiết
                 pin.InfoWindowClicked += async (s, e) =>
                 {
                     await Shell.Current.GoToAsync(nameof(POIDetailPage),
                         new Dictionary<string, object>
                         {
-                { "SelectedPOI", poi }
+                            { "SelectedPOI", poi }
                         });
                 };
 
@@ -122,19 +132,19 @@ public partial class MapPage : ContentPage
 
     private void OnLocationUpdated(Location location)
     {
-        if (!isFirstLoad) return;
+        //if (!isFirstLoad) return;
 
-        isFirstLoad = false;
+        //isFirstLoad = false;
 
-        MainThread.BeginInvokeOnMainThread(() =>
-        {
-            var mapSpan = MapSpan.FromCenterAndRadius(
-                new Location(location.Latitude, location.Longitude),
-                Distance.FromMeters(200)
-            );
+        //MainThread.BeginInvokeOnMainThread(() =>
+        //{
+        //    var mapSpan = MapSpan.FromCenterAndRadius(
+        //        new Location(location.Latitude, location.Longitude),
+        //        Distance.FromMeters(200)
+        //    );
 
-            map.MoveToRegion(mapSpan);
-        });
+        //    map.MoveToRegion(mapSpan);
+        //});
     }
 
     // ===== đổi màu vùng =====
@@ -150,6 +160,7 @@ public partial class MapPage : ContentPage
 
             var circle = poiCircles[poi];
 
+#pragma warning disable CA1416
             if (isInside)
             {
                 circle.FillColor = Colors.Red.WithAlpha(0.3f);
@@ -160,6 +171,7 @@ public partial class MapPage : ContentPage
                 circle.FillColor = Colors.Blue.WithAlpha(0.2f);
                 circle.StrokeColor = Colors.Blue;
             }
+#pragma warning restore CA1416
         });
     }
 
@@ -167,7 +179,6 @@ public partial class MapPage : ContentPage
 
     void ShowSelectedPOI(POI poi)
     {
-        if (poi == null) return;
         MainThread.BeginInvokeOnMainThread(() =>
         {
             var location = new Location(poi.Latitude, poi.Longitude);
@@ -180,15 +191,21 @@ public partial class MapPage : ContentPage
             if (currentSelectedPOI != null && poiCircles.ContainsKey(currentSelectedPOI))
             {
                 var oldCircle = poiCircles[currentSelectedPOI];
+
+#pragma warning disable CA1416
                 oldCircle.FillColor = Colors.Blue.WithAlpha(0.2f);
                 oldCircle.StrokeColor = Colors.Blue;
+#pragma warning restore CA1416
             }
 
             if (poiCircles.ContainsKey(poi))
             {
                 var newCircle = poiCircles[poi];
+
+#pragma warning disable CA1416
                 newCircle.FillColor = Colors.Orange.WithAlpha(0.4f);
                 newCircle.StrokeColor = Colors.Orange;
+#pragma warning restore CA1416
             }
 
             currentSelectedPOI = poi;

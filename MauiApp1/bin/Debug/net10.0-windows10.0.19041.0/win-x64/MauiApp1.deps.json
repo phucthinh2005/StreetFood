@@ -23,6 +23,11 @@
         },
         "runtime": {
           "MauiApp1.dll": {}
+        },
+        "resources": {
+          "en/MauiApp1.resources.dll": {
+            "locale": "en"
+          }
         }
       },
       "runtimepack.Microsoft.Windows.SDK.NET.Ref/10.0.19041.57": {

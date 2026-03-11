@@ -1,16 +1,18 @@
-﻿using MauiApp1.Models;
-using Microsoft.Maui.Media;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
+using MauiApp1.Models;
+using MauiApp1.Resources.Languages;
+using MauiApp1.Services;
 
 namespace MauiApp1.ViewModels
 {
     public class POIDetailViewModel : INotifyPropertyChanged
     {
         private POI? _selectedPOI;
-        private CancellationTokenSource? _cts;
         private bool _isSpeaking;
+
+        private readonly AudioService _audioService = AudioService.Instance;
 
         public POI? SelectedPOI
         {
@@ -34,7 +36,7 @@ namespace MauiApp1.ViewModels
         }
 
         public string SpeakButtonText =>
-            IsSpeaking ? "Dừng" : "Nghe ngay";
+            IsSpeaking ? AppResources.Stop : AppResources.ListenNow;
 
         public ICommand SpeakCommand { get; }
         public ICommand CloseCommand { get; }
@@ -47,48 +49,36 @@ namespace MauiApp1.ViewModels
 
         private async Task OnSpeak()
         {
-            if (SelectedPOI == null || string.IsNullOrEmpty(SelectedPOI.Detail))
+            if (SelectedPOI == null)
                 return;
 
-            // Nếu đang nói → dừng
-            if (IsSpeaking)
+            if (_audioService.IsPlaying)
             {
-                _cts?.Cancel();
-                IsSpeaking = false;
+                Stop();
                 return;
             }
 
-            _cts = new CancellationTokenSource();
             IsSpeaking = true;
 
-            try
-            {
-                await TextToSpeech.SpeakAsync(
-                    SelectedPOI.Detail,
-                    cancelToken: _cts.Token
-                );
-            }
-            catch (OperationCanceledException)
-            {
-            }
-            finally
-            {
-                IsSpeaking = false;
-            }
-        }
+            await _audioService.Speak(SelectedPOI.Detail, true);
 
-        private async Task OnClose()
-        {
-            _cts?.Cancel();
-            await Shell.Current.GoToAsync("..");
+            IsSpeaking = false;
         }
 
         public void Stop()
         {
-            _cts?.Cancel();
+            _audioService.Stop();
+            IsSpeaking = false;
+        }
+
+        private async Task OnClose()
+        {
+            Stop();
+            await Shell.Current.GoToAsync("..");
         }
 
         public event PropertyChangedEventHandler? PropertyChanged;
+
         protected void OnPropertyChanged([CallerMemberName] string? name = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));

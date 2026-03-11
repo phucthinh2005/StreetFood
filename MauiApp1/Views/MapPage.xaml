@@ -2,83 +2,157 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:maps="clr-namespace:Microsoft.Maui.Controls.Maps;assembly=Microsoft.Maui.Controls.Maps"
+             xmlns:lang="clr-namespace:MauiApp1.Resources.Languages"
              x:Class="MauiApp1.Views.MapPage"
              BackgroundColor="#F2F2F2"
              Shell.NavBarIsVisible="False">
 
     <Grid RowDefinitions="Auto,Auto,*">
 
-        <!-- Header -->
-        <Grid Padding="16" Background="#FF6B35" Row="0">
+        <!-- HEADER -->
+        <Border Grid.Row="0"
+                BackgroundColor="#FF6B35"
+                Padding="16">
+
+            <Border.Shadow>
+                <Shadow Brush="#33000000"
+                        Offset="0,3"
+                        Radius="8"/>
+            </Border.Shadow>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="40" />
+                </Grid.ColumnDefinitions>
+
+                <StackLayout Spacing="2">
+
+                    <Label FontAttributes="Bold"
+                           TextColor="White"
+                           FontSize="18">
+
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="🍜 " />
+                                <Span Text="{x:Static lang:AppResources.FoodStreet}" />
+                            </FormattedString>
+                        </Label.FormattedText>
+
+                    </Label>
+
+                    <Label FontSize="12"
+                           TextColor="#FFF0F0">
+
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="🎧 " />
+                                <Span Text="{x:Static lang:AppResources.AutoGuide}" />
+                            </FormattedString>
+                        </Label.FormattedText>
+
+                    </Label>
+
+                </StackLayout>
+
+                <!-- Setting Button -->
+                <ImageButton Grid.Column="1"
+                             Source="setting.png"
+                             BackgroundColor="Transparent"
+                             HeightRequest="28"
+                             WidthRequest="28"
+                             Clicked="OnSettingClicked"/>
+
+            </Grid>
+
+        </Border>
+
+
+        <!-- TAB MENU -->
+        <Grid Row="1"
+              Padding="10"
+              BackgroundColor="#F2F2F2">
+
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="40" />
-            </Grid.ColumnDefinitions>
-
-            <StackLayout Spacing="2">
-                <Label Text="Phố Ẩm Thực"
-                       FontAttributes="Bold"
-                       TextColor="White"
-                       FontSize="18"/>
-
-                <Label Text="Thuyết minh tự động đa ngôn ngữ"
-                       FontSize="12"
-                       TextColor="#FFF0F0" />
-            </StackLayout>
-            
-            <!-- Setting Button -->
-            <ImageButton Grid.Column="1"
-                         Source="setting.png"
-                         BackgroundColor="Transparent"
-                         HeightRequest="28"
-                         WidthRequest="28"
-                         Clicked="OnSettingClicked"/>
-
-            <!-- <ImageButton Grid.Column="1"
-                         Source="dotnet_bot.png"
-                         BackgroundColor="Transparent"
-                         HeightRequest="36"
-                         WidthRequest="36"/> -->
-        </Grid>
-
-        <!-- Tabs -->
-        <Grid Row="1" BackgroundColor="White">
-
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
+            <!-- MAP TAB -->
             <Border Grid.Column="0"
-                    BackgroundColor="#FFF7F2"
+                    BackgroundColor="White"
+                    StrokeThickness="0"
                     Padding="12"
-                    StrokeThickness="0">
+                    Margin="4">
 
-                <Label Text="Bản đồ"
-                       HorizontalOptions="Center"
-                       VerticalOptions="Center"/>
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="16"/>
+                </Border.StrokeShape>
+
+                <Border.Shadow>
+                    <Shadow Brush="#22000000"
+                            Offset="0,2"
+                            Radius="6"/>
+                </Border.Shadow>
+
+                <Label HorizontalOptions="Center"
+                       VerticalOptions="Center"
+                       FontAttributes="Bold">
+
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="🗺 " />
+                            <Span Text="{x:Static lang:AppResources.Map}" />
+                        </FormattedString>
+                    </Label.FormattedText>
+
+                </Label>
+
             </Border>
 
+            <!-- LIST TAB -->
             <Border Grid.Column="1"
                     Padding="12"
+                    Margin="4"
+                    BackgroundColor="White"
                     StrokeThickness="0">
+
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="16"/>
+                </Border.StrokeShape>
+
+                <Border.Shadow>
+                    <Shadow Brush="#22000000"
+                            Offset="0,2"
+                            Radius="6"/>
+                </Border.Shadow>
 
                 <Border.GestureRecognizers>
                     <TapGestureRecognizer Tapped="OnListTabTapped"/>
                 </Border.GestureRecognizers>
 
-                <Label Text="Danh sách"
-                       HorizontalOptions="Center"
-                       VerticalOptions="Center"/>
+                <Label HorizontalOptions="Center"
+                       VerticalOptions="Center">
+
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="📋 " />
+                            <Span Text="{x:Static lang:AppResources.List}" />
+                        </FormattedString>
+                    </Label.FormattedText>
+
+                </Label>
+
             </Border>
 
         </Grid>
 
+
         <!-- MAP -->
         <maps:Map
-    x:Name="map"
-    Grid.Row="2"
-    IsShowingUser="True"/>
+            x:Name="map"
+            Grid.Row="2"
+            IsShowingUser="True"/>
 
     </Grid>
 

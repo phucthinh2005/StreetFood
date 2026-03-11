@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:res="clr-namespace:MauiApp1.Resources.Languages"
              x:Class="MauiApp1.Views.ListPage"
-             Title="Danh sách"
+             Title="{x:Static res:AppResources.ListTitle}"
              BackgroundColor="#F2F2F2">
 
     <Grid Padding="12">
@@ -86,7 +87,7 @@
                                        LineBreakMode="TailTruncation"/>
 
                                 <Label Text="{Binding Radius,
-                                              StringFormat='Bán kính: {0} m'}"
+                                              StringFormat='{x:Static res:AppResources.Radius}: {0} {x:Static res:AppResources.Meter}'}"
                                        FontSize="11"
                                        TextColor="Gray"/>
 

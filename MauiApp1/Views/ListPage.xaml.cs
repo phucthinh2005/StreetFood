@@ -1,4 +1,5 @@
-﻿using MauiApp1.Models;
+﻿#pragma warning disable CA1416
+using MauiApp1.Models;
 using MauiApp1.ViewModels;
 using System;
 using System.Collections.Generic;

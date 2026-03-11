@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:res="clr-namespace:MauiApp1.Resources.Languages"
              x:Class="MauiApp1.Views.POIDetailPage"
              BackgroundColor="#F2F2F2"
              Shell.NavBarIsVisible="False">
@@ -13,12 +14,20 @@
                                  Spacing="20">
 
                 <!-- TÊN -->
-                <Label Text="{Binding SelectedPOI.Name}"
-                       FontSize="26"
+                <Label FontSize="26"
                        FontAttributes="Bold"
-                       HorizontalOptions="Center"/>
+                       HorizontalOptions="Center">
 
-                <Label Text="Món Việt"
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="🍜 " />
+                            <Span Text="{Binding SelectedPOI.Name}" />
+                        </FormattedString>
+                    </Label.FormattedText>
+
+                </Label>
+
+                <Label Text="{x:Static res:AppResources.VietnamFood}"
                        TextColor="Gray"
                        HorizontalOptions="Center"/>
 
@@ -34,9 +43,17 @@
                 </Border>
 
                 <!-- GIỚI THIỆU -->
-                <Label Text="Giới thiệu"
-                       FontAttributes="Bold"
-                       FontSize="16"/>
+                <Label FontAttributes="Bold"
+                       FontSize="16">
+
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="📖 " />
+                            <Span Text="{x:Static res:AppResources.Introduction}" />
+                        </FormattedString>
+                    </Label.FormattedText>
+
+                </Label>
 
                 <Label Text="{Binding SelectedPOI.Description}"
                        FontSize="14"
@@ -61,11 +78,20 @@
                         <Grid ColumnDefinitions="*,Auto">
 
                             <VerticalStackLayout Spacing="2">
-                                <Label Text="🎧 Thuyết minh tự động"
-                                       FontAttributes="Bold"
-                                       FontSize="16"/>
 
-                                <Label Text="Nghe nội dung giới thiệu bằng âm thanh"
+                                <Label FontAttributes="Bold"
+                                       FontSize="16">
+
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="🎧 " />
+                                            <Span Text="{x:Static res:AppResources.AutoAudio}" />
+                                        </FormattedString>
+                                    </Label.FormattedText>
+
+                                </Label>
+
+                                <Label Text="{x:Static res:AppResources.AudioDescription}"
                                        FontSize="12"
                                        TextColor="Gray"/>
                             </VerticalStackLayout>
@@ -99,11 +125,21 @@
                     </Border.StrokeShape>
 
                     <VerticalStackLayout Spacing="6">
-                        <Label Text="📍 Vị trí"
-                               FontAttributes="Bold"/>
 
-                        <Label Text="{Binding SelectedPOI.Latitude, StringFormat='Vĩ độ: {0}'}"/>
-                        <Label Text="{Binding SelectedPOI.Longitude, StringFormat='Kinh độ: {0}'}"/>
+                        <Label FontAttributes="Bold">
+
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="📍 " />
+                                    <Span Text="{x:Static res:AppResources.Location}" />
+                                </FormattedString>
+                            </Label.FormattedText>
+
+                        </Label>
+
+                        <Label Text="{Binding SelectedPOI.Address}"
+                               FontSize="14"/>
+
                     </VerticalStackLayout>
                 </Border>
 
@@ -116,10 +152,20 @@
                     </Border.StrokeShape>
 
                     <VerticalStackLayout Spacing="6">
-                        <Label Text="🌍 Ngôn ngữ hỗ trợ"
-                               FontAttributes="Bold"/>
+
+                        <Label FontAttributes="Bold">
+
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="🌐 " />
+                                    <Span Text="{x:Static res:AppResources.SupportedLanguage}" />
+                                </FormattedString>
+                            </Label.FormattedText>
+
+                        </Label>
 
                         <Label Text="{Binding SelectedPOI.Language}"/>
+
                     </VerticalStackLayout>
                 </Border>
 
@@ -147,9 +193,11 @@
             <Label Text="✕"
                    FontSize="18"
                    FontAttributes="Bold">
+
                 <Label.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding CloseCommand}"/>
                 </Label.GestureRecognizers>
+
             </Label>
         </Border>
 
