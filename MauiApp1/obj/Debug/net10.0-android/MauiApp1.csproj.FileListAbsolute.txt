@@ -35,7 +35,6 @@ D:\food\StreetFood\MauiApp1\obj\Debug\net10.0-android\resizetizer\r\drawable\bun
 D:\food\StreetFood\MauiApp1\obj\Debug\net10.0-android\resizetizer\r\drawable\setting.png
 D:\food\StreetFood\MauiApp1\obj\Debug\net10.0-android\resizetizer\r\drawable\che.jpg
 D:\food\StreetFood\MauiApp1\obj\Debug\net10.0-android\resizetizer\r\drawable\ocdao.jpg
-D:\food\StreetFood\MauiApp1\obj\Debug\net10.0-android\resizetizer\r\drawable\eye.png!sw800
 D:\food\StreetFood\MauiApp1\obj\Debug\net10.0-android\resizetizer\r\drawable-xxxhdpi\dotnet_bot.png
 D:\food\StreetFood\MauiApp1\obj\Debug\net10.0-android\resizetizer\r\drawable-xxhdpi\dotnet_bot.png
 D:\food\StreetFood\MauiApp1\obj\Debug\net10.0-android\resizetizer\r\drawable-xhdpi\dotnet_bot.png
@@ -1720,3 +1719,8 @@ D:\food\StreetFood\MauiApp1\obj\Debug\net10.0-android\stamp\_ConvertResourcesCas
 D:\food\StreetFood\MauiApp1\obj\Debug\net10.0-android\stamp\_GenerateJavaStubs.stamp
 D:\food\StreetFood\MauiApp1\obj\Debug\net10.0-android\stamp\_GeneratePackageManagerJava.stamp
 D:\food\StreetFood\MauiApp1\obj\Debug\net10.0-android\stamp\_ResolveLibraryProjectImports.stamp
+D:\food\StreetFood\MauiApp1\bin\Debug\net10.0-android\ja\MauiApp1.resources.dll
+D:\food\StreetFood\MauiApp1\obj\Debug\net10.0-android\MauiApp1.Resources.Languages.AppResources.ja.resources
+D:\food\StreetFood\MauiApp1\obj\Debug\net10.0-android\ja\MauiApp1.resources.dll
+D:\food\StreetFood\MauiApp1\obj\Debug\net10.0-android\resizetizer\r\drawable\eye.png
+D:\food\StreetFood\MauiApp1\obj\Debug\net10.0-android\resizetizer\r\drawable\map.png

@@ -10,8 +10,6 @@
 
         <CollectionView ItemsSource="{Binding POIs}"
                         SelectionMode="None">
-            <!--SelectionMode="Single"
-                        SelectionChanged="CollectionView_SelectionChanged"> -->
 
             <CollectionView.ItemTemplate>
                 <DataTemplate>
@@ -45,9 +43,9 @@
                             <VerticalStackLayout Grid.Column="1"
                                                  Spacing="4">
 
-                                <!-- Tên + icon mắt -->
+                                <!-- Tên + icon -->
                                 <Grid ColumnDefinitions="*,Auto,Auto"
-                                      ColumnSpacing="10">
+                                      ColumnSpacing="12">
 
                                     <!-- Tên quán -->
                                     <Label Text="{Binding Name}"
@@ -56,40 +54,75 @@
                                            VerticalOptions="Center"
                                            LineBreakMode="TailTruncation"/>
 
-                                    <!-- Icon mắt -->
-                                    <ImageButton Source="eye.png"
-                                                 Grid.Column="1"
-                                                  Clicked="DetailButton_Clicked"
-                                                 CommandParameter="{Binding .}"
-                                                 HeightRequest="26"
-                                                 WidthRequest="26"
-                                                 BackgroundColor="Transparent"
-                                                 VerticalOptions="Center"/>
+                                    <!-- Chi tiết -->
+                                    <VerticalStackLayout Grid.Column="1"
+                                                         Spacing="1"
+                                                         HorizontalOptions="Center">
 
-                                    <!-- Icon map -->
-                                    <ImageButton Source="dotnet_bot.png"
-                                                  Grid.Column="2"
-                                                  Clicked="MapButton_Clicked"
-                                                  CommandParameter="{Binding .}"
-                                                  HeightRequest="26"
-                                                   WidthRequest="26"
-                                                   BackgroundColor="Transparent"
-                                                   VerticalOptions="Center"/>
+                                        <ImageButton Source="eye.png"
+                                                     Clicked="DetailButton_Clicked"
+                                                     CommandParameter="{Binding .}"
+                                                     HeightRequest="26"
+                                                     WidthRequest="26"
+                                                     BackgroundColor="Transparent"/>
+
+                                        <Label Text="{x:Static res:AppResources.Detail}"
+                                               FontSize="9"
+                                               HorizontalOptions="Center"
+                                               TextColor="Gray"/>
+                                    </VerticalStackLayout>
+
+                                    <!-- Zoom -->
+                                    <VerticalStackLayout Grid.Column="2"
+                                                         Spacing="1"
+                                                         HorizontalOptions="Center">
+
+                                        <ImageButton Source="map.png"
+                                                     Clicked="MapButton_Clicked"
+                                                     CommandParameter="{Binding .}"
+                                                     HeightRequest="26"
+                                                     WidthRequest="26"
+                                                     BackgroundColor="Transparent"/>
+
+                                        <Label Text="{x:Static res:AppResources.Map}"
+                                               FontSize="9"
+                                               HorizontalOptions="Center"
+                                               TextColor="Gray"/>
+                                    </VerticalStackLayout>
 
                                 </Grid>
 
+                                <!-- Description -->
                                 <Label Text="{Binding Description}"
                                        FontSize="12"
                                        TextColor="Gray"/>
 
+                                <!-- Content -->
                                 <Label Text="{Binding Content}"
                                        FontSize="12"
                                        LineBreakMode="TailTruncation"/>
 
-                                <Label Text="{Binding Radius,
-                                              StringFormat='{x:Static res:AppResources.Radius}: {0} {x:Static res:AppResources.Meter}'}"
-                                       FontSize="11"
-                                       TextColor="Gray"/>
+                                <!-- Rating -->
+                                <VerticalStackLayout Spacing="2">
+
+                                    <Label Text="{Binding StarDisplay}"
+                                           FontSize="14"
+                                           TextColor="#FFC107"/>
+
+                                    <Label FontSize="11"
+                                           TextColor="Gray">
+
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="{Binding Rating}"/>
+                                                <Span Text=" "/>
+                                                <Span Text="{x:Static res:AppResources.Rating}"/>
+                                            </FormattedString>
+                                        </Label.FormattedText>
+
+                                    </Label>
+
+                                </VerticalStackLayout>
 
                             </VerticalStackLayout>
 
@@ -98,6 +131,7 @@
                     </Border>
 
                 </DataTemplate>
+
             </CollectionView.ItemTemplate>
 
         </CollectionView>

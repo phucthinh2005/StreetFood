@@ -37,13 +37,15 @@ namespace MauiApp1.Services
                     ?? locales.FirstOrDefault(l => l.Language.StartsWith(lang));
 
                 await TextToSpeech.Default.SpeakAsync(
-                    text,
-                    new SpeechOptions
-                    {
-                        Locale = voice
-                    },
-                    _cts.Token
-                );
+     text,
+     new SpeechOptions
+     {
+         Locale = voice,
+         Volume = SettingsService.Volume / 100.0f,
+         Rate = (float)SettingsService.SpeechSpeed
+     },
+     _cts.Token
+ );
             }
             catch
             {

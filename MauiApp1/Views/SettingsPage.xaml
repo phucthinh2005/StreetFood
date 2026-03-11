@@ -6,67 +6,89 @@
              Title="{x:Static res:AppResources.Settings}">
 
     <ScrollView>
-        <VerticalStackLayout Padding="20" Spacing="25">
 
-            <!-- Volume -->
-            <Label x:Name="volumeLabel">
-                <Label.FormattedText>
-                    <FormattedString>
-                        <Span Text="{x:Static res:AppResources.Volume}" />
-                        <Span Text=": " />
-                        <Span Text="80%" />
-                    </FormattedString>
-                </Label.FormattedText>
-            </Label>
+        <VerticalStackLayout Padding="25" Spacing="30">
 
-            <Slider x:Name="volumeSlider"
-                    Minimum="0"
-                    Maximum="100"
-                    Value="80"
-                    ValueChanged="VolumeChanged"/>
+            <!-- Volume Card -->
+            <Border BackgroundColor="White"
+                    StrokeShape="RoundRectangle 20"
+                    Padding="20"
+                    Shadow="0,4,10,#33000000">
 
-            <!-- Speech Speed -->
-            <Label x:Name="speedLabel">
-                <Label.FormattedText>
-                    <FormattedString>
-                        <Span Text="{x:Static res:AppResources.SpeechSpeed}" />
-                        <Span Text=": " />
-                        <Span Text="1.0x" />
-                    </FormattedString>
-                </Label.FormattedText>
-            </Label>
+                <VerticalStackLayout Spacing="10">
 
-            <Slider x:Name="speedSlider"
-                    Minimum="0.5"
-                    Maximum="2"
-                    Value="1"
-                    ValueChanged="SpeedChanged"/>
+                    <Label x:Name="volumeLabel"
+                           FontSize="16"
+                           FontAttributes="Bold"
+                           TextColor="#333"/>
+
+                    <Slider x:Name="volumeSlider"
+                            Minimum="0"
+                            Maximum="100"
+                            Value="80"
+                            ValueChanged="VolumeChanged"/>
+
+                </VerticalStackLayout>
+
+            </Border>
+
+
+            <!-- Speech Speed Card -->
+            <Border BackgroundColor="White"
+                    StrokeShape="RoundRectangle 20"
+                    Padding="20"
+                    Shadow="0,4,10,#33000000">
+
+                <VerticalStackLayout Spacing="10">
+
+                    <Label x:Name="speedLabel"
+                           FontSize="16"
+                           FontAttributes="Bold"
+                           TextColor="#333"/>
+
+                    <Slider x:Name="speedSlider"
+                            Minimum="0.5"
+                            Maximum="2"
+                            Value="1"
+                            ValueChanged="SpeedChanged"/>
+
+                </VerticalStackLayout>
+
+            </Border>
+
 
             <!-- Language -->
             <Label Text="{x:Static res:AppResources.Language}"
                    FontAttributes="Bold"
-                   FontSize="18"/>
+                   FontSize="18"
+                   TextColor="#333"/>
 
-            <Border BackgroundColor="#F5F5F5"
-                    StrokeShape="RoundRectangle 12"
-                    Padding="15">
+            <Border BackgroundColor="White"
+                    StrokeShape="RoundRectangle 20"
+                    Padding="18"
+                    Shadow="0,4,10,#33000000">
 
-                <Grid ColumnDefinitions="Auto,*,Auto">
+                <Grid ColumnDefinitions="Auto,*,Auto"
+                      ColumnSpacing="15">
 
                     <Label Text="🌐"
-                           FontSize="20"
+                           FontSize="22"
                            VerticalOptions="Center"/>
 
-                    <VerticalStackLayout Grid.Column="1"
-                                         Margin="10,0">
-                        <Label Text="{x:Static res:AppResources.Language}"/>
+                    <VerticalStackLayout Grid.Column="1">
+
+                        <Label Text="{x:Static res:AppResources.Language}"
+                               FontAttributes="Bold"/>
+
                         <Label x:Name="languageLabel"
                                FontSize="12"
                                TextColor="Gray"/>
+
                     </VerticalStackLayout>
 
-                    <Label Text=">"
+                    <Label Text="›"
                            Grid.Column="2"
+                           FontSize="20"
                            VerticalOptions="Center"
                            TextColor="Gray"/>
 
@@ -78,7 +100,41 @@
 
             </Border>
 
+
+            <!-- Reset -->
+            <Border BackgroundColor="#F9FAFF"
+        Stroke="#2F80ED"
+        StrokeThickness="1.5"
+        StrokeShape="RoundRectangle 20"
+        Padding="18">
+
+                <Grid ColumnDefinitions="40,*"
+          ColumnSpacing="10"
+          VerticalOptions="Center">
+
+                    <Label Text="🔄"
+               FontSize="22"
+               VerticalOptions="Center"
+               HorizontalOptions="Center"/>
+
+                    <Label Grid.Column="1"
+               Text="{x:Static res:AppResources.ResetDefault}"
+               VerticalOptions="Center"
+               TextColor="#2F80ED"
+               FontAttributes="Bold"
+               FontSize="16"
+               LineBreakMode="WordWrap"/>
+
+                </Grid>
+
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="ResetSettings"/>
+                </Border.GestureRecognizers>
+
+            </Border>
+
         </VerticalStackLayout>
+
     </ScrollView>
 
 </ContentPage>

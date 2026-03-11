@@ -144,6 +144,9 @@
   <data name="ChooseLanguage" xml:space="preserve">
     <value>Chọn ngôn ngữ</value>
   </data>
+  <data name="Detail" xml:space="preserve">
+    <value>Chi tiết</value>
+  </data>
   <data name="EnterArea" xml:space="preserve">
     <value>Bạn đã vào khu vực</value>
   </data>
@@ -183,8 +186,23 @@
   <data name="MapTitle" xml:space="preserve">
     <value>Bản đồ</value>
   </data>
+  <data name="OK" xml:space="preserve">
+    <value>OK</value>
+  </data>
   <data name="Radius" xml:space="preserve">
     <value> Bán kính</value>
+  </data>
+  <data name="Rating" xml:space="preserve">
+    <value>Đánh giá</value>
+  </data>
+  <data name="Reset" xml:space="preserve">
+    <value>Khôi phục</value>
+  </data>
+  <data name="ResetConfirm" xml:space="preserve">
+    <value>Bạn muốn khôi phục cài đặt mặc định?</value>
+  </data>
+  <data name="ResetDefault" xml:space="preserve">
+    <value>Reset về mặc định</value>
   </data>
   <data name="Settings" xml:space="preserve">
     <value>Cài đặt</value>

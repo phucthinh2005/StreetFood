@@ -144,6 +144,9 @@
   <data name="ChooseLanguage" xml:space="preserve">
     <value>ChooseLanguage </value>
   </data>
+  <data name="Detail" xml:space="preserve">
+    <value>Detail</value>
+  </data>
   <data name="EnterArea" xml:space="preserve">
     <value>You entered the area</value>
   </data>
@@ -183,8 +186,23 @@
   <data name="MapTitle" xml:space="preserve">
     <value>Map</value>
   </data>
+  <data name="OK" xml:space="preserve">
+    <value>OK</value>
+  </data>
   <data name="Radius" xml:space="preserve">
     <value>Radius</value>
+  </data>
+  <data name="Rating" xml:space="preserve">
+    <value>Rating</value>
+  </data>
+  <data name="Reset" xml:space="preserve">
+    <value>Reset</value>
+  </data>
+  <data name="ResetConfirm" xml:space="preserve">
+    <value>Restore default settings?</value>
+  </data>
+  <data name="ResetDefault" xml:space="preserve">
+    <value>Reset to default</value>
   </data>
   <data name="Settings" xml:space="preserve">
     <value>Settings</value>

@@ -3,6 +3,7 @@ using System;
 using System.Globalization;
 using System.Threading;
 using MauiApp1.Resources.Languages;
+using MauiApp1.Services;
 
 namespace MauiApp1.Views;
 
@@ -11,35 +12,50 @@ public partial class SettingsPage : ContentPage
     public SettingsPage()
     {
         InitializeComponent();
+
+        volumeSlider.Value = SettingsService.Volume;
+        speedSlider.Value = SettingsService.SpeechSpeed;
+
         UpdateLanguageLabel();
     }
 
+    // ===== Volume =====
     void VolumeChanged(object sender, ValueChangedEventArgs e)
     {
+        int volume = (int)e.NewValue;
+
+        SettingsService.Volume = volume;
+
         volumeLabel.FormattedText = new FormattedString
         {
             Spans =
             {
                 new Span { Text = AppResources.Volume },
                 new Span { Text = ": " },
-                new Span { Text = $"{(int)e.NewValue}%" }
+                new Span { Text = $"{volume}%" }
             }
         };
     }
 
+    // ===== Speed =====
     void SpeedChanged(object sender, ValueChangedEventArgs e)
     {
+        double speed = e.NewValue;
+
+        SettingsService.SpeechSpeed = speed;
+
         speedLabel.FormattedText = new FormattedString
         {
             Spans =
             {
                 new Span { Text = AppResources.SpeechSpeed },
                 new Span { Text = ": " },
-                new Span { Text = $"{e.NewValue:F1}x" }
+                new Span { Text = $"{speed:F1}x" }
             }
         };
     }
 
+    // ===== Choose Language =====
     async void ChooseLanguage(object sender, EventArgs e)
     {
         string result = await DisplayActionSheetAsync(
@@ -56,14 +72,19 @@ public partial class SettingsPage : ContentPage
 
         if (result == "English")
             SetLanguage("en");
+
         else if (result == "Tiếng Việt")
             SetLanguage("vi");
+
         else if (result == "日本語")
             SetLanguage("ja");
     }
 
+    // ===== Set Language =====
     void SetLanguage(string lang)
     {
+        SettingsService.Language = lang;
+
         var culture = new CultureInfo(lang);
 
         CultureInfo.DefaultThreadCurrentCulture = culture;
@@ -82,15 +103,39 @@ public partial class SettingsPage : ContentPage
         }
     }
 
+    // ===== Update Label =====
     void UpdateLanguageLabel()
     {
-        var lang = CultureInfo.CurrentUICulture.TwoLetterISOLanguageName;
+        var lang = SettingsService.Language;
 
         if (lang == "en")
             languageLabel.Text = "English";
+
         else if (lang == "vi")
             languageLabel.Text = "Tiếng Việt";
+
         else if (lang == "ja")
             languageLabel.Text = "日本語";
+    }
+
+    async void ResetSettings(object sender, EventArgs e)
+    {
+        bool confirm = await DisplayAlertAsync(
+    AppResources.Reset,
+    AppResources.ResetConfirm,
+    AppResources.OK,
+    AppResources.Cancel);
+
+        if (!confirm) return;
+
+        // reset settings
+        SettingsService.Volume = 100;
+        SettingsService.SpeechSpeed = 1.0;
+
+        volumeSlider.Value = 100;
+        speedSlider.Value = 1.0;
+
+        // reset language
+        SetLanguage("vi");
     }
 }

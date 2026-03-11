@@ -8,11 +8,13 @@
     "type",
     "neutral-value",
     "neutral-comment",
-    "en"
+    "en",
+    "ja"
   ],
   "VisibleColumnKeys": [
     "name",
     "en",
+    "ja",
     "neutral-value"
   ]
 }

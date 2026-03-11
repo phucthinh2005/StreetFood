@@ -2,9 +2,11 @@
     {
         "Name_vi": "Bò Né 3 Ngon",
         "Name_en": "Bo Ne 3 Ngon",
+        "Name_ja": "ボネー3ゴン",
 
         "Address_vi": "40 Vĩnh Khánh, Phường 8, Quận 4, TP.HCM",
         "Address_en": "40 Vinh Khanh Street, Ward 8, District 4, Ho Chi Minh City",
+        "Address_ja": "ホーチミン市4区8坊ヴィンカイン通り40番地",
 
         "Latitude": 10.761819,
         "Longitude": 106.702132,
@@ -12,24 +14,30 @@
         "Radius": 10,
         "NearRadius": 0,
         "Priority": 2,
+        "Rating": 4.5,
 
         "Content_vi": "Bò né Sài Gòn",
         "Content_en": "Saigon sizzling beef",
+        "Content_ja": "サイゴン風ボネー",
 
         "Description_vi": "Gian hàng chuyên bán đồ ăn",
         "Description_en": "Food stall",
+        "Description_ja": "屋台フード店",
 
         "Detail_vi": "Bò Né 3 Ngon phục vụ món bò né truyền thống.",
         "Detail_en": "Bo Ne 3 Ngon serves traditional sizzling beef.",
+        "Detail_ja": "ボネー3ゴンでは伝統的なベトナムのボネー料理を提供しています。",
 
         "ImageUrl": "bun_cha.jpg"
     },
     {
         "Name_vi": "Chè Miền Tây",
         "Name_en": "Western Sweet Soup",
+        "Name_ja": "西部チェー",
 
         "Address_vi": "42 Vĩnh Khánh, Phường 8, Quận 4, TP.HCM",
         "Address_en": "42 Vinh Khanh Street, Ward 8, District 4, Ho Chi Minh City",
+        "Address_ja": "ホーチミン市4区8坊ヴィンカイン通り42番地",
 
         "Latitude": 10.761536,
         "Longitude": 106.702303,
@@ -37,24 +45,30 @@
         "Radius": 10,
         "NearRadius": 0,
         "Priority": 3,
+        "Rating": 4.7,
 
         "Content_vi": "Chè truyền thống miền Nam",
         "Content_en": "Traditional Southern Vietnamese sweet soup",
+        "Content_ja": "南部ベトナムの伝統的なチェー",
 
         "Description_vi": "Gian hàng chuyên bán đồ ăn vặt",
         "Description_en": "Snack food stall",
+        "Description_ja": "デザート屋台",
 
         "Detail_vi": "Chè Miền Tây với nhiều loại chè ngon.",
         "Detail_en": "Western Sweet Soup offers many delicious Vietnamese dessert soups.",
+        "Detail_ja": "西部チェーでは様々な美味しいベトナムデザートスープを提供しています。",
 
         "ImageUrl": "che.jpg"
     },
     {
         "Name_vi": "Ốc Đào",
         "Name_en": "Oc Dao Snail Restaurant",
+        "Name_ja": "オックダオ",
 
         "Address_vi": "132 Vĩnh Khánh, Phường 8, Quận 4, TP.HCM",
         "Address_en": "132 Vinh Khanh Street, Ward 8, District 4, Ho Chi Minh City",
+        "Address_ja": "ホーチミン市4区8坊ヴィンカイン通り132番地",
 
         "Latitude": 10.761394,
         "Longitude": 106.702695,
@@ -62,24 +76,30 @@
         "Radius": 10,
         "NearRadius": 0,
         "Priority": 4,
+        "Rating": 4.8,
 
         "Content_vi": "Quán ốc nổi tiếng Sài Gòn",
         "Content_en": "Famous snail restaurant in Saigon",
+        "Content_ja": "サイゴンで有名な巻貝レストラン",
 
         "Description_vi": "Chuyên các món ốc xào, nướng",
         "Description_en": "Specializes in stir-fried and grilled snail dishes",
+        "Description_ja": "炒め物や焼き巻貝料理が有名",
 
         "Detail_vi": "Ốc Đào là quán ốc nổi tiếng với nhiều món như ốc hương rang muối...",
         "Detail_en": "Oc Dao is a famous snail restaurant with dishes like salt-roasted snails.",
+        "Detail_ja": "オックダオは塩焼き巻貝など多くの料理で有名なレストランです。",
 
         "ImageUrl": "ocdao.jpg"
     },
     {
         "Name_vi": "Ốc 2",
         "Name_en": "Snail Restaurant 2",
+        "Name_ja": "オックレストラン2",
 
         "Address_vi": "135 Vĩnh Khánh, Phường 8, Quận 4, TP.HCM",
         "Address_en": "135 Vinh Khanh Street, Ward 8, District 4, Ho Chi Minh City",
+        "Address_ja": "ホーチミン市4区8坊ヴィンカイン通り135番地",
 
         "Latitude": 10.761364,
         "Longitude": 106.702579,
@@ -87,15 +107,19 @@
         "Radius": 10,
         "NearRadius": 0,
         "Priority": 5,
+        "Rating": 4.3,
 
         "Content_vi": "Quán ốc nổi tiếng Sài Gòn vui nhộn",
         "Content_en": "A lively famous snail restaurant in Saigon",
+        "Content_ja": "活気のあるサイゴンの有名な巻貝レストラン",
 
         "Description_vi": "Chuyên các món ốc xào, nướng",
         "Description_en": "Specializes in stir-fried and grilled snail dishes",
+        "Description_ja": "炒め物や焼き巻貝料理専門",
 
         "Detail_vi": "Quán ốc với nhiều món nổi tiếng như ốc hương rang muối...",
         "Detail_en": "A snail restaurant with many popular dishes such as salt roasted snails.",
+        "Detail_ja": "塩焼き巻貝など多くの人気料理を提供するレストランです。",
 
         "ImageUrl": "ocdao.jpg"
     }

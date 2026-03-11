@@ -65,6 +65,11 @@
               Looks up a localized string similar to Chọn ngôn ngữ.
             </summary>
         </member>
+        <member name="P:MauiApp1.Resources.Languages.AppResources.Detail">
+            <summary>
+              Looks up a localized string similar to Chi tiết.
+            </summary>
+        </member>
         <member name="P:MauiApp1.Resources.Languages.AppResources.EnterArea">
             <summary>
               Looks up a localized string similar to Bạn đã vào khu vực.
@@ -130,9 +135,34 @@
               Looks up a localized string similar to Bản đồ.
             </summary>
         </member>
+        <member name="P:MauiApp1.Resources.Languages.AppResources.OK">
+            <summary>
+              Looks up a localized string similar to OK.
+            </summary>
+        </member>
         <member name="P:MauiApp1.Resources.Languages.AppResources.Radius">
             <summary>
               Looks up a localized string similar to  Bán kính.
+            </summary>
+        </member>
+        <member name="P:MauiApp1.Resources.Languages.AppResources.Rating">
+            <summary>
+              Looks up a localized string similar to Đánh giá.
+            </summary>
+        </member>
+        <member name="P:MauiApp1.Resources.Languages.AppResources.Reset">
+            <summary>
+              Looks up a localized string similar to Khôi phục.
+            </summary>
+        </member>
+        <member name="P:MauiApp1.Resources.Languages.AppResources.ResetConfirm">
+            <summary>
+              Looks up a localized string similar to Bạn muốn khôi phục cài đặt mặc định?.
+            </summary>
+        </member>
+        <member name="P:MauiApp1.Resources.Languages.AppResources.ResetDefault">
+            <summary>
+              Looks up a localized string similar to Reset về mặc định.
             </summary>
         </member>
         <member name="P:MauiApp1.Resources.Languages.AppResources.Settings">

@@ -39,13 +39,13 @@ public partial class MapPage : ContentPage
         vm.POIStateChanged += OnPOIStateChanged;
 
         // ===== Zoom map lần đầu =====
-        MainThread.BeginInvokeOnMainThread(() =>
-        {
-            map.MoveToRegion(MapSpan.FromCenterAndRadius(
-                new Location(10.761536, 106.702303),
-                Distance.FromMeters(200)
-            ));
-        });
+        //MainThread.BeginInvokeOnMainThread(() =>
+        //{
+        //    map.MoveToRegion(MapSpan.FromCenterAndRadius(
+        //        new Location(10.761536, 106.702303),
+        //        Distance.FromMeters(200)
+        //    ));
+        //});
 
         Init();
     }
@@ -132,19 +132,19 @@ public partial class MapPage : ContentPage
 
     private void OnLocationUpdated(Location location)
     {
-        //if (!isFirstLoad) return;
+        if (!isFirstLoad) return;
 
-        //isFirstLoad = false;
+        isFirstLoad = false;
 
-        //MainThread.BeginInvokeOnMainThread(() =>
-        //{
-        //    var mapSpan = MapSpan.FromCenterAndRadius(
-        //        new Location(location.Latitude, location.Longitude),
-        //        Distance.FromMeters(200)
-        //    );
+        MainThread.BeginInvokeOnMainThread(() =>
+        {
+            var mapSpan = MapSpan.FromCenterAndRadius(
+                new Location(location.Latitude, location.Longitude),
+                Distance.FromMeters(200)
+            );
 
-        //    map.MoveToRegion(mapSpan);
-        //});
+            map.MoveToRegion(mapSpan);
+        });
     }
 
     // ===== đổi màu vùng =====

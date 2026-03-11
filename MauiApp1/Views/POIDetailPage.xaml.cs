@@ -1,9 +1,9 @@
 ﻿#pragma warning disable CA1416
-using System.Threading;
+
 using MauiApp1.Models;
 using MauiApp1.ViewModels;
 using Microsoft.Maui.Media;
-using Microsoft.Maui.Media;
+
 
 namespace MauiApp1.Views;
 
