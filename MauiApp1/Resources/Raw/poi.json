@@ -1,5 +1,6 @@
 [
     {
+        "Id": 1,
         "Name_vi": "Bò Né 3 Ngon",
         "Name_en": "Bo Ne 3 Ngon",
         "Name_ja": "ボネー3ゴン",
@@ -31,11 +32,13 @@
         "ImageUrl": "bun_cha.jpg"
     },
     {
+        "Id": 2,
         "Name_vi": "Chè Miền Tây",
         "Name_en": "Western Sweet Soup",
         "Name_ja": "西部チェー",
 
         "Address_vi": "42 Vĩnh Khánh, Phường 8, Quận 4, TP.HCM",
+
         "Address_en": "42 Vinh Khanh Street, Ward 8, District 4, Ho Chi Minh City",
         "Address_ja": "ホーチミン市4区8坊ヴィンカイン通り42番地",
 
@@ -62,6 +65,7 @@
         "ImageUrl": "che.jpg"
     },
     {
+        "Id": 3,
         "Name_vi": "Ốc Đào",
         "Name_en": "Oc Dao Snail Restaurant",
         "Name_ja": "オックダオ",
@@ -72,6 +76,7 @@
 
         "Latitude": 10.761394,
         "Longitude": 106.702695,
+        
 
         "Radius": 10,
         "NearRadius": 0,
@@ -93,6 +98,7 @@
         "ImageUrl": "ocdao.jpg"
     },
     {
+        "Id": 4,
         "Name_vi": "Ốc 2",
         "Name_en": "Snail Restaurant 2",
         "Name_ja": "オックレストラン2",
@@ -122,5 +128,31 @@
         "Detail_ja": "塩焼き巻貝など多くの人気料理を提供するレストランです。",
 
         "ImageUrl": "ocdao.jpg"
+    },
+    {
+        "Id": 5,
+        "Name_vi": "Bánh Mì Huỳnh Hoa",
+        "Name_en": "Huynh Hoa Banh Mi",
+        "Name_ja": "フインホアバインミー",
+        "Address_vi": "26 Lê Thị Riêng, Phường Bến Thành, Quận 1, TP.HCM",
+        "Address_en": "26 Le Thi Rieng Street, Ben Thanh Ward, District 1, Ho Chi Minh City",
+        "Address_ja": "ホーチミン市1区ベンタイン坊レティリエン通り26番地",
+        "Latitude": 10.771783,
+        "Longitude": 106.698432,
+        "Radius": 10,
+        "NearRadius": 0,
+        "Priority": 1,
+        "Rating": 4.9,
+        "Content_vi": "Bánh mì nổi tiếng Sài Gòn",
+        "Content_en": "Famous banh mi in Saigon",
+        "Content_ja": "サイゴンで有名なバインミー",
+        "Description_vi": "Chuyên bán bánh mì thịt nướng",
+        "Description_en": "Specializes in grilled meat banh mi",
+        "Description_ja": "焼き肉バインミー専門",
+        "Detail_vi": "Bánh Mì Huỳnh Hoa là quán bánh mì nổi tiếng với nhiều loại nhân như thịt nướng, chả lụa...",
+        "Detail_en": "Huynh Hoa Banh Mi is a famous banh mi restaurant with various fillings such as grilled meat and Vietnamese sausage.",
+        "Detail_ja": "フインホアバインミーは、焼き肉やベトナムソーセージなど様々な具材を提供する有名なバインミーレストランです。",
+        "ImageUrl": "ocdao.jpg"
     }
+        
 ]

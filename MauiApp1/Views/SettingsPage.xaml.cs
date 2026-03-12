@@ -16,6 +16,9 @@ public partial class SettingsPage : ContentPage
         volumeSlider.Value = SettingsService.Volume;
         speedSlider.Value = SettingsService.SpeechSpeed;
 
+        VolumeChanged(volumeSlider, new ValueChangedEventArgs(0, volumeSlider.Value));
+        SpeedChanged(speedSlider, new ValueChangedEventArgs(0, speedSlider.Value));
+
         UpdateLanguageLabel();
     }
 

@@ -5,7 +5,7 @@ namespace MauiApp1.Models
 {
     public class POI
     {
-        [PrimaryKey, AutoIncrement]
+        [PrimaryKey]
         public int Id { get; set; }
 
         // ===== Name =====

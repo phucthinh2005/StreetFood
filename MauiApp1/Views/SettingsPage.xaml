@@ -25,7 +25,7 @@
                     <Slider x:Name="volumeSlider"
                             Minimum="0"
                             Maximum="100"
-                            Value="80"
+                            Value="100"
                             ValueChanged="VolumeChanged"/>
 
                 </VerticalStackLayout>
