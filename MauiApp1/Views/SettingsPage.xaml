@@ -56,6 +56,28 @@
 
             </Border>
 
+            <!-- GPS Background -->
+            <Border BackgroundColor="White"
+        StrokeShape="RoundRectangle 20"
+        Padding="20"
+        Shadow="0,4,10,#33000000">
+
+                <Grid ColumnDefinitions="*,Auto"
+          ColumnSpacing="10"
+          VerticalOptions="Center">
+
+                    <Label Text="{x:Static res:AppResources.GPSBackground}"
+       FontAttributes="Bold"
+       FontSize="16"
+       VerticalOptions="Center"/>
+
+                    <Switch x:Name="gpsSwitch"
+                Grid.Column="1"
+                Toggled="GpsToggled"/>
+                </Grid>
+
+            </Border>
+
 
             <!-- Language -->
             <Label Text="{x:Static res:AppResources.Language}"

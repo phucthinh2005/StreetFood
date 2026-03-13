@@ -2849,3 +2849,4 @@ D:\food\StreetFood\MauiApp1\obj\Debug\net10.0-android\android\compressed_assembl
 D:\food\StreetFood\MauiApp1\obj\Debug\net10.0-android\android\marshal_methods.x86_64.o
 D:\food\StreetFood\MauiApp1\obj\Debug\net10.0-android\android\jni_remap.x86_64.o
 D:\food\StreetFood\MauiApp1\obj\Debug\net10.0-android\app_shared_libraries\x86_64\libxamarin-app.so
+D:\food\StreetFood\MauiApp1\obj\Debug\net10.0-android\android\src\crc64a4c3491f9958177f\GpsForegroundService.java

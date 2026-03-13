@@ -178,6 +178,15 @@ namespace MauiApp1.Resources.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to GPS chạy nền.
+        /// </summary>
+        public static string GPSBackground {
+            get {
+                return ResourceManager.GetString("GPSBackground", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Giới thiệu.
         /// </summary>
         public static string Introduction {

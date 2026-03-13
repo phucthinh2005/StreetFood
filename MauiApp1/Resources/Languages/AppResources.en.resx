@@ -156,6 +156,9 @@
   <data name="FoodStreet" xml:space="preserve">
     <value>Food Street</value>
   </data>
+  <data name="GPSBackground" xml:space="preserve">
+    <value>Background GPS</value>
+  </data>
   <data name="Introduction" xml:space="preserve">
     <value>Introduction</value>
   </data>

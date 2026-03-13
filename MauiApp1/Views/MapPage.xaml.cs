@@ -5,6 +5,7 @@ using Microsoft.Maui.Controls.Maps;
 using Microsoft.Maui.Devices.Sensors;
 using Microsoft.Maui.Maps;
 using System.Linq;
+using MauiApp1.Services;
 
 namespace MauiApp1.Views;
 
@@ -37,6 +38,7 @@ public partial class MapPage : ContentPage
         vm.LocationUpdated += OnLocationUpdated;
         vm.POIsLoaded += LoadPOIs;
         vm.POIStateChanged += OnPOIStateChanged;
+        BackgroundGpsManager.Start(); // chạy GPS background
 
         // ===== Zoom map lần đầu =====
         //MainThread.BeginInvokeOnMainThread(() =>

@@ -85,6 +85,11 @@
               Looks up a localized string similar to Phố Ẩm Thực.
             </summary>
         </member>
+        <member name="P:MauiApp1.Resources.Languages.AppResources.GPSBackground">
+            <summary>
+              Looks up a localized string similar to GPS chạy nền.
+            </summary>
+        </member>
         <member name="P:MauiApp1.Resources.Languages.AppResources.Introduction">
             <summary>
               Looks up a localized string similar to Giới thiệu.

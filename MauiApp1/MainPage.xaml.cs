@@ -1,4 +1,7 @@
-﻿namespace MauiApp1
+﻿using MauiApp1.Services;
+using Microsoft.Maui.ApplicationModel;
+
+namespace MauiApp1
 {
     public partial class MainPage : ContentPage
     {
@@ -7,6 +10,30 @@
         public MainPage()
         {
             InitializeComponent();
+        }
+
+        protected override async void OnAppearing()
+        {
+            base.OnAppearing();
+
+            // Xin quyền GPS
+            await Permissions.RequestAsync<Permissions.LocationWhenInUse>();
+            await Permissions.RequestAsync<Permissions.LocationAlways>();
+
+
+            // Chỉ bật nếu user cho phép
+            if (SettingsService.GPSBackground)
+            {
+                BackgroundGpsManager.Start();
+            }
+        }
+
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+
+            // nếu muốn dừng GPS
+            // BackgroundGpsManager.Stop();
         }
 
         private void OnCounterClicked(object? sender, EventArgs e)

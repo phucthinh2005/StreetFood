@@ -16,6 +16,8 @@ public partial class SettingsPage : ContentPage
         volumeSlider.Value = SettingsService.Volume;
         speedSlider.Value = SettingsService.SpeechSpeed;
 
+        gpsSwitch.IsToggled = SettingsService.GPSBackground;
+
         VolumeChanged(volumeSlider, new ValueChangedEventArgs(0, volumeSlider.Value));
         SpeedChanged(speedSlider, new ValueChangedEventArgs(0, speedSlider.Value));
 
@@ -124,21 +126,43 @@ public partial class SettingsPage : ContentPage
     async void ResetSettings(object sender, EventArgs e)
     {
         bool confirm = await DisplayAlertAsync(
-    AppResources.Reset,
-    AppResources.ResetConfirm,
-    AppResources.OK,
-    AppResources.Cancel);
+            AppResources.Reset,
+            AppResources.ResetConfirm,
+            AppResources.OK,
+            AppResources.Cancel);
 
         if (!confirm) return;
 
         // reset settings
         SettingsService.Volume = 100;
         SettingsService.SpeechSpeed = 1.0;
+        SettingsService.GPSBackground = true;
 
         volumeSlider.Value = 100;
         speedSlider.Value = 1.0;
+        gpsSwitch.IsToggled = true;
+
+        // bật lại GPS service
+        BackgroundGpsManager.Start();
 
         // reset language
         SetLanguage("vi");
+    }
+
+    // ===== GPS Background =====
+    void GpsToggled(object sender, ToggledEventArgs e)
+    {
+        bool enabled = e.Value;
+
+        SettingsService.GPSBackground = enabled;
+
+        if (enabled)
+        {
+            BackgroundGpsManager.Start();
+        }
+        else
+        {
+            BackgroundGpsManager.Stop();
+        }
     }
 }

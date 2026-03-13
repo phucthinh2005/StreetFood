@@ -101,13 +101,15 @@ namespace MauiApp1.Services
                     EventType = GeofenceEventType.Audio
                 });
 
-                 await Task.Delay(NextAudioDelaySeconds * 1000); //delay giữa các poi
+                //đợi audio đọc xong trước khi đọc POI tiếp
+                while (AudioService.Instance.IsPlaying)
+                {
+                    await Task.Delay(300);
+                }
 
-                // đợi audio đọc xong trước khi đọc POI tiếp
-                //while (AudioService.Instance.IsPlaying)
-                //{
-                //    await Task.Delay(300);
-                //}
+                await Task.Delay(NextAudioDelaySeconds * 1000); //delay giữa các poi
+
+                
             }
         }
 

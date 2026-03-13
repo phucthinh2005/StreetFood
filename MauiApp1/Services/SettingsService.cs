@@ -28,5 +28,12 @@ namespace MauiApp1.Services
             get => Preferences.Get("speech_speed", 1.0);
             set => Preferences.Set("speech_speed", value);
         }
+
+        // ===== GPS Background =====
+        public static bool GPSBackground
+        {
+            get => Preferences.Get("gps_background", true);
+            set => Preferences.Set("gps_background", value);
+        }
     }
 }

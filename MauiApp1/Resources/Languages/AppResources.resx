@@ -156,6 +156,9 @@
   <data name="FoodStreet" xml:space="preserve">
     <value>Phố Ẩm Thực</value>
   </data>
+  <data name="GPSBackground" xml:space="preserve">
+    <value>GPS chạy nền</value>
+  </data>
   <data name="Introduction" xml:space="preserve">
     <value>Giới thiệu</value>
   </data>

@@ -156,6 +156,9 @@
   <data name="FoodStreet" xml:space="preserve">
     <value>フードストリート</value>
   </data>
+  <data name="GPSBackground" xml:space="preserve">
+    <value>バックグラウンドGPS</value>
+  </data>
   <data name="Introduction" xml:space="preserve">
     <value>紹介</value>
   </data>
