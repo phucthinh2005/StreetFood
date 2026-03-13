@@ -1,5 +1,8 @@
 ﻿using Microsoft.Maui.Media;
 using System.Globalization;
+#if ANDROID
+//using MauiApp1.Platforms.Android; // thêm using này để sử dụng AudioFocusService
+#endif
 
 namespace MauiApp1.Services
 {
@@ -8,6 +11,10 @@ namespace MauiApp1.Services
         public static AudioService Instance { get; } = new AudioService();
 
         private CancellationTokenSource? _cts;
+
+//#if ANDROID
+//        private AudioFocusService? _audioFocus; //thêm
+//#endif
 
         public bool IsPlaying { get; private set; }
 
@@ -18,6 +25,11 @@ namespace MauiApp1.Services
         {
             if (IsPlaying)
                 return;
+
+//#if ANDROID
+//            _audioFocus ??= new AudioFocusService(); //thêm
+//            _audioFocus.RequestFocus();
+//#endif
 
             _cts = new CancellationTokenSource();
             IsPlaying = true;
@@ -37,15 +49,15 @@ namespace MauiApp1.Services
                     ?? locales.FirstOrDefault(l => l.Language.StartsWith(lang));
 
                 await TextToSpeech.Default.SpeakAsync(
-     text,
-     new SpeechOptions
-     {
-         Locale = voice,
-         Volume = SettingsService.Volume / 100.0f,
-         Rate = (float)SettingsService.SpeechSpeed
-     },
-     _cts.Token
- );
+                    text,
+                    new SpeechOptions
+                    {
+                        Locale = voice,
+                        Volume = SettingsService.Volume / 100.0f,
+                        Rate = (float)SettingsService.SpeechSpeed
+                    },
+                    _cts.Token
+                );
             }
             catch
             {
@@ -54,6 +66,10 @@ namespace MauiApp1.Services
             {
                 IsPlaying = false;
 
+//#if ANDROID
+//                _audioFocus?.AbandonFocus(); //thêm
+//#endif
+
                 if (manual)
                     IsManualMode = false;
             }
@@ -61,8 +77,15 @@ namespace MauiApp1.Services
 
         public void Stop()
         {
+            if (_cts == null)//thêm
+                return;
+
             _cts?.Cancel();
             _cts = null;
+
+//#if ANDROID
+//            _audioFocus?.AbandonFocus(); //thêm
+//#endif
 
             IsPlaying = false;
             IsManualMode = false;

@@ -1,2 +1,2 @@
-AdbTarget=-s R5CX826RVZF
+AdbTarget=-s emulator-5554
 AdbOptions=

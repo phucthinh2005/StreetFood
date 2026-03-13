@@ -17,9 +17,15 @@ namespace MauiApp1.ViewModels
 
         public ObservableCollection<POI> POIs { get; set; }
 
+        List<POI> _allPOIs = new();//them danh sách đầy đủ để filter
+
         public event Action? POIsLoaded;
         public event Action<Location>? LocationUpdated;
         public event Action<string, bool>? POIStateChanged;
+
+
+        
+
 
         public MapViewModel()
         {
@@ -46,6 +52,8 @@ namespace MauiApp1.ViewModels
             await _database.ImportFromJson();
 
             var list = await _database.GetPOIsAsync();
+
+            _allPOIs = list.ToList();   // them vao danh sach day du de filter
 
             POIs.Clear();
 
@@ -85,6 +93,12 @@ namespace MauiApp1.ViewModels
                     POIStateChanged?.Invoke(e.POI.Name, false);
                     break;
 
+                // 🔴 thêm case này để dừng audio khi user rời khỏi khu vực
+                //case GeofenceEventType.StopAudio:
+
+                //    _audioService.Stop();
+                //    break;
+
                 case GeofenceEventType.Audio:
 
                     // nếu user đang nghe manual thì GPS không đọc
@@ -108,5 +122,27 @@ namespace MauiApp1.ViewModels
         {
             _gpsService.StopListening();
         }
+
+        public void FilterPois(string keyword) //thêm hàm filter
+        {
+            keyword = keyword?.ToLower() ?? "";
+
+            var filtered = string.IsNullOrWhiteSpace(keyword)
+                ? _allPOIs
+                : _allPOIs.Where(p =>
+                    (p.Name?.ToLower().Contains(keyword) ?? false)); //|| (p.Description?.ToLower().Contains(keyword) ?? false));
+
+
+            MainThread.BeginInvokeOnMainThread(() =>
+            {
+                POIs.Clear();
+               
+
+                foreach (var poi in filtered)
+                    POIs.Add(poi);
+            });
+        }
+
+
     }
 }

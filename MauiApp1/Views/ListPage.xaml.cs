@@ -39,4 +39,12 @@ public partial class ListPage : ContentPage
         });
         }
     }
+
+    private void SearchBar_TextChanged(object sender, TextChangedEventArgs e) // them vào sự kiện TextChanged của SearchBar
+    {
+        if (BindingContext is MapViewModel vm)
+        {
+            vm.FilterPois(e.NewTextValue);
+        }
+    }
 }

@@ -6,9 +6,42 @@
              Title="{x:Static res:AppResources.ListTitle}"
              BackgroundColor="#F2F2F2">
 
-    <Grid Padding="12">
+    <Grid Padding="12"
+          RowDefinitions="Auto,*">
 
-        <CollectionView ItemsSource="{Binding POIs}"
+        <!-- SEARCH BAR -->
+        <Border BackgroundColor="White"
+                Padding="10"
+                Margin="0,0,0,10"
+                StrokeThickness="0">
+
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="20"/>
+            </Border.StrokeShape>
+
+            <Border.Shadow>
+                <Shadow Brush="#22000000"
+                        Offset="0,2"
+                        Radius="6"/>
+            </Border.Shadow>
+
+            <Grid ColumnDefinitions="Auto,*"
+                  ColumnSpacing="8">
+
+                <!-- Thanh tìm kiếm -->
+                <SearchBar Grid.Column="1"
+                           Placeholder="Search..."
+                           BackgroundColor="Transparent"
+                           TextChanged="SearchBar_TextChanged"
+                           CancelButtonColor="Gray"/>
+
+            </Grid>
+
+        </Border>
+
+        <!-- DANH SÁCH -->
+        <CollectionView Grid.Row="1"
+                        ItemsSource="{Binding POIs}"
                         SelectionMode="None">
 
             <CollectionView.ItemTemplate>
@@ -32,29 +65,27 @@
                         <Grid ColumnDefinitions="80,*"
                               ColumnSpacing="10">
 
-                            <!-- Ảnh -->
+                            <!-- Image -->
                             <Image Source="{Binding ImageUrl}"
                                    WidthRequest="80"
                                    HeightRequest="80"
                                    Aspect="AspectFill"
                                    Grid.Column="0"/>
 
-                            <!-- Nội dung -->
+                            <!-- Content -->
                             <VerticalStackLayout Grid.Column="1"
                                                  Spacing="4">
 
-                                <!-- Tên + icon -->
                                 <Grid ColumnDefinitions="*,Auto,Auto"
                                       ColumnSpacing="12">
 
-                                    <!-- Tên quán -->
                                     <Label Text="{Binding Name}"
                                            FontAttributes="Bold"
                                            FontSize="15"
                                            VerticalOptions="Center"
                                            LineBreakMode="TailTruncation"/>
 
-                                    <!-- Chi tiết -->
+                                    <!-- Detail -->
                                     <VerticalStackLayout Grid.Column="1"
                                                          Spacing="1"
                                                          HorizontalOptions="Center">
@@ -70,9 +101,10 @@
                                                FontSize="9"
                                                HorizontalOptions="Center"
                                                TextColor="Gray"/>
+
                                     </VerticalStackLayout>
 
-                                    <!-- Zoom -->
+                                    <!-- Map -->
                                     <VerticalStackLayout Grid.Column="2"
                                                          Spacing="1"
                                                          HorizontalOptions="Center">
@@ -88,21 +120,19 @@
                                                FontSize="9"
                                                HorizontalOptions="Center"
                                                TextColor="Gray"/>
+
                                     </VerticalStackLayout>
 
                                 </Grid>
 
-                                <!-- Description -->
                                 <Label Text="{Binding Description}"
                                        FontSize="12"
                                        TextColor="Gray"/>
 
-                                <!-- Content -->
                                 <Label Text="{Binding Content}"
                                        FontSize="12"
                                        LineBreakMode="TailTruncation"/>
 
-                                <!-- Rating -->
                                 <VerticalStackLayout Spacing="2">
 
                                     <Label Text="{Binding StarDisplay}"
@@ -131,7 +161,6 @@
                     </Border>
 
                 </DataTemplate>
-
             </CollectionView.ItemTemplate>
 
         </CollectionView>

@@ -7,8 +7,8 @@ namespace MauiApp1.Services
     {
         private List<POI> _pois;
 
-        private const int AudioCooldownSeconds = 120;
-        private const int NextAudioDelaySeconds = 10;
+        private const int AudioCooldownSeconds = 60;
+        private const int NextAudioDelaySeconds = 3;
 
         private bool _isPlaying = false;
 
@@ -82,7 +82,7 @@ namespace MauiApp1.Services
         private async Task PlayInsidePOIs(List<POI> insidePOIs)
         {
             var sorted = insidePOIs
-                .OrderByDescending(p => p.Priority)
+                .OrderByDescending(p => p.Priority) //priority cao trước
                 .ToList();
 
             foreach (var poi in sorted)
@@ -101,7 +101,13 @@ namespace MauiApp1.Services
                     EventType = GeofenceEventType.Audio
                 });
 
-                await Task.Delay(NextAudioDelaySeconds * 1000);
+                 await Task.Delay(NextAudioDelaySeconds * 1000); //delay giữa các poi
+
+                // đợi audio đọc xong trước khi đọc POI tiếp
+                //while (AudioService.Instance.IsPlaying)
+                //{
+                //    await Task.Delay(300);
+                //}
             }
         }
 

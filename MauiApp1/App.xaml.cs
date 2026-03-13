@@ -11,19 +11,27 @@ namespace MauiApp1
         {
             InitializeComponent();
             // ===== Load language từ Settings =====
-            var lang = SettingsService.Language;
+            var lang = SettingsService.Language;// "en", "vi", ...
 
-            var culture = new CultureInfo(lang);
+            var culture = new CultureInfo(lang);// tạo CultureInfo từ mã ngôn ngữ
 
-            CultureInfo.DefaultThreadCurrentCulture = culture;
-            CultureInfo.DefaultThreadCurrentUICulture = culture;
+            CultureInfo.DefaultThreadCurrentCulture = culture;// đặt culture cho thread hiện tại
+            CultureInfo.DefaultThreadCurrentUICulture = culture;// đặt culture cho resource
 
             AppResources.Culture = culture;
         }
 
-        protected override Window CreateWindow(IActivationState? activationState)
+        protected override Window CreateWindow(IActivationState? activationState)// tạo cửa sổ chính của ứng dụng
         {
             return new Window(new AppShell());
         }
+
+        //protected override void OnSleep() // 
+        //{
+        //    base.OnSleep();
+
+        //    // dừng TTS khi nhấn HOME hoặc chuyển app khác
+        //    AudioService.Instance.Stop();
+        //}
     }
 }
