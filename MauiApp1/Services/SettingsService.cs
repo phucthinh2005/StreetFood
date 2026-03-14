@@ -32,7 +32,7 @@ namespace MauiApp1.Services
         // ===== GPS Background =====
         public static bool GPSBackground
         {
-            get => Preferences.Get("gps_background", true);
+            get => Preferences.Get("gps_background", false);
             set => Preferences.Set("gps_background", value);
         }
     }

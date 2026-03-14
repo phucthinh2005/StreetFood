@@ -28,6 +28,13 @@ namespace MauiApp1.Platforms.Android.Services
 
             StartForeground(1001, notification);
 
+            // kiểm tra sau khi đã start foreground
+            if (!SettingsService.GPSBackground)
+            {
+                StopSelf();
+                return StartCommandResult.NotSticky;
+            }
+
             StartGPS();
 
             return StartCommandResult.Sticky;

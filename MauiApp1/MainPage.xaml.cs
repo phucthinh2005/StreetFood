@@ -26,6 +26,10 @@ namespace MauiApp1
             {
                 BackgroundGpsManager.Start();
             }
+            else
+            {
+                BackgroundGpsManager.Stop();
+            }
         }
 
         protected override void OnDisappearing()
