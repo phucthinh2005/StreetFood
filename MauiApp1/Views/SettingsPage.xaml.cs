@@ -7,21 +7,24 @@ using MauiApp1.Services;
 
 namespace MauiApp1.Views;
 
+// trang cai dat cua ung dung
 public partial class SettingsPage : ContentPage
 {
     public SettingsPage()
     {
         InitializeComponent();
 
+        // lay gia tri da luu trong SettingsService
         volumeSlider.Value = SettingsService.Volume;
         speedSlider.Value = SettingsService.SpeechSpeed;
 
         gpsSwitch.IsToggled = SettingsService.GPSBackground;
 
+        // cap nhat label ngay khi mo trang
         VolumeChanged(volumeSlider, new ValueChangedEventArgs(0, volumeSlider.Value));
         SpeedChanged(speedSlider, new ValueChangedEventArgs(0, speedSlider.Value));
 
-        UpdateLanguageLabel();
+        UpdateLanguageLabel(); // cap nhat text hien thi ngon ngu
     }
 
     // ===== Volume =====
@@ -29,8 +32,10 @@ public partial class SettingsPage : ContentPage
     {
         int volume = (int)e.NewValue;
 
+        // luu volume vao settings
         SettingsService.Volume = volume;
 
+        // hien thi label: Volume: xx%
         volumeLabel.FormattedText = new FormattedString
         {
             Spans =
@@ -47,8 +52,10 @@ public partial class SettingsPage : ContentPage
     {
         double speed = e.NewValue;
 
+        // luu toc do doc audio
         SettingsService.SpeechSpeed = speed;
 
+        // hien thi label: Speed: x.x
         speedLabel.FormattedText = new FormattedString
         {
             Spans =
@@ -63,6 +70,7 @@ public partial class SettingsPage : ContentPage
     // ===== Choose Language =====
     async void ChooseLanguage(object sender, EventArgs e)
     {
+        // hien thi menu chon ngon ngu
         string result = await DisplayActionSheetAsync(
             AppResources.ChooseLanguage,
             AppResources.Cancel,
@@ -75,6 +83,7 @@ public partial class SettingsPage : ContentPage
         if (result == null || result == AppResources.Cancel)
             return;
 
+        // doi ngon ngu
         if (result == "English")
             SetLanguage("en");
 
@@ -88,18 +97,23 @@ public partial class SettingsPage : ContentPage
     // ===== Set Language =====
     void SetLanguage(string lang)
     {
+        // luu ngon ngu vao settings
         SettingsService.Language = lang;
 
+        // tao culture moi
         var culture = new CultureInfo(lang);
 
+        // cap nhat culture cho toan app
         CultureInfo.DefaultThreadCurrentCulture = culture;
         CultureInfo.DefaultThreadCurrentUICulture = culture;
 
         Thread.CurrentThread.CurrentCulture = culture;
         Thread.CurrentThread.CurrentUICulture = culture;
 
+        // cap nhat resource language
         AppResources.Culture = culture;
 
+        // reload lai AppShell de refresh UI
         var app = Application.Current;
 
         if (app != null && app.Windows.Count > 0)
@@ -113,6 +127,7 @@ public partial class SettingsPage : ContentPage
     {
         var lang = SettingsService.Language;
 
+        // hien thi ten ngon ngu hien tai
         if (lang == "en")
             languageLabel.Text = "English";
 
@@ -123,6 +138,7 @@ public partial class SettingsPage : ContentPage
             languageLabel.Text = "日本語";
     }
 
+    // nut reset tat ca cai dat
     async void ResetSettings(object sender, EventArgs e)
     {
         bool confirm = await DisplayAlertAsync(
@@ -138,6 +154,7 @@ public partial class SettingsPage : ContentPage
         SettingsService.SpeechSpeed = 1.0;
         SettingsService.GPSBackground = true;
 
+        // cap nhat UI
         volumeSlider.Value = 100;
         speedSlider.Value = 1.0;
         gpsSwitch.IsToggled = true;
@@ -154,8 +171,10 @@ public partial class SettingsPage : ContentPage
     {
         bool enabled = e.Value;
 
+        // luu trang thai GPS background
         SettingsService.GPSBackground = enabled;
 
+        // bat / tat GPS background
         if (enabled)
         {
             BackgroundGpsManager.Start();

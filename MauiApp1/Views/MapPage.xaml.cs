@@ -9,26 +9,34 @@ using MauiApp1.Services;
 
 namespace MauiApp1.Views;
 
+// nhan POI duoc chon tu trang khac (ListPage)
 [QueryProperty(nameof(SelectedPOI), "SelectedPOI")]
 public partial class MapPage : ContentPage
 {
     MapViewModel vm;
 
-    bool isFirstLoad = true;
-    bool ignoreNextSelection = false;//thm
+    bool isFirstLoad = true; // chi zoom lan dau khi co GPS
+    bool ignoreNextSelection = false;//thm // dung de bo qua lan chon POI tiep theo
 
-    Dictionary<POI, Circle> poiCircles = new();
-    POI? currentSelectedPOI;
+    Dictionary<POI, Circle> poiCircles = new(); // luu vong tron cua tung POI
+    POI? currentSelectedPOI; // POI dang duoc highlight
 
     //public POI SelectedPOI
     //{
     //    set
     //    {
+    //        if (ignoreNextSelection)
+    //        {
+    //            ignoreNextSelection = false;
+    //            return;
+    //        }
+
     //        if (value != null)
     //            ShowSelectedPOI(value);
     //    }
     //}
 
+    // nhan POI tu trang List
     public POI SelectedPOI
     {
         set
@@ -39,8 +47,14 @@ public partial class MapPage : ContentPage
                 return;
             }
 
-            if (value != null)
-                ShowSelectedPOI(value);
+            if (value == null)
+                return;
+
+            // ===== tránh zoom lại cùng POI =====
+            if (currentSelectedPOI == value)
+                return;
+
+            ShowSelectedPOI(value);
         }
     }
 
@@ -51,9 +65,11 @@ public partial class MapPage : ContentPage
         vm = new MapViewModel();
         BindingContext = vm;
 
-        vm.LocationUpdated += OnLocationUpdated;
-        vm.POIsLoaded += LoadPOIs;
-        vm.POIStateChanged += OnPOIStateChanged;
+        // dang ky cac su kien
+        vm.LocationUpdated += OnLocationUpdated; // GPS cap nhat
+        vm.POIsLoaded += LoadPOIs; // load POI len map
+        vm.POIStateChanged += OnPOIStateChanged; // thay doi trang thai vao/ra vung
+
         BackgroundGpsManager.Start(); // chạy GPS background
 
         // ===== Zoom map lần đầu =====
@@ -68,11 +84,13 @@ public partial class MapPage : ContentPage
         Init();
     }
 
+    // khoi tao du lieu
     async void Init()
     {
         await vm.InitializeAsync();
     }
 
+    // bam tab List
     private async void OnListTabTapped(object sender, EventArgs e)
     {
         await Shell.Current.GoToAsync(nameof(ListPage),
@@ -82,6 +100,7 @@ public partial class MapPage : ContentPage
             });
     }
 
+    // bam nut setting
     private async void OnSettingClicked(object sender, EventArgs e)
     {
         await Shell.Current.GoToAsync(nameof(SettingsPage));
@@ -93,10 +112,11 @@ public partial class MapPage : ContentPage
     {
         MainThread.BeginInvokeOnMainThread(() =>
         {
-            map.Pins.Clear();
-            map.MapElements.Clear();
+            map.Pins.Clear(); // xoa pin cu
+            map.MapElements.Clear(); // xoa vung tron cu
             poiCircles.Clear();
 
+            // tao vung tron cho tung POI
             foreach (var poi in vm.POIs)
             {
                 var location = new Location(poi.Latitude, poi.Longitude);
@@ -117,6 +137,7 @@ public partial class MapPage : ContentPage
                 map.MapElements.Add(circle);
             }
 
+            // tao pin cho tung POI
             foreach (var poi in vm.POIs)
             {
                 var pin = new Pin
@@ -127,14 +148,17 @@ public partial class MapPage : ContentPage
                     Location = new Location(poi.Latitude, poi.Longitude)
                 };
 
+                // khi click marker
                 pin.MarkerClicked += (s, e) =>
                 {
                     e.HideInfoWindow = false;
                 };
 
+                // khi click info window -> mo trang detail
                 pin.InfoWindowClicked += async (s, e) =>
                 {
                     ignoreNextSelection = true;
+
                     await Shell.Current.GoToAsync(nameof(POIDetailPage),
                         new Dictionary<string, object>
                         {
@@ -148,9 +172,9 @@ public partial class MapPage : ContentPage
     }
 
     // ===== GPS update =====
-
     private void OnLocationUpdated(Location location)
     {
+        // chi zoom map lan dau khi co GPS
         if (!isFirstLoad) return;
 
         isFirstLoad = false;
@@ -159,7 +183,7 @@ public partial class MapPage : ContentPage
         {
             var mapSpan = MapSpan.FromCenterAndRadius(
                 new Location(location.Latitude, location.Longitude),
-                Distance.FromMeters(200)
+                Distance.FromMeters(100)
             );
 
             map.MoveToRegion(mapSpan);
@@ -167,7 +191,6 @@ public partial class MapPage : ContentPage
     }
 
     // ===== đổi màu vùng =====
-
     void OnPOIStateChanged(string name, bool isInside)
     {
         MainThread.BeginInvokeOnMainThread(() =>
@@ -180,6 +203,7 @@ public partial class MapPage : ContentPage
             var circle = poiCircles[poi];
 
 #pragma warning disable CA1416
+            // neu dang o trong vung -> mau do
             if (isInside)
             {
                 circle.FillColor = Colors.Red.WithAlpha(0.3f);
@@ -187,6 +211,7 @@ public partial class MapPage : ContentPage
             }
             else
             {
+                // neu ra khoi vung -> mau xanh
                 circle.FillColor = Colors.Blue.WithAlpha(0.2f);
                 circle.StrokeColor = Colors.Blue;
             }
@@ -195,37 +220,35 @@ public partial class MapPage : ContentPage
     }
 
     // ===== Hiện POI khi chọn từ List =====
-
     void ShowSelectedPOI(POI poi)
     {
         MainThread.BeginInvokeOnMainThread(() =>
         {
             // ===== Nếu click lại chính POI đang chọn → bỏ chọn =====
-//            if (currentSelectedPOI == poi)
-//            {
-//                if (poiCircles.ContainsKey(poi))
-//                {
-//                    var circle = poiCircles[poi];
+            //            if (currentSelectedPOI == poi)
+            //            {
+            //                if (poiCircles.ContainsKey(poi))
+            //                {
+            //                    var circle = poiCircles[poi];
 
-//#pragma warning disable CA1416
-//                    if (poi.IsInside)
-//                    {
-//                        circle.FillColor = Colors.Red.WithAlpha(0.3f);
-//                        circle.StrokeColor = Colors.Red;
-//                    }
-//                    else
-//                    {
-//                        circle.FillColor = Colors.Blue.WithAlpha(0.2f);
-//                        circle.StrokeColor = Colors.Blue;
-//                    }
-//#pragma warning restore CA1416
-//                }
+            //#pragma warning disable CA1416
+            //                    if (poi.IsInside)
+            //                    {
+            //                        circle.FillColor = Colors.Red.WithAlpha(0.3f);
+            //                        circle.StrokeColor = Colors.Red;
+            //                    }
+            //                    else
+            //                    {
+            //                        circle.FillColor = Colors.Blue.WithAlpha(0.2f);
+            //                        circle.StrokeColor = Colors.Blue;
+            //                    }
+            //#pragma warning restore CA1416
+            //                }
 
-//                currentSelectedPOI = null;
+            //                currentSelectedPOI = null;
 
-
-//                return;
-//            }
+            //                return;
+            //            }
 
             // ===== reset POI cũ =====
             if (currentSelectedPOI != null && poiCircles.ContainsKey(currentSelectedPOI))
@@ -265,6 +288,7 @@ public partial class MapPage : ContentPage
 #pragma warning restore CA1416
             }
 
+            // luu POI dang duoc chon
             currentSelectedPOI = poi;
         });
     }
