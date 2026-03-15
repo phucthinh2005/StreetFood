@@ -1,7 +1,7 @@
 ﻿using Microsoft.Maui.Media;
 using System.Globalization;
 #if ANDROID
-//using MauiApp1.Platforms.Android; // thêm using này để sử dụng AudioFocusService
+using MauiApp1.Platforms.Android; // thêm using này để sử dụng AudioFocusService
 #endif
 
 namespace MauiApp1.Services
@@ -12,9 +12,9 @@ namespace MauiApp1.Services
 
         private CancellationTokenSource? _cts;
 
-//#if ANDROID
-//        private AudioFocusService? _audioFocus; //thêm
-//#endif
+#if ANDROID
+        private AudioFocusService? _audioFocus; //thêm
+#endif
 
         public bool IsPlaying { get; private set; }
 
@@ -26,10 +26,12 @@ namespace MauiApp1.Services
             if (IsPlaying)
                 return;
 
-//#if ANDROID
-//            _audioFocus ??= new AudioFocusService(); //thêm
-//            _audioFocus.RequestFocus();
-//#endif
+#if ANDROID
+            _audioFocus ??= new AudioFocusService();
+
+            if (!_audioFocus.RequestFocus())
+                return;
+#endif
 
             _cts = new CancellationTokenSource();
             IsPlaying = true;
@@ -66,9 +68,9 @@ namespace MauiApp1.Services
             {
                 IsPlaying = false;
 
-//#if ANDROID
-//                _audioFocus?.AbandonFocus(); //thêm
-//#endif
+#if ANDROID
+                _audioFocus?.AbandonFocus(); //thêm
+#endif
 
                 if (manual)
                     IsManualMode = false;
@@ -83,9 +85,9 @@ namespace MauiApp1.Services
             _cts?.Cancel();
             _cts = null;
 
-//#if ANDROID
-//            _audioFocus?.AbandonFocus(); //thêm
-//#endif
+#if ANDROID
+            _audioFocus?.AbandonFocus(); //thêm
+#endif
 
             IsPlaying = false;
             IsManualMode = false;

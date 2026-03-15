@@ -15,14 +15,30 @@ public partial class MapPage : ContentPage
     MapViewModel vm;
 
     bool isFirstLoad = true;
+    bool ignoreNextSelection = false;//thm
 
     Dictionary<POI, Circle> poiCircles = new();
     POI? currentSelectedPOI;
+
+    //public POI SelectedPOI
+    //{
+    //    set
+    //    {
+    //        if (value != null)
+    //            ShowSelectedPOI(value);
+    //    }
+    //}
 
     public POI SelectedPOI
     {
         set
         {
+            if (ignoreNextSelection)
+            {
+                ignoreNextSelection = false;
+                return;
+            }
+
             if (value != null)
                 ShowSelectedPOI(value);
         }
@@ -118,6 +134,7 @@ public partial class MapPage : ContentPage
 
                 pin.InfoWindowClicked += async (s, e) =>
                 {
+                    ignoreNextSelection = true;
                     await Shell.Current.GoToAsync(nameof(POIDetailPage),
                         new Dictionary<string, object>
                         {
@@ -183,23 +200,61 @@ public partial class MapPage : ContentPage
     {
         MainThread.BeginInvokeOnMainThread(() =>
         {
-            var location = new Location(poi.Latitude, poi.Longitude);
+            // ===== Nếu click lại chính POI đang chọn → bỏ chọn =====
+//            if (currentSelectedPOI == poi)
+//            {
+//                if (poiCircles.ContainsKey(poi))
+//                {
+//                    var circle = poiCircles[poi];
 
-            map.MoveToRegion(MapSpan.FromCenterAndRadius(
-                location,
-                Distance.FromMeters(40)
-            ));
+//#pragma warning disable CA1416
+//                    if (poi.IsInside)
+//                    {
+//                        circle.FillColor = Colors.Red.WithAlpha(0.3f);
+//                        circle.StrokeColor = Colors.Red;
+//                    }
+//                    else
+//                    {
+//                        circle.FillColor = Colors.Blue.WithAlpha(0.2f);
+//                        circle.StrokeColor = Colors.Blue;
+//                    }
+//#pragma warning restore CA1416
+//                }
 
+//                currentSelectedPOI = null;
+
+
+//                return;
+//            }
+
+            // ===== reset POI cũ =====
             if (currentSelectedPOI != null && poiCircles.ContainsKey(currentSelectedPOI))
             {
                 var oldCircle = poiCircles[currentSelectedPOI];
 
 #pragma warning disable CA1416
-                oldCircle.FillColor = Colors.Blue.WithAlpha(0.2f);
-                oldCircle.StrokeColor = Colors.Blue;
+                if (currentSelectedPOI.IsInside)
+                {
+                    oldCircle.FillColor = Colors.Red.WithAlpha(0.3f);
+                    oldCircle.StrokeColor = Colors.Red;
+                }
+                else
+                {
+                    oldCircle.FillColor = Colors.Blue.WithAlpha(0.2f);
+                    oldCircle.StrokeColor = Colors.Blue;
+                }
 #pragma warning restore CA1416
             }
 
+            // ===== zoom tới POI mới =====
+            var location = new Location(poi.Latitude, poi.Longitude);
+
+            map.MoveToRegion(MapSpan.FromCenterAndRadius(
+                location,
+                Distance.FromMeters(70)
+            ));
+
+            // ===== highlight vàng =====
             if (poiCircles.ContainsKey(poi))
             {
                 var newCircle = poiCircles[poi];

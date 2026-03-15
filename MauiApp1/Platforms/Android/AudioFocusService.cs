@@ -1,53 +1,64 @@
-﻿//using global::Android.Content;
-//using global::Android.Media;
-//using MauiApp1.Services;
+﻿using global::Android.Content;
+using global::Android.Media;
+using MauiApp1.Services;
 
-//namespace MauiApp1.Platforms.Android
-//{
-//    public class AudioFocusService : Java.Lang.Object, AudioManager.IOnAudioFocusChangeListener
-//    {
-//        private readonly AudioManager? _audioManager;
+namespace MauiApp1.Platforms.Android
+{
+    public class AudioFocusService : Java.Lang.Object, AudioManager.IOnAudioFocusChangeListener
+    {
+        private readonly AudioManager? _audioManager;
+        private AudioFocusRequestClass? _focusRequest;
 
-//        public AudioFocusService()
-//        {
-//            var context = global::Android.App.Application.Context;
-//            _audioManager = context.GetSystemService(Context.AudioService) as AudioManager;
-//        }
+        public AudioFocusService()
+        {
+            var context = global::Android.App.Application.Context;
+            _audioManager = context.GetSystemService(Context.AudioService) as AudioManager;
+        }
 
-//        public bool RequestFocus()
-//        {
-//            if (_audioManager == null)
-//                return false;
+        public bool RequestFocus()
+        {
+            if (_audioManager == null)
+                return false;
 
-//            var result = _audioManager.RequestAudioFocus(
-//                this,
-//                global::Android.Media.Stream.Music,
-//                AudioFocus.GainTransient);
+            var attributes = new AudioAttributes.Builder()
+                .SetUsage(AudioUsageKind.AssistanceAccessibility)
+                .SetContentType(AudioContentType.Speech)
+                .Build();
 
-//            return result == AudioFocusRequest.Granted;
-//        }
+            _focusRequest = new AudioFocusRequestClass.Builder(AudioFocus.GainTransient)
+                 .SetAudioAttributes(attributes)
+                .SetOnAudioFocusChangeListener(this)
+                .SetAcceptsDelayedFocusGain(true)
+                .Build();
 
-//        public void AbandonFocus()
-//        {
-//            _audioManager?.AbandonAudioFocus(this);
-//        }
+            var result = _audioManager.RequestAudioFocus(_focusRequest);
 
-//        public void OnAudioFocusChange(AudioFocus focusChange)
-//        {
-//            switch (focusChange)
-//            {
-//                case AudioFocus.Loss:
-//                case AudioFocus.LossTransient:
-//                case AudioFocus.LossTransientCanDuck:
+            return result == AudioFocusRequest.Granted;
+        }
 
-//                    // 🔴 có notification → dừng TTS
-//                    MainThread.BeginInvokeOnMainThread(() =>
-//                    {
-//                        AudioService.Instance.Stop();
-//                    });
+        public void AbandonFocus()
+        {
+            if (_audioManager == null || _focusRequest == null)
+                return;
 
-//                    break;
-//            }
-//        }
-//    }
-//}
+            _audioManager.AbandonAudioFocusRequest(_focusRequest);
+        }
+
+        public void OnAudioFocusChange(AudioFocus focusChange)
+        {
+            switch (focusChange)
+            {
+                case AudioFocus.Loss:
+                case AudioFocus.LossTransient:
+                case AudioFocus.LossTransientCanDuck:
+
+                    MainThread.BeginInvokeOnMainThread(() =>
+                    {
+                        AudioService.Instance.Stop();
+                    });
+
+                    break;
+            }
+        }
+    }
+}

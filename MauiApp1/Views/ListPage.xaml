@@ -90,7 +90,7 @@
                                                          Spacing="1"
                                                          HorizontalOptions="Center">
 
-                                        <ImageButton Source="eye.png"
+                                        <ImageButton Source="eye2.png"
                                                      Clicked="DetailButton_Clicked"
                                                      CommandParameter="{Binding .}"
                                                      HeightRequest="26"
@@ -98,9 +98,9 @@
                                                      BackgroundColor="Transparent"/>
 
                                         <Label Text="{x:Static res:AppResources.Detail}"
-                                               FontSize="9"
+                                               FontSize="12"
                                                HorizontalOptions="Center"
-                                               TextColor="Gray"/>
+                                               TextColor="Black"/>
 
                                     </VerticalStackLayout>
 
@@ -117,9 +117,9 @@
                                                      BackgroundColor="Transparent"/>
 
                                         <Label Text="{x:Static res:AppResources.Map}"
-                                               FontSize="9"
+                                               FontSize="12"
                                                HorizontalOptions="Center"
-                                               TextColor="Gray"/>
+                                               TextColor="Black"/>
 
                                     </VerticalStackLayout>
 
