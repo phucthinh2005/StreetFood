@@ -12049,8 +12049,8 @@ public final class R {
     public static final int design_ic_visibility_off=0x7f070099;
     public static final int design_password_eye=0x7f07009a;
     public static final int design_snackbar_background=0x7f07009b;
-    public static final int dotnet_bot=0x7f07009c;
-    public static final int eye2=0x7f07009d;
+    public static final int detail=0x7f07009c;
+    public static final int dotnet_bot=0x7f07009d;
     public static final int googleg_disabled_color_18=0x7f07009e;
     public static final int googleg_standard_color_18=0x7f07009f;
     public static final int ic_arrow_back_black_24=0x7f0700a0;
@@ -12072,7 +12072,7 @@ public final class R {
     public static final int ic_mtrl_chip_close_circle=0x7f0700b0;
     public static final int ic_search_black_24=0x7f0700b1;
     public static final int indeterminate_static=0x7f0700b2;
-    public static final int list1=0x7f0700b3;
+    public static final int list=0x7f0700b3;
     public static final int m3_avd_hide_password=0x7f0700b4;
     public static final int m3_avd_show_password=0x7f0700b5;
     public static final int m3_bottom_sheet_drag_handle=0x7f0700b6;
@@ -12153,7 +12153,7 @@ public final class R {
     public static final int octhao=0x7f070101;
     public static final int octo=0x7f070102;
     public static final int pho=0x7f070103;
-    public static final int setting1=0x7f070104;
+    public static final int setting=0x7f070104;
     public static final int snail_night=0x7f070105;
     public static final int snail_sea=0x7f070106;
     public static final int snail_street=0x7f070107;

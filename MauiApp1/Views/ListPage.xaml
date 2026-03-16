@@ -90,7 +90,7 @@
                                                          Spacing="1"
                                                          HorizontalOptions="Center">
 
-                                        <ImageButton Source="eye2.png"
+                                        <ImageButton Source="detail.png"
                                                      Clicked="DetailButton_Clicked"
                                                      CommandParameter="{Binding .}"
                                                      HeightRequest="26"

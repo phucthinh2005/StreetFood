@@ -3,6 +3,14 @@
   "WorkspaceRootPath": "D:\\food\\StreetFood\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{DBB709D5-80F0-EE7D-A2D1-7D84BC5D452F}|MauiApp1\\MauiApp1.csproj|d:\\food\\streetfood\\mauiapp1\\views\\mappage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{DBB709D5-80F0-EE7D-A2D1-7D84BC5D452F}|MauiApp1\\MauiApp1.csproj|solutionrelative:mauiapp1\\views\\mappage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DBB709D5-80F0-EE7D-A2D1-7D84BC5D452F}|MauiApp1\\MauiApp1.csproj|d:\\food\\streetfood\\mauiapp1\\views\\listpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{DBB709D5-80F0-EE7D-A2D1-7D84BC5D452F}|MauiApp1\\MauiApp1.csproj|solutionrelative:mauiapp1\\views\\listpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{DBB709D5-80F0-EE7D-A2D1-7D84BC5D452F}|MauiApp1\\MauiApp1.csproj|d:\\food\\streetfood\\mauiapp1\\views\\mappage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{DBB709D5-80F0-EE7D-A2D1-7D84BC5D452F}|MauiApp1\\MauiApp1.csproj|solutionrelative:mauiapp1\\views\\mappage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -55,16 +63,8 @@
       "RelativeMoniker": "D:0:0:{DBB709D5-80F0-EE7D-A2D1-7D84BC5D452F}|MauiApp1\\MauiApp1.csproj|solutionrelative:mauiapp1\\views\\poidetailpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{DBB709D5-80F0-EE7D-A2D1-7D84BC5D452F}|MauiApp1\\MauiApp1.csproj|d:\\food\\streetfood\\mauiapp1\\views\\mappage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{DBB709D5-80F0-EE7D-A2D1-7D84BC5D452F}|MauiApp1\\MauiApp1.csproj|solutionrelative:mauiapp1\\views\\mappage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{DBB709D5-80F0-EE7D-A2D1-7D84BC5D452F}|MauiApp1\\MauiApp1.csproj|d:\\food\\streetfood\\mauiapp1\\views\\poidetailpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{DBB709D5-80F0-EE7D-A2D1-7D84BC5D452F}|MauiApp1\\MauiApp1.csproj|solutionrelative:mauiapp1\\views\\poidetailpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DBB709D5-80F0-EE7D-A2D1-7D84BC5D452F}|MauiApp1\\MauiApp1.csproj|d:\\food\\streetfood\\mauiapp1\\views\\listpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{DBB709D5-80F0-EE7D-A2D1-7D84BC5D452F}|MauiApp1\\MauiApp1.csproj|solutionrelative:mauiapp1\\views\\listpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{DBB709D5-80F0-EE7D-A2D1-7D84BC5D452F}|MauiApp1\\MauiApp1.csproj|d:\\food\\streetfood\\mauiapp1\\mainpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -179,7 +179,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -195,7 +195,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "MapPage.xaml.cs",
               "DocumentMoniker": "D:\\food\\StreetFood\\MauiApp1\\Views\\MapPage.xaml.cs",
               "RelativeDocumentMoniker": "MauiApp1\\Views\\MapPage.xaml.cs",
@@ -203,12 +203,36 @@
               "RelativeToolTip": "MauiApp1\\Views\\MapPage.xaml.cs",
               "ViewState": "AgIAAA8AAAAAAAAAAAAAwCcAAAAaAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-25T13:45:10.51Z",
+              "WhenOpened": "2026-02-25T13:45:10.51Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "MapPage.xaml",
+              "DocumentMoniker": "D:\\food\\StreetFood\\MauiApp1\\Views\\MapPage.xaml",
+              "RelativeDocumentMoniker": "MauiApp1\\Views\\MapPage.xaml",
+              "ToolTip": "D:\\food\\StreetFood\\MauiApp1\\Views\\MapPage.xaml",
+              "RelativeToolTip": "MauiApp1\\Views\\MapPage.xaml",
+              "ViewState": "AgIAAD0AAAAAAAAAAAAowEUAAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-02-20T14:23:57.424Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "ListPage.xaml",
+              "DocumentMoniker": "D:\\food\\StreetFood\\MauiApp1\\Views\\ListPage.xaml",
+              "RelativeDocumentMoniker": "MauiApp1\\Views\\ListPage.xaml",
+              "ToolTip": "D:\\food\\StreetFood\\MauiApp1\\Views\\ListPage.xaml",
+              "RelativeToolTip": "MauiApp1\\Views\\ListPage.xaml",
+              "ViewState": "AgIAACQAAAAAAAAAAAAAAEMAAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-03-04T13:05:09.817Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "ListPage.xaml.cs",
               "DocumentMoniker": "D:\\food\\StreetFood\\MauiApp1\\Views\\ListPage.xaml.cs",
               "RelativeDocumentMoniker": "MauiApp1\\Views\\ListPage.xaml.cs",
@@ -216,12 +240,11 @@
               "RelativeToolTip": "MauiApp1\\Views\\ListPage.xaml.cs",
               "ViewState": "AgIAAAYAAAAAAAAAAAAAABkAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-04T12:41:33.144Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-04T12:41:33.144Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "SettingsPage.xaml.cs",
               "DocumentMoniker": "D:\\food\\StreetFood\\MauiApp1\\Views\\SettingsPage.xaml.cs",
               "RelativeDocumentMoniker": "MauiApp1\\Views\\SettingsPage.xaml.cs",
@@ -229,12 +252,11 @@
               "RelativeToolTip": "MauiApp1\\Views\\SettingsPage.xaml.cs",
               "ViewState": "AgIAAFUAAAAAAAAAAAAgwKkAAAA2AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-08T16:16:46.846Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-08T16:16:46.846Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "AppShell.xaml.cs",
               "DocumentMoniker": "D:\\food\\StreetFood\\MauiApp1\\AppShell.xaml.cs",
               "RelativeDocumentMoniker": "MauiApp1\\AppShell.xaml.cs",
@@ -242,12 +264,11 @@
               "RelativeToolTip": "MauiApp1\\AppShell.xaml.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-04T10:43:30.597Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-04T10:43:30.597Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 7,
               "Title": "BackgroundGpsManager.cs",
               "DocumentMoniker": "D:\\food\\StreetFood\\MauiApp1\\Services\\BackgroundGpsManager.cs",
               "RelativeDocumentMoniker": "MauiApp1\\Services\\BackgroundGpsManager.cs",
@@ -255,12 +276,11 @@
               "RelativeToolTip": "MauiApp1\\Services\\BackgroundGpsManager.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAB4AAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-13T13:05:22.007Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-13T13:05:22.007Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 10,
               "Title": "MapViewModel.cs",
               "DocumentMoniker": "D:\\food\\StreetFood\\MauiApp1\\ViewModels\\MapViewModel.cs",
               "RelativeDocumentMoniker": "MauiApp1\\ViewModels\\MapViewModel.cs",
@@ -268,12 +288,11 @@
               "RelativeToolTip": "MauiApp1\\ViewModels\\MapViewModel.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAALUAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-20T14:04:33.294Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-20T14:04:33.294Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 6,
               "Title": "DatabaseService.cs",
               "DocumentMoniker": "D:\\food\\StreetFood\\MauiApp1\\Services\\DatabaseService.cs",
               "RelativeDocumentMoniker": "MauiApp1\\Services\\DatabaseService.cs",
@@ -281,12 +300,11 @@
               "RelativeToolTip": "MauiApp1\\Services\\DatabaseService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-07T05:00:54.597Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-07T05:00:54.597Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 8,
               "Title": "AudioService.cs",
               "DocumentMoniker": "D:\\food\\StreetFood\\MauiApp1\\Services\\AudioService.cs",
               "RelativeDocumentMoniker": "MauiApp1\\Services\\AudioService.cs",
@@ -294,12 +312,11 @@
               "RelativeToolTip": "MauiApp1\\Services\\AudioService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAHsAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-12T09:22:10.86Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-12T09:22:10.86Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 9,
               "Title": "GeofenceService.cs",
               "DocumentMoniker": "D:\\food\\StreetFood\\MauiApp1\\Services\\GeofenceService.cs",
               "RelativeDocumentMoniker": "MauiApp1\\Services\\GeofenceService.cs",
@@ -307,12 +324,11 @@
               "RelativeToolTip": "MauiApp1\\Services\\GeofenceService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAJAAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-27T07:42:39.671Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-27T07:42:39.671Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 11,
               "Title": "POIDetailViewModel.cs",
               "DocumentMoniker": "D:\\food\\StreetFood\\MauiApp1\\ViewModels\\POIDetailViewModel.cs",
               "RelativeDocumentMoniker": "MauiApp1\\ViewModels\\POIDetailViewModel.cs",
@@ -320,12 +336,11 @@
               "RelativeToolTip": "MauiApp1\\ViewModels\\POIDetailViewModel.cs",
               "ViewState": "AgIAABkAAAAAAAAAAAAQwGwAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-05T09:32:11.763Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-05T09:32:11.763Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 12,
               "Title": "GPSService.cs",
               "DocumentMoniker": "D:\\food\\StreetFood\\MauiApp1\\Services\\GPSService.cs",
               "RelativeDocumentMoniker": "MauiApp1\\Services\\GPSService.cs",
@@ -333,12 +348,11 @@
               "RelativeToolTip": "MauiApp1\\Services\\GPSService.cs",
               "ViewState": "AgIAAGYAAAAAAAAAAAAYwIMAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-06T08:13:24.212Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-06T08:13:24.212Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 13,
               "Title": "SettingsService.cs",
               "DocumentMoniker": "D:\\food\\StreetFood\\MauiApp1\\Services\\SettingsService.cs",
               "RelativeDocumentMoniker": "MauiApp1\\Services\\SettingsService.cs",
@@ -346,12 +360,11 @@
               "RelativeToolTip": "MauiApp1\\Services\\SettingsService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAACcAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-11T08:33:28.392Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-11T08:33:28.392Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 14,
               "Title": "POIDetailPage.xaml.cs",
               "DocumentMoniker": "D:\\food\\StreetFood\\MauiApp1\\Views\\POIDetailPage.xaml.cs",
               "RelativeDocumentMoniker": "MauiApp1\\Views\\POIDetailPage.xaml.cs",
@@ -359,38 +372,11 @@
               "RelativeToolTip": "MauiApp1\\Views\\POIDetailPage.xaml.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAACgAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-04T10:39:28.811Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "MapPage.xaml",
-              "DocumentMoniker": "D:\\food\\StreetFood\\MauiApp1\\Views\\MapPage.xaml",
-              "RelativeDocumentMoniker": "MauiApp1\\Views\\MapPage.xaml",
-              "ToolTip": "D:\\food\\StreetFood\\MauiApp1\\Views\\MapPage.xaml",
-              "RelativeToolTip": "MauiApp1\\Views\\MapPage.xaml",
-              "ViewState": "AgIAAFIAAAAAAAAAAAAwwGoAAAAuAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2026-02-20T14:23:57.424Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-04T10:39:28.811Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 15,
-              "Title": "ListPage.xaml",
-              "DocumentMoniker": "D:\\food\\StreetFood\\MauiApp1\\Views\\ListPage.xaml",
-              "RelativeDocumentMoniker": "MauiApp1\\Views\\ListPage.xaml",
-              "ToolTip": "D:\\food\\StreetFood\\MauiApp1\\Views\\ListPage.xaml",
-              "RelativeToolTip": "MauiApp1\\Views\\ListPage.xaml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAzAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2026-03-04T13:05:09.817Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
               "Title": "POIDetailPage.xaml",
               "DocumentMoniker": "D:\\food\\StreetFood\\MauiApp1\\Views\\POIDetailPage.xaml",
               "RelativeDocumentMoniker": "MauiApp1\\Views\\POIDetailPage.xaml",
@@ -398,8 +384,7 @@
               "RelativeToolTip": "MauiApp1\\Views\\POIDetailPage.xaml",
               "ViewState": "AgIAAMQAAAAAAAAAAAAwwNsAAAAgAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2026-03-04T11:40:48.422Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-04T11:40:48.422Z"
             },
             {
               "$type": "Document",
