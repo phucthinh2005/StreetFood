@@ -10,6 +10,13 @@ namespace MauiApp1
         public App()
         {
             InitializeComponent();
+            var theme = SettingsService.Theme;
+
+            if (theme == "Dark")
+                Current.UserAppTheme = AppTheme.Dark;
+            else
+                Current.UserAppTheme = AppTheme.Light;
+
             // ===== Load language từ Settings =====
             var lang = SettingsService.Language;// "en", "vi", ...
 

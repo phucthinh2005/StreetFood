@@ -35,5 +35,13 @@ namespace MauiApp1.Services
             get => Preferences.Get("gps_background", false);
             set => Preferences.Set("gps_background", value);
         }
+        //THEME
+        public static string Theme
+        {
+            get => Preferences.Get("theme", "Light"); // mặc định Light
+            set => Preferences.Set("theme", value);
+        }
     }
+
+
 }

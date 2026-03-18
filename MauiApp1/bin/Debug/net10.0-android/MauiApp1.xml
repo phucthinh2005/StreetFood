@@ -200,6 +200,11 @@
               Looks up a localized string similar to Ngôn ngữ hỗ trợ.
             </summary>
         </member>
+        <member name="P:MauiApp1.Resources.Languages.AppResources.Theme">
+            <summary>
+              Looks up a localized string similar to Giao diện.
+            </summary>
+        </member>
         <member name="P:MauiApp1.Resources.Languages.AppResources.VietnamFood">
             <summary>
               Looks up a localized string similar to Món Việt.

@@ -385,6 +385,15 @@ namespace MauiApp1.Resources.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Giao diện.
+        /// </summary>
+        public static string Theme {
+            get {
+                return ResourceManager.GetString("Theme", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Món Việt.
         /// </summary>
         public static string VietnamFood {

@@ -225,6 +225,9 @@
   <data name="SupportedLanguage" xml:space="preserve">
     <value>Supported language</value>
   </data>
+  <data name="Theme" xml:space="preserve">
+    <value>Theme</value>
+  </data>
   <data name="VietnamFood" xml:space="preserve">
     <value>Vietnamese Food</value>
   </data>

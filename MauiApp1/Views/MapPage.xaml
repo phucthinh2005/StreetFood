@@ -1,19 +1,17 @@
 <?xml version="1.0" encoding="utf-8" ?>
-
-<ContentPage 
-    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:maps="clr-namespace:Microsoft.Maui.Controls.Maps;assembly=Microsoft.Maui.Controls.Maps"
-    xmlns:lang="clr-namespace:MauiApp1.Resources.Languages"
-    x:Class="MauiApp1.Views.MapPage"
-    BackgroundColor="#F2F2F2"
-    Shell.NavBarIsVisible="False">
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:maps="clr-namespace:Microsoft.Maui.Controls.Maps;assembly=Microsoft.Maui.Controls.Maps"
+             xmlns:lang="clr-namespace:MauiApp1.Resources.Languages"
+             x:Class="MauiApp1.Views.MapPage"
+             BackgroundColor="{AppThemeBinding Light=#F2F2F2, Dark=#121212}"
+             Shell.NavBarIsVisible="False">
 
     <Grid RowDefinitions="Auto,*,Auto">
 
         <!-- HEADER -->
         <Border Grid.Row="0"
-                BackgroundColor="#4CAF50"
+                BackgroundColor="{AppThemeBinding Light=#4CAF50, Dark=#2E7D32}"
                 Padding="9">
 
             <Border.Shadow>
@@ -42,7 +40,7 @@
                 </Label>
 
                 <Label FontSize="15"
-                       TextColor="#FFF0F0">
+                       TextColor="{AppThemeBinding Light=#FFF0F0, Dark=#DDDDDD}">
 
                     <Label.FormattedText>
                         <FormattedString>
@@ -65,9 +63,9 @@
             IsShowingUser="True"/>
 
 
-        <!-- FOOTER -->
+        <!-- BOTTOM BAR -->
         <Border Grid.Row="2"
-                BackgroundColor="#4CAF50"
+                BackgroundColor="{AppThemeBinding Light=#4CAF50, Dark=#2E7D32}"
                 Padding="10"
                 Margin="5"
                 StrokeThickness="0">
@@ -101,7 +99,7 @@
 
                     <Label Text="{x:Static lang:AppResources.List}"
                            FontSize="14"
-                           TextColor="Black"
+                           TextColor="{AppThemeBinding Light=Black, Dark=White}"
                            HorizontalOptions="Center"/>
 
                 </VerticalStackLayout>
@@ -124,7 +122,7 @@
 
                     <Label Text="{x:Static lang:AppResources.Settings}"
                            FontSize="14"
-                           TextColor="Black"
+                           TextColor="{AppThemeBinding Light=Black, Dark=White}"
                            HorizontalOptions="Center"/>
 
                 </VerticalStackLayout>
