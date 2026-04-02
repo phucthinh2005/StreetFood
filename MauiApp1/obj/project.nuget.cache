@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "A3RIYppv2WM=",
+  "dgSpecHash": "QCcIMZfYspc=",
   "success": true,
-  "projectFilePath": "D:\\food\\StreetFood\\MauiApp1\\MauiApp1.csproj",
+  "projectFilePath": "C:\\Users\\Lenovo\\Downloads\\2_DO_AN_C-SAP-main\\StreetFood-sqlite\\MauiApp1\\MauiApp1.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Lenovo\\.nuget\\packages\\googlegson\\2.13.1.1\\googlegson.2.13.1.1.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\microsoft.extensions.configuration\\10.0.0\\microsoft.extensions.configuration.10.0.0.nupkg.sha512",

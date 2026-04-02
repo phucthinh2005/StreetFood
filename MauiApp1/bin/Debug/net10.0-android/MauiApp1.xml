@@ -4,6 +4,12 @@
         <name>MauiApp1</name>
     </assembly>
     <members>
+        <member name="T:MauiApp1.Models.FirebasePoiDto">
+            <summary>
+            DTO ánh xạ document Firestore → POI model.
+            Firestore dùng camelCase, model dùng PascalCase → cần JsonPropertyName.
+            </summary>
+        </member>
         <member name="T:MauiApp1.Resources.Languages.AppResources">
             <summary>
               A strongly-typed resource class, for looking up localized strings, etc.
@@ -213,6 +219,33 @@
         <member name="P:MauiApp1.Resources.Languages.AppResources.Volume">
             <summary>
               Looks up a localized string similar to Âm lượng.
+            </summary>
+        </member>
+        <member name="T:MauiApp1.Services.FirebaseService">
+            <summary>
+            Đồng bộ POI từ Firestore REST API (không cần SDK nặng).
+            Chiến lược: Firebase là nguồn chính, SQLite là cache offline.
+            </summary>
+        </member>
+        <member name="M:MauiApp1.Services.FirebaseService.FetchPoisAsync">
+            <summary>
+            Trả về danh sách POI từ Firestore.
+            Nếu mạng lỗi → trả về null (caller dùng SQLite cache).
+            </summary>
+        </member>
+        <member name="M:MauiApp1.Services.FirebaseService.LogHistoryAsync(System.String,System.String,System.String,System.String)">
+            <summary>
+            Ghi log khi người dùng nghe thuyết minh (GPS hoặc QR).
+            Fire-and-forget — không await ở caller để không block UI.
+            </summary>
+        </member>
+        <member name="T:MauiApp1.Services.PoiRepository">
+            <summary>
+            Nguồn dữ liệu POI duy nhất cho toàn app.
+            Chiến lược offline-first:
+              1. Load SQLite cache ngay lập tức (không chờ mạng)
+              2. Fetch Firebase background
+              3. Nếu Firebase trả data → cập nhật SQLite + báo UI reload
             </summary>
         </member>
         <member name="T:MauiApp1.Resource">

@@ -41,8 +41,8 @@ namespace MauiApp1.Services
                         new Location(poi.Latitude, poi.Longitude),
                         DistanceUnits.Kilometers) * 1000;
 
-                bool wasInside = poi.IsInside; // trang thai truoc do
-                bool isInside = distanceMeters <= poi.Radius; // trang thai hien tai
+                bool wasInside = poi.IsInside;
+                bool isInside = distanceMeters <= poi.Radius;
 
                 // ENTER (lan dau vao khu vuc POI)
                 if (!wasInside && isInside)
@@ -67,7 +67,6 @@ namespace MauiApp1.Services
                         EventType = GeofenceEventType.Exit
                     });
 
-                    // dung audio cua POI
                     GeofenceTriggered?.Invoke(new GeofenceEvent
                     {
                         POI = poi,
@@ -75,23 +74,17 @@ namespace MauiApp1.Services
                     });
                 }
 
-                // neu user dang o trong POI
                 if (isInside)
                     insidePOIs.Add(poi);
             }
 
-            // neu khong o trong POI nao thi ket thuc
             if (!insidePOIs.Any())
                 return;
 
-            // neu chua co audio dang phat
             if (!_isPlaying)
             {
                 _isPlaying = true;
-
-                // phat audio cac POI dang o trong
                 await PlayInsidePOIs(insidePOIs);
-
                 _isPlaying = false;
             }
         }
@@ -99,39 +92,35 @@ namespace MauiApp1.Services
         // phat audio cac POI ma user dang o trong
         private async Task PlayInsidePOIs(List<POI> insidePOIs)
         {
-            // sap xep POI theo priority (cao doc truoc)
             var sorted = insidePOIs
-                .OrderByDescending(p => p.Priority) //priority cao trước
+                .OrderByDescending(p => p.Priority)
                 .ToList();
 
             foreach (var poi in sorted)
             {
-                // neu user da roi khoi POI thi bo qua
                 if (!poi.IsInside)
                     continue;
 
-                // neu chua du cooldown thi bo qua
                 if (!CanPlayAudio(poi))
                     continue;
 
-                // cap nhat lan trigger cuoi
                 poi.LastTriggered = DateTime.Now;
 
-                // gui su kien phat audio
                 GeofenceTriggered?.Invoke(new GeofenceEvent
                 {
                     POI = poi,
                     EventType = GeofenceEventType.Audio
                 });
 
-                //đợi audio đọc xong trước khi đọc POI tiếp
-                while (AudioService.Instance.IsPlaying)
-                {
-                    await Task.Delay(300);
-                }
+                // ── MỚI: ghi lịch sử lên Firestore ngay khi kích hoạt ──
+                // fire-and-forget: không await, không block audio
+                PoiRepository.Instance.LogPlay(poi, source: "GPS");
 
-                // delay truoc khi doc POI tiep theo
-                await Task.Delay(NextAudioDelaySeconds * 1000); //delay giữa các poi
+                // doi audio doc xong truoc khi doc POI tiep
+                while (AudioService.Instance.IsPlaying)
+                    await Task.Delay(300);
+
+                await Task.Delay(NextAudioDelaySeconds * 1000);
             }
         }
 

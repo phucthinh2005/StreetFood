@@ -1,5 +1,4 @@
 ﻿using System.Collections.ObjectModel;
-using MauiApp1.Database;
 using MauiApp1.Models;
 using MauiApp1.Resources.Languages;
 using MauiApp1.Services;
@@ -15,9 +14,6 @@ namespace MauiApp1.ViewModels
         // service xu ly geofence (vao/ra khu vuc)
         private GeofenceService? _geofenceService;
 
-        // service database
-        private readonly DatabaseService _database;
-
         // service audio doc noi dung
         private readonly AudioService _audioService;
 
@@ -25,7 +21,7 @@ namespace MauiApp1.ViewModels
         public ObservableCollection<POI> POIs { get; set; }
 
         // danh sach POI day du (de filter tim kiem)
-        List<POI> _allPOIs = new();//them danh sách đầy đủ để filter
+        List<POI> _allPOIs = new();
 
         // su kien khi POI load xong
         public event Action? POIsLoaded;
@@ -37,21 +33,20 @@ namespace MauiApp1.ViewModels
         public event Action<string, bool>? POIStateChanged;
 
 
-        // constructor ViewModel
         public MapViewModel()
         {
             _gpsService = new GPSService();
-            _database = new DatabaseService();
 
             POIs = new ObservableCollection<POI>();
 
             // dang ky su kien GPS thay doi vi tri
             _gpsService.LocationChanged += OnLocationChanged;
 
-            // dung AudioService chung
             _audioService = AudioService.Instance;
 
-            // bat dau GPS
+            // ── MỚI: khi Firebase sync xong → tự reload UI ──
+            PoiRepository.Instance.OnPoisUpdated += OnPoisUpdated;
+
             _ = StartGPS();
         }
 
@@ -61,31 +56,40 @@ namespace MauiApp1.ViewModels
             await LoadPOIs();
         }
 
-        // load POI tu database
+        // ══════════════════════════════════════════════════
+        // THAY ĐỔI CHÍNH: load từ PoiRepository thay vì
+        // DatabaseService.ImportFromJson() + GetPOIsAsync()
+        // ══════════════════════════════════════════════════
         private async Task LoadPOIs()
         {
-            // import JSON vao database neu chua co
-            await _database.ImportFromJson();
+            // GetAllAsync(): trả cache SQLite ngay, background sync Firebase
+            var list = await PoiRepository.Instance.GetAllAsync();
 
-            // lay danh sach POI
-            var list = await _database.GetPOIsAsync();
+            ApplyPoisToUI(list);
+        }
 
-            // luu danh sach day du de dung cho filter
-            _allPOIs = list.ToList();   // them vao danh sach day du de filter
+        // callback khi Firebase sync xong (chạy trên MainThread)
+        private void OnPoisUpdated(List<POI> freshPois)
+        {
+            ApplyPoisToUI(freshPois);
+        }
 
-            POIs.Clear();
+        // áp dụng danh sách POI mới vào UI + geofence
+        private void ApplyPoisToUI(List<POI> list)
+        {
+            _allPOIs = list.ToList();
 
-            // dua POI vao ObservableCollection
-            foreach (var poi in list)
-                POIs.Add(poi);
+            MainThread.BeginInvokeOnMainThread(() =>
+            {
+                POIs.Clear();
+                foreach (var poi in list)
+                    POIs.Add(poi);
 
-            // thong bao POI da load xong
-            POIsLoaded?.Invoke();
+                POIsLoaded?.Invoke();
+            });
 
-            // tao geofence service
-            _geofenceService = new GeofenceService(POIs.ToList());
-
-            // dang ky su kien geofence
+            // rebuild geofence với POI mới nhất
+            _geofenceService = new GeofenceService(list);
             _geofenceService.GeofenceTriggered += OnGeofenceTriggered;
         }
 
@@ -98,10 +102,8 @@ namespace MauiApp1.ViewModels
         // khi GPS thay doi vi tri
         private async void OnLocationChanged(Location location)
         {
-            // gui vi tri moi len UI
             LocationUpdated?.Invoke(location);
 
-            // xu ly geofence
             if (_geofenceService != null)
                 await _geofenceService.ProcessLocation(location);
         }
@@ -112,38 +114,30 @@ namespace MauiApp1.ViewModels
             switch (e.EventType)
             {
                 case GeofenceEventType.Enter:
-
-                    // vao khu vuc POI
                     POIStateChanged?.Invoke(e.POI.Name, true);
                     break;
 
                 case GeofenceEventType.Exit:
-
-                    // roi khoi khu vuc POI
                     POIStateChanged?.Invoke(e.POI.Name, false);
                     break;
 
-                // 🔴 thêm case này để dừng audio khi user rời khỏi khu vực
                 //case GeofenceEventType.StopAudio:
-
                 //    _audioService.Stop();
                 //    break;
 
                 case GeofenceEventType.Audio:
 
-                    // nếu user đang nghe manual thì GPS không đọc
                     if (_audioService.IsManualMode)
                         return;
 
-                    // nếu đang có audio khác
                     if (_audioService.IsPlaying)
                         return;
 
-                    // noi dung audio khi vao POI
-                    var text =
-                        $"{AppResources.EnterArea} {e.POI.Name}. {e.POI.Content}";
-
+                    var text = $"{AppResources.EnterArea} {e.POI.Name}. {e.POI.Content}";
                     await _audioService.Speak(text);
+
+                    // ── MỚI: ghi lịch sử lên Firestore (fire-and-forget) ──
+                    PoiRepository.Instance.LogPlay(e.POI, source: "GPS");
 
                     break;
             }
@@ -153,30 +147,27 @@ namespace MauiApp1.ViewModels
         public void Stop()
         {
             _gpsService.StopListening();
+
+            // ── MỚI: hủy đăng ký để tránh memory leak ──
+            PoiRepository.Instance.OnPoisUpdated -= OnPoisUpdated;
         }
 
         // ham filter POI theo tu khoa tim kiem
-        public void FilterPois(string keyword) //thêm hàm filter
+        public void FilterPois(string keyword)
         {
             keyword = keyword?.ToLower() ?? "";
 
-            // neu khong co keyword -> hien tat ca
             var filtered = string.IsNullOrWhiteSpace(keyword)
                 ? _allPOIs
                 : _allPOIs.Where(p =>
-                    (p.Name?.ToLower().Contains(keyword) ?? false)); //|| (p.Description?.ToLower().Contains(keyword) ?? false));
-
+                    p.Name?.ToLower().Contains(keyword) ?? false);
 
             MainThread.BeginInvokeOnMainThread(() =>
             {
                 POIs.Clear();
-
-                // them lai POI sau khi filter
                 foreach (var poi in filtered)
                     POIs.Add(poi);
             });
         }
-
-
     }
 }

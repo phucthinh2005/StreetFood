@@ -34400,11 +34400,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\food\\StreetFood\\MauiApp1\\MauiApp1.csproj",
+      "projectUniqueName": "C:\\Users\\Lenovo\\Downloads\\2_DO_AN_C-SAP-main\\StreetFood-sqlite\\MauiApp1\\MauiApp1.csproj",
       "projectName": "MauiApp1",
-      "projectPath": "D:\\food\\StreetFood\\MauiApp1\\MauiApp1.csproj",
+      "projectPath": "C:\\Users\\Lenovo\\Downloads\\2_DO_AN_C-SAP-main\\StreetFood-sqlite\\MauiApp1\\MauiApp1.csproj",
       "packagesPath": "C:\\Users\\Lenovo\\.nuget\\packages\\",
-      "outputPath": "D:\\food\\StreetFood\\MauiApp1\\obj\\",
+      "outputPath": "C:\\Users\\Lenovo\\Downloads\\2_DO_AN_C-SAP-main\\StreetFood-sqlite\\MauiApp1\\obj\\",
       "projectStyle": "PackageReference",
       "crossTargeting": true,
       "fallbackFolders": [
