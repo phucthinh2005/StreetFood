@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Lenovo\\Downloads\\2_DO_AN_C-SAP-main\\StreetFood-sqlite\\MauiApp1\\MauiApp1.csproj": {}
+    "D:\\food\\StreetFood\\MauiApp1\\MauiApp1.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Lenovo\\Downloads\\2_DO_AN_C-SAP-main\\StreetFood-sqlite\\MauiApp1\\MauiApp1.csproj": {
+    "D:\\food\\StreetFood\\MauiApp1\\MauiApp1.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Lenovo\\Downloads\\2_DO_AN_C-SAP-main\\StreetFood-sqlite\\MauiApp1\\MauiApp1.csproj",
+        "projectUniqueName": "D:\\food\\StreetFood\\MauiApp1\\MauiApp1.csproj",
         "projectName": "MauiApp1",
-        "projectPath": "C:\\Users\\Lenovo\\Downloads\\2_DO_AN_C-SAP-main\\StreetFood-sqlite\\MauiApp1\\MauiApp1.csproj",
+        "projectPath": "D:\\food\\StreetFood\\MauiApp1\\MauiApp1.csproj",
         "packagesPath": "C:\\Users\\Lenovo\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Lenovo\\Downloads\\2_DO_AN_C-SAP-main\\StreetFood-sqlite\\MauiApp1\\obj\\",
+        "outputPath": "D:\\food\\StreetFood\\MauiApp1\\obj\\",
         "projectStyle": "PackageReference",
         "crossTargeting": true,
         "fallbackFolders": [
