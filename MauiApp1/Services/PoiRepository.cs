@@ -1,5 +1,6 @@
 ﻿using MauiApp1.Models;
 using SQLite;
+using System.Globalization;
 
 namespace MauiApp1.Services
 {
@@ -17,7 +18,7 @@ namespace MauiApp1.Services
 
         // UI subscribe event này để reload danh sách khi data mới về
         public event Action<List<POI>>? OnPoisUpdated;
-
+        private HashSet<string> _logged = new(); 
         private static PoiRepository? _instance;
         public static PoiRepository Instance => _instance
             ?? throw new InvalidOperationException("Gọi Init() trước.");
@@ -96,11 +97,29 @@ namespace MauiApp1.Services
         // ══════════════════════════════════════════
         // GHI LỊCH SỬ (fire-and-forget)
         // ══════════════════════════════════════════
+        //public void LogPlay(POI poi, string source)
+        //{
+        //    var lang = System.Globalization.CultureInfo.CurrentUICulture.TwoLetterISOLanguageName;
+        //    var device = DeviceInfo.Platform.ToString();
+        //    _ = _firebase.LogHistoryAsync(poi.GetName(), lang, source, device);
+        //}
+
+        //mới chú ý
         public void LogPlay(POI poi, string source)
         {
-            var lang = System.Globalization.CultureInfo.CurrentUICulture.TwoLetterISOLanguageName;
+            string key = $"{poi.Id}_{source}";
+
+            if (_logged.Contains(key))
+                return;
+
+            _logged.Add(key);
+
+            var lang = CultureInfo.CurrentUICulture.TwoLetterISOLanguageName;
             var device = DeviceInfo.Platform.ToString();
+
             _ = _firebase.LogHistoryAsync(poi.GetName(), lang, source, device);
         }
+
+
     }
 }
