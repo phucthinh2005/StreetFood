@@ -18,7 +18,7 @@ namespace MauiApp1.Services
 
         // UI subscribe event này để reload danh sách khi data mới về
         public event Action<List<POI>>? OnPoisUpdated;
-        private HashSet<string> _logged = new(); 
+        private HashSet<string> _logged = new();
         private static PoiRepository? _instance;
         public static PoiRepository Instance => _instance
             ?? throw new InvalidOperationException("Gọi Init() trước.");
@@ -65,7 +65,7 @@ namespace MauiApp1.Services
             // Cập nhật SQLite
             await _db.DeleteAllAsync<POI>();
             await _db.InsertAllAsync(pois);
-
+            //  _logged.Clear();
             System.Diagnostics.Debug.WriteLine($"[Repo] Đã sync {pois.Count} POI từ Firebase.");
 
             // Thông báo UI trên main thread
@@ -107,17 +107,24 @@ namespace MauiApp1.Services
         //mới chú ý
         public void LogPlay(POI poi, string source)
         {
-            string key = $"{poi.Id}_{source}";
+            var lang = CultureInfo.CurrentUICulture.TwoLetterISOLanguageName;
+            var today = DateTime.UtcNow.ToString("yyyy-MM-dd");
+
+            string key = $"{poi.Id}_{source}_{lang}_{today}";
 
             if (_logged.Contains(key))
                 return;
 
             _logged.Add(key);
 
-            var lang = CultureInfo.CurrentUICulture.TwoLetterISOLanguageName;
             var device = DeviceInfo.Platform.ToString();
 
-            _ = _firebase.LogHistoryAsync(poi.GetName(), lang, source, device);
+            _ = _firebase.LogHistoryAsync(
+                poi.GetName(),
+                lang,
+                source,
+                device
+            );
         }
 
 
