@@ -115,7 +115,7 @@ namespace MauiApp1.Services
                 // ── MỚI: ghi lịch sử lên Firestore ngay khi kích hoạt ──
                 // fire-and-forget: không await, không block audio
                 //chú ý
-               // PoiRepository.Instance.LogPlay(poi, source: "GPS");
+                // PoiRepository.Instance.LogPlay(poi, source: "GPS");
 
                 // doi audio doc xong truoc khi doc POI tiep
                 while (AudioService.Instance.IsPlaying)

@@ -208,6 +208,77 @@ namespace MauiApp1.Services
                 Icon = S("icon", "icon"),
             };
         }
+        public async Task SetDeviceLogAsync(string deviceId, string device, string platform)
+        {
+            try
+            {
+                var url = $"{BASE_URL}/app_access_logs/{deviceId}?key={API_KEY}";
+
+                var body = new
+                {
+                    fields = new
+                    {
+                        Device = new { stringValue = device },
+                        Platform = new { stringValue = platform },
+                        LastActive = new { timestampValue = DateTime.UtcNow.ToString("o") }
+                    }
+                };
+
+                var content = new StringContent(
+                    JsonSerializer.Serialize(body),
+                    System.Text.Encoding.UTF8,
+                    "application/json");
+
+                var request = new HttpRequestMessage(new HttpMethod("PATCH"), url)
+                {
+                    Content = content
+                };
+
+                await _http.SendAsync(request);
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"[Firebase] LogDevice lỗi: {ex.Message}");
+            }
+        }
+
+        // ══════════════════════════════════════════
+        // 🔥 SET DEVICE STATUS (online/offline) + Device + Platform
+        // ══════════════════════════════════════════
+        public async Task SetDeviceStatusAsync(string deviceId, string device, string platform, string status)
+        {
+            try
+            {
+                var url = $"{BASE_URL}/app_access_logs/{deviceId}?key={API_KEY}";
+
+                var body = new
+                {
+                    fields = new
+                    {
+                        Device = new { stringValue = device },
+                        Platform = new { stringValue = platform },
+                        Status = new { stringValue = status },
+                        LastActive = new { timestampValue = DateTime.UtcNow.ToString("o") }
+                    }
+                };
+
+                var content = new StringContent(
+                    JsonSerializer.Serialize(body),
+                    System.Text.Encoding.UTF8,
+                    "application/json");
+
+                var request = new HttpRequestMessage(new HttpMethod("PATCH"), url)
+                {
+                    Content = content
+                };
+
+                await _http.SendAsync(request);
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"[Firebase] SetStatus lỗi: {ex.Message}");
+            }
+        }
     }
 
     // ══════════════════════════════════════════
@@ -258,4 +329,8 @@ namespace MauiApp1.Services
         [System.Text.Json.Serialization.JsonPropertyName("fields")]
         public Dictionary<string, FirestoreValue>? Fields { get; set; }
     }
+
+
+
+
 }
