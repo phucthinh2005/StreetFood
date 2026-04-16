@@ -80,7 +80,7 @@
                         Radius="10"/>
             </Border.Shadow>
 
-            <Grid ColumnDefinitions="*,*">
+            <Grid ColumnDefinitions="*,*,*">
 
                 <!-- LIST -->
                 <VerticalStackLayout Grid.Column="0"
@@ -104,9 +104,29 @@
 
                 </VerticalStackLayout>
 
+                <!-- SCAN (Ở GIỮA) -->
+                <VerticalStackLayout Grid.Column="1"
+                         Spacing="4"
+                         HorizontalOptions="Center"
+                         VerticalOptions="Center">
+
+                    <VerticalStackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnScanClicked"/>
+                    </VerticalStackLayout.GestureRecognizers>
+
+                    <Image Source="scan.png"
+                           HeightRequest="30"
+                           WidthRequest="30"/>
+
+                    <Label Text="Scan"
+                           FontSize="14"
+                           HorizontalOptions="Center"/>
+
+                </VerticalStackLayout>
+
 
                 <!-- SETTING -->
-                <VerticalStackLayout Grid.Column="1"
+                <VerticalStackLayout Grid.Column="2"
                                      Spacing="4"
                                      HorizontalOptions="Center"
                                      VerticalOptions="Center">

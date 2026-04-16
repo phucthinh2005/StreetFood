@@ -89,6 +89,14 @@
               "target": "Package",
               "version": "[2.1.11, )"
             },
+            "ZXing.Net.Maui": {
+              "target": "Package",
+              "version": "[0.7.4, )"
+            },
+            "ZXing.Net.Maui.Controls": {
+              "target": "Package",
+              "version": "[0.7.4, )"
+            },
             "sqlite-net-pcl": {
               "target": "Package",
               "version": "[1.9.172, )"
@@ -416,6 +424,14 @@
             "SQLitePCLRaw.bundle_green": {
               "target": "Package",
               "version": "[2.1.11, )"
+            },
+            "ZXing.Net.Maui": {
+              "target": "Package",
+              "version": "[0.7.4, )"
+            },
+            "ZXing.Net.Maui.Controls": {
+              "target": "Package",
+              "version": "[0.7.4, )"
             },
             "sqlite-net-pcl": {
               "target": "Package",
@@ -745,6 +761,14 @@
               "target": "Package",
               "version": "[2.1.11, )"
             },
+            "ZXing.Net.Maui": {
+              "target": "Package",
+              "version": "[0.7.4, )"
+            },
+            "ZXing.Net.Maui.Controls": {
+              "target": "Package",
+              "version": "[0.7.4, )"
+            },
             "sqlite-net-pcl": {
               "target": "Package",
               "version": "[1.9.172, )"
@@ -1067,6 +1091,14 @@
             "SQLitePCLRaw.bundle_green": {
               "target": "Package",
               "version": "[2.1.11, )"
+            },
+            "ZXing.Net.Maui": {
+              "target": "Package",
+              "version": "[0.7.4, )"
+            },
+            "ZXing.Net.Maui.Controls": {
+              "target": "Package",
+              "version": "[0.7.4, )"
             },
             "sqlite-net-pcl": {
               "target": "Package",

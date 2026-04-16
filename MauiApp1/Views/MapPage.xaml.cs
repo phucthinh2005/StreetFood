@@ -292,4 +292,9 @@ public partial class MapPage : ContentPage
             currentSelectedPOI = poi;
         });
     }
+
+    private async void OnScanClicked(object sender, EventArgs e)
+    {
+        await Shell.Current.GoToAsync(nameof(ScanPage));
+    }
 }

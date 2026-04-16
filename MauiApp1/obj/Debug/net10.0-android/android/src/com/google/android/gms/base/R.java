@@ -13,7 +13,7 @@ public final class R {
 		public static final int colorScheme = 0x7f03012e;
 		public static final int imageAspectRatio = 0x7f03025f;
 		public static final int imageAspectRatioAdjust = 0x7f030260;
-		public static final int scopeUris = 0x7f0303ec;
+		public static final int scopeUris = 0x7f0303ee;
 	}
 	public static final class color {
 		public static final int common_google_signin_btn_text_dark = 0x7f050037;
@@ -55,12 +55,12 @@ public final class R {
 		public static final int adjust_height = 0x7f080049;
 		public static final int adjust_width = 0x7f08004a;
 		public static final int auto = 0x7f08005a;
-		public static final int dark = 0x7f080098;
-		public static final int icon_only = 0x7f0800ef;
-		public static final int light = 0x7f080104;
-		public static final int none = 0x7f08015d;
-		public static final int standard = 0x7f0801ca;
-		public static final int wide = 0x7f08021c;
+		public static final int dark = 0x7f080099;
+		public static final int icon_only = 0x7f0800f3;
+		public static final int light = 0x7f080108;
+		public static final int none = 0x7f080161;
+		public static final int standard = 0x7f0801cf;
+		public static final int wide = 0x7f080221;
 	}
 	public static final class string {
 		public static final int common_google_play_services_enable_button = 0x7f0f002e;
@@ -86,7 +86,7 @@ public final class R {
 		public static final int LoadingImageView_circleCrop = 0;
 		public static final int LoadingImageView_imageAspectRatio = 1;
 		public static final int LoadingImageView_imageAspectRatioAdjust = 2;
-		public static final int[] SignInButton = new int[] { 0x7f03009e, 0x7f03012e, 0x7f0303ec };
+		public static final int[] SignInButton = new int[] { 0x7f03009e, 0x7f03012e, 0x7f0303ee };
 		public static final int SignInButton_buttonSize = 0;
 		public static final int SignInButton_colorScheme = 1;
 		public static final int SignInButton_scopeUris = 2;

@@ -21,19 +21,19 @@ public final class R {
 		public static final int finishPrimaryWithPlaceholder = 0x7f0301f7;
 		public static final int finishPrimaryWithSecondary = 0x7f0301f8;
 		public static final int finishSecondaryWithPrimary = 0x7f0301f9;
-		public static final int placeholderActivityName = 0x7f0303b7;
-		public static final int primaryActivityName = 0x7f0303cb;
-		public static final int secondaryActivityAction = 0x7f0303f5;
-		public static final int secondaryActivityName = 0x7f0303f6;
-		public static final int splitLayoutDirection = 0x7f030426;
-		public static final int splitMaxAspectRatioInLandscape = 0x7f030427;
-		public static final int splitMaxAspectRatioInPortrait = 0x7f030428;
-		public static final int splitMinHeightDp = 0x7f030429;
-		public static final int splitMinSmallestWidthDp = 0x7f03042a;
-		public static final int splitMinWidthDp = 0x7f03042b;
-		public static final int splitRatio = 0x7f03042c;
-		public static final int stickyPlaceholder = 0x7f03044b;
-		public static final int tag = 0x7f03047f;
+		public static final int placeholderActivityName = 0x7f0303b8;
+		public static final int primaryActivityName = 0x7f0303cc;
+		public static final int secondaryActivityAction = 0x7f0303f7;
+		public static final int secondaryActivityName = 0x7f0303f8;
+		public static final int splitLayoutDirection = 0x7f030428;
+		public static final int splitMaxAspectRatioInLandscape = 0x7f030429;
+		public static final int splitMaxAspectRatioInPortrait = 0x7f03042a;
+		public static final int splitMinHeightDp = 0x7f03042b;
+		public static final int splitMinSmallestWidthDp = 0x7f03042c;
+		public static final int splitMinWidthDp = 0x7f03042d;
+		public static final int splitRatio = 0x7f03042e;
+		public static final int stickyPlaceholder = 0x7f03044d;
+		public static final int tag = 0x7f030481;
 	}
 	public static final class id {
 		public static final int adjacent = 0x7f080048;
@@ -42,19 +42,19 @@ public final class R {
 		public static final int alwaysDisallow = 0x7f080051;
 		public static final int androidx_window_activity_scope = 0x7f080052;
 		public static final int bottomToTop = 0x7f080067;
-		public static final int draggable = 0x7f0800b5;
-		public static final int fixed = 0x7f0800d2;
-		public static final int locale = 0x7f08010a;
-		public static final int ltr = 0x7f08010b;
-		public static final int never = 0x7f080158;
-		public static final int rtl = 0x7f080194;
-		public static final int topToBottom = 0x7f0801fe;
+		public static final int draggable = 0x7f0800b6;
+		public static final int fixed = 0x7f0800d6;
+		public static final int locale = 0x7f08010e;
+		public static final int ltr = 0x7f08010f;
+		public static final int never = 0x7f08015c;
+		public static final int rtl = 0x7f080199;
+		public static final int topToBottom = 0x7f080203;
 	}
 	public static final class styleable {
 		public static final int[] ActivityFilter = new int[] { 0x7f030028, 0x7f03002a };
 		public static final int ActivityFilter_activityAction = 0;
 		public static final int ActivityFilter_activityName = 1;
-		public static final int[] ActivityRule = new int[] { 0x7f030034, 0x7f03047f };
+		public static final int[] ActivityRule = new int[] { 0x7f030034, 0x7f030481 };
 		public static final int ActivityRule_alwaysExpand = 0;
 		public static final int ActivityRule_tag = 1;
 		public static final int[] DividerAttributes = new int[] { 0x7f03019d, 0x7f03019e, 0x7f0301ba, 0x7f0301bb, 0x7f0301bc };
@@ -63,11 +63,11 @@ public final class R {
 		public static final int DividerAttributes_embeddingDividerColor = 2;
 		public static final int DividerAttributes_embeddingDividerType = 3;
 		public static final int DividerAttributes_embeddingDividerWidthDp = 4;
-		public static final int[] SplitPairFilter = new int[] { 0x7f0303cb, 0x7f0303f5, 0x7f0303f6 };
+		public static final int[] SplitPairFilter = new int[] { 0x7f0303cc, 0x7f0303f7, 0x7f0303f8 };
 		public static final int SplitPairFilter_primaryActivityName = 0;
 		public static final int SplitPairFilter_secondaryActivityAction = 1;
 		public static final int SplitPairFilter_secondaryActivityName = 2;
-		public static final int[] SplitPairRule = new int[] { 0x7f03003a, 0x7f0300ea, 0x7f0301f8, 0x7f0301f9, 0x7f030426, 0x7f030427, 0x7f030428, 0x7f030429, 0x7f03042a, 0x7f03042b, 0x7f03042c, 0x7f03047f };
+		public static final int[] SplitPairRule = new int[] { 0x7f03003a, 0x7f0300ea, 0x7f0301f8, 0x7f0301f9, 0x7f030428, 0x7f030429, 0x7f03042a, 0x7f03042b, 0x7f03042c, 0x7f03042d, 0x7f03042e, 0x7f030481 };
 		public static final int SplitPairRule_animationBackgroundColor = 0;
 		public static final int SplitPairRule_clearTop = 1;
 		public static final int SplitPairRule_finishPrimaryWithSecondary = 2;
@@ -80,7 +80,7 @@ public final class R {
 		public static final int SplitPairRule_splitMinWidthDp = 9;
 		public static final int SplitPairRule_splitRatio = 10;
 		public static final int SplitPairRule_tag = 11;
-		public static final int[] SplitPlaceholderRule = new int[] { 0x7f03003a, 0x7f0301f7, 0x7f0303b7, 0x7f030426, 0x7f030427, 0x7f030428, 0x7f030429, 0x7f03042a, 0x7f03042b, 0x7f03042c, 0x7f03044b, 0x7f03047f };
+		public static final int[] SplitPlaceholderRule = new int[] { 0x7f03003a, 0x7f0301f7, 0x7f0303b8, 0x7f030428, 0x7f030429, 0x7f03042a, 0x7f03042b, 0x7f03042c, 0x7f03042d, 0x7f03042e, 0x7f03044d, 0x7f030481 };
 		public static final int SplitPlaceholderRule_animationBackgroundColor = 0;
 		public static final int SplitPlaceholderRule_finishPrimaryWithPlaceholder = 1;
 		public static final int SplitPlaceholderRule_placeholderActivityName = 2;
