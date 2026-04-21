@@ -12,7 +12,7 @@
       <CodesignDisableTimestamp>true</CodesignDisableTimestamp>
       <CodesignKeychain></CodesignKeychain>
       <CodesignUseHardenedRuntime></CodesignUseHardenedRuntime>
-      <SourceProjectPath>D:\DOAN_C#\StreetFood-sqlite\MauiApp1</SourceProjectPath>
+      <SourceProjectPath>D:\DO_AN_C#\StreetFood-sqlite\MauiApp1</SourceProjectPath>
     </_CodesignBundle>
   </ItemGroup>
 </Project>

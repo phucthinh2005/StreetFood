@@ -1,4 +1,4 @@
-﻿using System.Globalization;
+using System.Globalization;
 using MauiApp1.Resources.Languages;
 using MauiApp1.Services;
 using Microsoft.Extensions.DependencyInjection;
@@ -9,6 +9,8 @@ namespace MauiApp1
 {
     public partial class App : Application
     {
+        public static bool IsInternalAction = false;
+
         public App()
         {
             InitializeComponent();
@@ -57,22 +59,33 @@ namespace MauiApp1
             // Sync lại data
             _ = PoiRepository.Instance.SyncFromFirebaseAsync();
 
-            // 🔥 SET STATUS ONLINE khi mở lại app
-            _ = LogAppAccessWithStatus("online");
+            // 💡 Nếu quay về từ Web (Cờ đang bật) thì KHÔNG cập nhật lại thời gian/trạng thái
+            if (!IsInternalAction)
+            {
+                _ = LogAppAccessWithStatus("online");
+            }
+
+            // Xử lý xong thì mới tắt cờ
+            IsInternalAction = false;
         }
 
         protected override void OnSleep()
         {
             base.OnSleep();
 
-            // 🔥 SET STATUS OFFLINE NGAY KHI TẮT APP
-            _ = LogAppAccessWithStatus("offline");
+            // Nếu không phải là hành động mở trình duyệt thì mới set offline
+            if (!IsInternalAction)
+            {
+                _ = LogAppAccessWithStatus("offline");
+            }
+            
+            // 💡 Không tắt cờ ở đây để OnResume có thể nhận biết được là vừa đi từ web về
         }
 
         // ════════════════════════════════════════
         // 🔥 DEVICE ID
         // ════════════════════════════════════════
-        private string GetDeviceId()
+        public string GetDeviceId()
         {
             string key = "device_id";
 
