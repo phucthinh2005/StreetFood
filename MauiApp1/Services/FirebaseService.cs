@@ -1,4 +1,4 @@
-﻿using System.Net.Http.Json;
+using System.Net.Http.Json;
 using System.Text.Json;
 using MauiApp1.Models;
 
@@ -94,7 +94,7 @@ namespace MauiApp1.Services
         /// </summary>
         public async Task LogHistoryAsync(
             string poiName, string lang,
-            string source, string device = "MAUI")
+            string source, string device, string deviceId)
         {
             try
             {
@@ -107,6 +107,7 @@ namespace MauiApp1.Services
                         lang = new { stringValue = lang },
                         source = new { stringValue = source },
                         device = new { stringValue = device },
+                        deviceId = new { stringValue = deviceId },
                         timestamp = new { timestampValue = DateTime.UtcNow.ToString("o") }
                     }
                 };
@@ -245,22 +246,27 @@ namespace MauiApp1.Services
         // ══════════════════════════════════════════
         // 🔥 SET DEVICE STATUS (online/offline) + Device + Platform
         // ══════════════════════════════════════════
-        public async Task SetDeviceStatusAsync(string deviceId, string device, string platform, string status)
+        public async Task SetDeviceStatusAsync(string deviceId, string device, string platform, string status, double lat = 0, double lng = 0)
         {
             try
             {
                 var url = $"{BASE_URL}/app_access_logs/{deviceId}?key={API_KEY}";
 
-                var body = new
+                var fields = new Dictionary<string, object>
                 {
-                    fields = new
-                    {
-                        Device = new { stringValue = device },
-                        Platform = new { stringValue = platform },
-                        Status = new { stringValue = status },
-                        LastActive = new { timestampValue = DateTime.UtcNow.ToString("o") }
-                    }
+                    { "Device", new { stringValue = device } },
+                    { "Platform", new { stringValue = platform } },
+                    { "Status", new { stringValue = status } },
+                    { "LastActive", new { timestampValue = DateTime.UtcNow.ToString("o") } }
                 };
+
+                if (lat != 0 || lng != 0)
+                {
+                    fields.Add("Latitude", new { doubleValue = lat });
+                    fields.Add("Longitude", new { doubleValue = lng });
+                }
+
+                var body = new { fields = fields };
 
                 var content = new StringContent(
                     JsonSerializer.Serialize(body),
@@ -279,58 +285,57 @@ namespace MauiApp1.Services
                 System.Diagnostics.Debug.WriteLine($"[Firebase] SetStatus lỗi: {ex.Message}");
             }
         }
+
     }
-
-    // ══════════════════════════════════════════
-    // FIRESTORE REST RESPONSE MODELS
-    // ══════════════════════════════════════════
-    public class FirestoreListResponse
-    {
-        [System.Text.Json.Serialization.JsonPropertyName("documents")]
-        public List<FirestoreDocument> Documents { get; set; } = new();
-    }
-
-    public class FirestoreDocument
-    {
-        [System.Text.Json.Serialization.JsonPropertyName("name")]
-        public string? Name { get; set; }
-
-        [System.Text.Json.Serialization.JsonPropertyName("fields")]
-        public Dictionary<string, FirestoreValue>? Fields { get; set; }
-    }
-
-    public class FirestoreValue
-    {
-        [System.Text.Json.Serialization.JsonPropertyName("stringValue")]
-        public string? StringValue { get; set; }
-
-        [System.Text.Json.Serialization.JsonPropertyName("doubleValue")]
-        public double? DoubleValue { get; set; }
-
-        // ⚠️ Firestore REST trả integerValue dạng STRING ("10" chứ không phải 10)
-        // phải dùng string? rồi parse thủ công
-        [System.Text.Json.Serialization.JsonPropertyName("integerValue")]
-        public string? IntegerValueRaw { get; set; }
-
-        // Helper: parse an toàn sang long
-        [System.Text.Json.Serialization.JsonIgnore]
-        public long? IntegerValue =>
-            long.TryParse(IntegerValueRaw, out var v) ? v : null;
-
-        [System.Text.Json.Serialization.JsonPropertyName("booleanValue")]
-        public bool? BooleanValue { get; set; }
-
-        [System.Text.Json.Serialization.JsonPropertyName("mapValue")]
-        public FirestoreMapValue? MapValue { get; set; }
-    }
-
-    public class FirestoreMapValue
-    {
-        [System.Text.Json.Serialization.JsonPropertyName("fields")]
-        public Dictionary<string, FirestoreValue>? Fields { get; set; }
-    }
-
-
-
-
 }
+// ══════════════════════════════════════════
+// FIRESTORE REST RESPONSE MODELS
+// ══════════════════════════════════════════
+public class FirestoreListResponse
+{
+    [System.Text.Json.Serialization.JsonPropertyName("documents")]
+    public List<FirestoreDocument> Documents { get; set; } = new();
+}
+
+public class FirestoreDocument
+{
+    [System.Text.Json.Serialization.JsonPropertyName("name")]
+    public string? Name { get; set; }
+
+    [System.Text.Json.Serialization.JsonPropertyName("fields")]
+    public Dictionary<string, FirestoreValue>? Fields { get; set; }
+}
+
+public class FirestoreValue
+{
+    [System.Text.Json.Serialization.JsonPropertyName("stringValue")]
+    public string? StringValue { get; set; }
+
+    [System.Text.Json.Serialization.JsonPropertyName("doubleValue")]
+    public double? DoubleValue { get; set; }
+
+    // ⚠️ Firestore REST trả integerValue dạng STRING ("10" chứ không phải 10)
+    // phải dùng string? rồi parse thủ công
+    [System.Text.Json.Serialization.JsonPropertyName("integerValue")]
+    public string? IntegerValueRaw { get; set; }
+
+    // Helper: parse an toàn sang long
+    [System.Text.Json.Serialization.JsonIgnore]
+    public long? IntegerValue =>
+        long.TryParse(IntegerValueRaw, out var v) ? v : null;
+
+    [System.Text.Json.Serialization.JsonPropertyName("booleanValue")]
+    public bool? BooleanValue { get; set; }
+
+    [System.Text.Json.Serialization.JsonPropertyName("mapValue")]
+    public FirestoreMapValue? MapValue { get; set; }
+}
+
+public class FirestoreMapValue
+{
+    [System.Text.Json.Serialization.JsonPropertyName("fields")]
+    public Dictionary<string, FirestoreValue>? Fields { get; set; }
+}
+
+
+
